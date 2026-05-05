@@ -101,7 +101,7 @@ export default function Navbar() {
                     className={cn(
                       "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-[20px] px-3 py-1.5 whitespace-nowrap",
                       activeDropdown === link.label ? "bg-beige" : "bg-transparent",
-                      (pathname?.startsWith('/listings') || pathname?.startsWith('/property-detail')) && link.label === 'LISTINGS'
+                      (pathname?.startsWith('/listings') || pathname?.startsWith('/properties-details')) && link.label === 'LISTINGS'
                         ? "text-blue"
                         : "text-navy hover:text-blue"
                     )}

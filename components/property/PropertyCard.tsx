@@ -73,7 +73,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
       )}
 
       <Link
-        href={`/property-detail?id=${property.id}`}
+        href={`/properties-details/${property.slug}`}
         className="group relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-card cursor-none"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}

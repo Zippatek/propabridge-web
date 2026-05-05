@@ -22,7 +22,7 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
   return (
     <div className="relative flex flex-col items-center text-center pb-12 px-4 sm:px-6 w-full -mt-[84px] pt-[180px]">
       {/* Grid Pattern Background */}
-      <div 
+      <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: `
@@ -35,7 +35,7 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
       />
 
       {/* Badge */}
-      <div className="relative z-10 inline-flex items-center gap-2.5 px-3 py-1.5 rounded-[6px] bg-[#e2e1d7] mb-8 shadow-sm">
+      <div className="relative z-10 inline-flex items-center gap-2.5 px-3 py-2.5 rounded-[6px] bg-[#e2e1d7] mb-8 shadow-sm">
         <div className="w-[7px] h-[7px] rounded-[1.5px] bg-navy"></div>
         <span className="text-[11px] font-bold text-navy tracking-[0.08em] uppercase leading-none pt-[1px]">PROPERTIES</span>
         <div className="w-[7px] h-[7px] rounded-[1.5px] bg-navy"></div>
@@ -71,8 +71,8 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
               onClick={() => onStatusChange(status.label)}
               className={cn(
                 "flex items-center gap-2 px-5 py-2.5 rounded-[12px] text-[13px] font-bold tracking-[0.05em] uppercase transition-colors",
-                isActive 
-                  ? "bg-navy text-white shadow-md" 
+                isActive
+                  ? "bg-navy text-white shadow-md"
                   : "bg-[#E5E7EB] text-navy hover:bg-[#D1D5DB]"
               )}
             >

@@ -54,7 +54,7 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
 
       {/* Download Plan Button (Outside the card) */}
       <div className="flex justify-center">
-        <button className="inline-flex items-center justify-center bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-8 py-4 rounded-lg transition-all duration-300 gap-2 w-full sm:w-auto shadow-[0_4px_14px_rgba(0,106,255,0.25)]">
+        <button className="inline-flex items-center justify-center bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-8 py-4 rounded-[8px] transition-all duration-300 gap-2 shadow-[0_4px_14px_rgba(0,106,255,0.25)] outline-none focus:outline-none focus:ring-0 border-none">
           <DownloadSimple size={20} weight="bold" />
           DOWNLOAD PLAN
         </button>

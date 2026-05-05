@@ -94,9 +94,8 @@ function CustomDropdown({ options, value, onChange, placeholder }: CustomDropdow
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`${inputCls} w-full flex items-center justify-between text-left ${
-          isOpen ? '!border-[#ffc870] !ring-1 !ring-[#ffc870]' : ''
-        }`}
+        className={`${inputCls} w-full flex items-center justify-between text-left ${isOpen ? '!border-[#ffc870] !ring-1 !ring-[#ffc870]' : ''
+          }`}
       >
         <span className={value ? 'text-[#001a40]' : 'text-[#a0a090] text-[14px]'}>
           {selectedOption ? selectedOption.label : placeholder}
@@ -110,9 +109,8 @@ function CustomDropdown({ options, value, onChange, placeholder }: CustomDropdow
             <button
               key={opt.value}
               type="button"
-              className={`w-full text-left px-4 py-2.5 text-[14px] transition-colors hover:bg-[#d8d6cc] ${
-                value === opt.value ? 'bg-[#d8d6cc] font-medium text-[#001a40]' : 'text-[#001a40]'
-              }`}
+              className={`w-full text-left px-4 py-2.5 text-[14px] transition-colors hover:bg-[#d8d6cc] ${value === opt.value ? 'bg-[#d8d6cc] font-medium text-[#001a40]' : 'text-[#001a40]'
+                }`}
               onClick={() => {
                 onChange(opt.value);
                 setIsOpen(false);
