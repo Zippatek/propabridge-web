@@ -134,10 +134,24 @@ export function SubmitPropertyForm() {
   const set = (field: keyof FormData, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: form.ownerName,
+        phone: form.ownerPhone,
+        email: form.ownerEmail,
+        intent: form.listingType === 'rent' ? 'rent' : 'sell',
+        source: 'submit_property_form',
+        status: 'new',
+      }),
+    });
+  } catch {}
+  setSubmitted(true);
+};
 
   if (submitted) {
     return (
