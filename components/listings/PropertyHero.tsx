@@ -8,9 +8,9 @@ interface PropertyHeroProps {
 
 export function PropertyHero({ property }: PropertyHeroProps) {
   // Use the first image as the hero background, or a placeholder if none exists
-  const heroImage = property.images && property.images.length > 0 
+  const heroImage = (property.images && property.images.length > 0 && property.images[0]) 
     ? property.images[0] 
-    : "/images/hero-bg.webp"; // fallback to homepage hero if missing
+    : "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=80";
 
   return (
     <section className="relative w-full h-[60vh] min-h-[500px] flex flex-col items-center justify-end pb-16 -mt-[84px] pt-[84px]">

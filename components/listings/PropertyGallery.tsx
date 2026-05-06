@@ -12,6 +12,7 @@ interface PropertyGalleryProps {
 const EXTENDED_GALLERY = [
   'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=85',
   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=85',
   'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=85',
   'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85',
   'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=85',
@@ -48,7 +49,6 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
   return (
     <div className="w-full mt-10 mb-16">
       <div className="container-site">
-        
         {/* Desktop Layout (hidden on mobile) */}
         <div className="hidden md:grid grid-cols-12 gap-3" style={{ gridAutoRows: 'minmax(180px, auto)' }}>
           {/* Default 6 images */}
@@ -74,6 +74,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
               </div>
             );
           })}
+        </div>
         </div>
 
         {/* Mobile Layout (hidden on desktop) */}

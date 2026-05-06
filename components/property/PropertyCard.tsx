@@ -27,7 +27,7 @@ const statusTextColor: Record<string, string> = {
 
 export default function PropertyCard({ property, priority = false }: PropertyCardProps) {
   const {
-    slug,
+    id,
     title,
     location,
     price,
@@ -37,7 +37,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
     beds,
     baths,
     area,
-    areaUnit,
     images,
   } = property
 
@@ -55,6 +54,11 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY })
   }
+
+  // Robust image selection
+  const displayImage = (images && images.length > 0 && images[0]) 
+    ? images[0] 
+    : 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80';
 
   return (
     <>
@@ -83,7 +87,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
       {/* ── IMAGE ── */}
       <div className="relative overflow-hidden rounded-card" style={{ height: 320 }}>
         <Image
-          src={images[0] ?? '/images/properties/placeholder.jpg'}
+          src={displayImage}
           alt={title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -92,16 +96,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
         />
       </div>
 
-      {/*
-        ── STATUS BADGE ──
-        Positioned OUTSIDE overflow-hidden so it is NOT clipped.
-        Exact CSS per user spec:
-          padding: 0 0 10px 10px  (no top/right, 10px bottom/left)
-          background: #f4f3ea     (beige — same as page)
-          border-radius: 0 0 0 17px  (only bottom-left curved)
-          z-index: 1
-          display: flex, gap: 10px
-      */}
       <div
         className="absolute top-0 right-0 flex flex-row items-center justify-center flex-nowrap overflow-visible"
         style={{
@@ -125,7 +119,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
 
       {/* ── INFO — sits on beige page bg ── */}
       <div className="pt-3 pb-4">
-
         {/* Row 1: Location */}
         <div className="flex items-start gap-1.5 mb-2.5">
           <MapPin size={14} color="#4a5568" weight="fill" className="mt-0.5 shrink-0" aria-hidden="true" />
@@ -137,7 +130,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
         {/* Row 2: Specs + Price — on one line */}
         <div className="flex items-center justify-between gap-2 mb-2.5">
           <div className="flex items-center gap-1.5 text-grey text-[12px] min-w-0 flex-shrink">
-
             {isAreaOnly ? (
               <div className="flex items-center gap-1.5">
                 <FrameCorners size={16} color="#4a5568" weight="regular" aria-hidden="true" />
@@ -177,16 +169,13 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
             )}
           </div>
 
-          {/* Price — always on one line */}
           <span className="text-navy font-bold text-[15px] shrink-0 whitespace-nowrap ml-2">
             {priceDisplay}
           </span>
         </div>
 
-        {/* Divider — bolder visibility */}
         <hr className="border-t border-[#b0b8c5] mb-2.5" aria-hidden="true" />
 
-        {/* Title */}
         <h3 className="text-navy font-bold text-[15px] leading-snug line-clamp-2">
           {title}
         </h3>
