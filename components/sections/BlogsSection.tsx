@@ -1,60 +1,26 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { House, Article, Star, Lightbulb, PaintBrush, ShareNetwork } from '@phosphor-icons/react'
 import { cn } from '@/lib/cn'
-
-// Custom hook to track mouse position universally to prevent lag
-const useMousePosition = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  return mousePos
-}
-
 import { BLOGS } from '@/data/blogs'
+import type { FrontendBlog } from '@/lib/api'
 
 interface BlogsSectionProps {
   limit?: number
   isPage?: boolean
+  blogs?: FrontendBlog[]
 }
 
-export default function BlogsSection({ limit = 3, isPage = false }: BlogsSectionProps) {
-  const mousePos = useMousePosition()
-  const [hoveredCardId, setHoveredCardId] = useState<string | null>(null)
-
-  const [isClient, setIsClient] = useState(false)
-  useEffect(() => setIsClient(true), [])
-
+export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS }: BlogsSectionProps) {
   return (
     <section className={cn("bg-beige relative", isPage ? "pt-2 pb-24" : "section-pt section-pb")} aria-labelledby={isPage ? undefined : "blogs-heading"}>
 
       {/* ── TOP DIVIDER ── */}
       {!isPage && (
         <hr className="border-t border-grey-light mx-6 mb-12 md:mb-16" aria-hidden="true" />
-      )}
-
-      {/* ── GLOBAL CUSTOM CURSOR ── */}
-      {isClient && (
-        <div
-          className={`fixed top-0 left-0 pointer-events-none z-[100] transition-opacity duration-300 ease-out flex items-center justify-center w-[100px] h-[100px] rounded-full bg-navy text-white text-[13px] font-bold tracking-[0.1em] shadow-float ${hoveredCardId ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}
-          style={{
-            transform: `translate(${mousePos.x - 50}px, ${mousePos.y - 50}px)`,
-            willChange: 'transform'
-          }}
-          aria-hidden="true"
-        >
-          VIEW &gt;
-        </div>
       )}
 
       <div className="container-site">
@@ -97,23 +63,23 @@ export default function BlogsSection({ limit = 3, isPage = false }: BlogsSection
           {/* ── CATEGORY FILTERS (Only for the dedicated page) ── */}
           {isPage && (
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-10 w-full">
-              <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-full transition-colors shadow-sm uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors shadow-sm uppercase tracking-wider">
                 <Article weight="fill" size={16} />
                 ALL
               </button>
-              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-full transition-colors uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <Star weight="regular" size={16} />
                 FEATURED
               </button>
-              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-full transition-colors uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <Lightbulb weight="regular" size={16} />
                 GUIDE
               </button>
-              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-full transition-colors uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <PaintBrush weight="regular" size={16} />
                 LIFESTYLE
               </button>
-              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-full transition-colors uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <ShareNetwork weight="regular" size={16} />
                 NEWS
               </button>
@@ -123,13 +89,11 @@ export default function BlogsSection({ limit = 3, isPage = false }: BlogsSection
 
         {/* ── BLOG GRID ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
-          {BLOGS.slice(0, limit).map(blog => (
+          {blogs.slice(0, limit).map(blog => (
             <Link
               href={`/blogs/${blog.id}`}
               key={blog.id}
-              className="group block cursor-none transition-transform hover:-translate-y-1 duration-300 flex flex-col h-full"
-              onMouseEnter={() => setHoveredCardId(blog.id)}
-              onMouseLeave={() => setHoveredCardId(null)}
+              className="group block transition-transform hover:-translate-y-1 duration-300 flex flex-col h-full"
             >
               {/* Image Thumbnail */}
               <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-[16px] overflow-hidden bg-[#e0e0d5] mb-6 border border-[#ecece0]/50 shadow-sm transition-shadow shrink-0">

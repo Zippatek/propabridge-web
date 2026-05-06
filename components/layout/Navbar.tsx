@@ -99,11 +99,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-[20px] px-3 py-1.5 whitespace-nowrap",
+                      "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
                       activeDropdown === link.label ? "bg-beige" : "bg-transparent",
                       (pathname?.startsWith('/listings') || pathname?.startsWith('/properties-details')) && link.label === 'LISTINGS'
                         ? "text-blue"
-                        : "text-navy hover:text-blue"
+                        : "text-navy hover:text-[#6b7280]"
                     )}
                     aria-haspopup="true"
                     aria-expanded={activeDropdown === link.label}
@@ -124,7 +124,7 @@ export default function Navbar() {
                           <Image src="/images/menu/house_in_field.png" alt="All Properties" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-gray font-semibold text-[18px] mb-1.5 transition-colors">All Properties</h3>
-                        <p className="text-gray/70 text-[14px] leading-relaxed mb-4 flex-grow">Browse everything we've verified and uploaded, from self-contains to luxury homes.</p>
+                        <p className="text-gray/70 text-[14px] leading-relaxed mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
                         <div className="text-gray font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           SEE ALL LISTINGS <CaretRight size={12} weight="bold" />
                         </div>
@@ -177,10 +177,10 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "flex items-center text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-[20px] px-3.5 py-2 whitespace-nowrap",
+                    "flex items-center text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-btn px-3.5 py-2 whitespace-nowrap",
                     pathname === link.href || (pathname?.startsWith(link.href) && link.href !== '/')
                       ? "bg-beige text-navy"
-                      : "text-navy hover:bg-beige hover:text-blue"
+                      : "text-navy hover:bg-beige hover:text-[#6b7280]"
                   )}
                 >
                   {link.label}
@@ -224,7 +224,7 @@ export default function Navbar() {
             {[
               { label: 'ABOUT', href: '/about' },
               { label: 'ALL PROPERTIES', href: '/listings' },
-              { label: 'NEIGHBORHOODS', href: '/neighborhoods' },
+              { label: 'NEIGHBORHOODS', href: '/neighborhood' },
               { label: 'AGENTS', href: '/agents' },
               { label: 'SELL', href: '/sell' },
               { label: 'REVIEWS', href: '/reviews' },
@@ -248,7 +248,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#006aff] text-white font-bold text-[13px] px-8 py-3.5 rounded-full shadow-md hover:bg-[#0052cc] transition-colors"
+              className="flex items-center justify-center gap-2 bg-[#006aff] text-white font-bold text-[13px] px-8 py-3.5 rounded-btn shadow-md hover:bg-[#0052cc] transition-colors"
             >
               CHAT WITH PROPA
               <CaretRight size={14} weight="bold" aria-hidden="true" />

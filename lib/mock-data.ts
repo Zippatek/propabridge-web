@@ -1,5 +1,9 @@
 import { Property, Location, Testimonial, BlogPost } from './types'
 
+const BUCKET_BASE =
+  process.env.NEXT_PUBLIC_GCS_BUCKET_BASE ||
+  'https://storage.googleapis.com/propabridge-listings-us'
+
 export const MOCK_PROPERTIES: Property[] = [
   {
     id: 'PB-ABJ-0101',
@@ -222,7 +226,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Gwarinpa Estate',
     city: 'Abuja',
     state: 'FCT',
-    image: 'https://images.unsplash.com/photo-1460317442991-0ec209397118?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/gwarinpa-abuja.jpg`,
     propertyCount: 42,
     description: 'One of Abuja\'s largest residential districts with a mix of housing types.',
   },
@@ -232,7 +236,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Maitama',
     city: 'Abuja',
     state: 'FCT',
-    image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/maitama-abuja.jpg`,
     propertyCount: 28,
     description: 'Abuja\'s most prestigious district, home to embassies and high-end residences.',
   },
@@ -242,7 +246,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Karsana North',
     city: 'Abuja',
     state: 'FCT',
-    image: 'https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/karsana-abuja.jpg`,
     propertyCount: 15,
     description: 'A fast-growing residential district with modern estate developments.',
   },
@@ -252,7 +256,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Asokoro',
     city: 'Abuja',
     state: 'FCT',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/asokoro-abuja.jpg`,
     propertyCount: 19,
     description: 'Government and diplomatic hub with upscale residential properties.',
   },
@@ -262,7 +266,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Central',
     city: 'Kaduna',
     state: 'Kaduna',
-    image: 'https://images.unsplash.com/photo-1551361415-69c87624334f?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/kaduna-city.jpg`,
     propertyCount: 22,
     description: 'Northern Nigeria\'s commercial capital with diverse property options.',
   },
@@ -272,7 +276,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Central',
     city: 'Minna',
     state: 'Niger',
-    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=80',
+    image: `${BUCKET_BASE}/neighborhoods/minna.jpg`,
     propertyCount: 11,
     description: 'Niger State\'s capital city with affordable housing opportunities.',
   },

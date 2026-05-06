@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import LocationCard from '@/components/property/LocationCard'
 import { MOCK_LOCATIONS } from '@/lib/mock-data'
+import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'Neighborhoods — Propabridge',
@@ -14,7 +15,19 @@ export const metadata: Metadata = {
   },
 }
 
-export default function NeighborhoodPage() {
+export default async function NeighborhoodPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ q?: string }>
+}) {
+  const params = await searchParams
+  const query = (params?.q || '').trim().toLowerCase()
+  const filteredLocations = query
+    ? MOCK_LOCATIONS.filter((location) =>
+        `${location.name} ${location.city} ${location.district}`.toLowerCase().includes(query)
+      )
+    : MOCK_LOCATIONS
+
   return (
     <main className="bg-beige min-h-screen">
 
@@ -38,6 +51,20 @@ export default function NeighborhoodPage() {
         >
           Every neighborhood has its rhythm — let&apos;s find the one that fits you best.
         </h1>
+        <form action="/neighborhood" className="mt-8 w-full max-w-[560px] mx-auto">
+          <div className="flex items-center bg-white border border-grey-light rounded-btn px-4 py-3 gap-3">
+            <MagnifyingGlass size={18} className="text-navy/60 shrink-0" />
+            <input
+              name="q"
+              defaultValue={params?.q || ''}
+              placeholder="Search by neighborhood, city, or district..."
+              className="w-full bg-transparent text-[14px] text-navy placeholder:text-navy/45 outline-none"
+            />
+            <button type="submit" className="bg-navy text-white text-[12px] font-semibold px-4 py-2 rounded-btn">
+              SEARCH
+            </button>
+          </div>
+        </form>
       </section>
 
       {/* ── NEIGHBORHOOD GRID ────────────────────────────────────────── */}
@@ -49,16 +76,16 @@ export default function NeighborhoodPage() {
         <hr className="border-t border-grey-light mb-10" aria-hidden="true" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {MOCK_LOCATIONS.map((location) => (
+          {filteredLocations.map((location) => (
             <LocationCard key={location.id} location={location} />
           ))}
         </div>
 
         {/* Empty state — future-proofed */}
-        {MOCK_LOCATIONS.length === 0 && (
+        {filteredLocations.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <p className="text-navy/50 text-[15px]">
-              No neighborhoods available at the moment. Check back soon.
+              No neighborhoods matched your search. Try another term.
             </p>
           </div>
         )}

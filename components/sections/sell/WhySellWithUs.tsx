@@ -117,8 +117,8 @@ export default function WhySellWithUs() {
                 return (
                   <div key={perk.id} className="flex items-start gap-4">
                     {/* Icon box */}
-                    <div className="shrink-0 w-[40px] h-[40px] rounded-[10px] border border-navy/15 flex items-center justify-center bg-white shadow-sm">
-                      <Icon size={18} weight="regular" className="text-navy" />
+                    <div className="shrink-0 w-[40px] h-[40px] rounded-btn border border-navy/15 flex items-center justify-center bg-navy shadow-sm">
+                      <Icon size={18} weight="regular" className="text-white" />
                     </div>
                     <div>
                       <p className="text-navy font-bold text-[15px] leading-snug">{perk.title}</p>

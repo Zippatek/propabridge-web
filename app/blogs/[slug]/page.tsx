@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { BLOGS } from '@/data/blogs'
 import { House } from '@phosphor-icons/react/dist/ssr'
 import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
+import { fetchBlogBySlug, fetchBlogs } from '@/lib/api'
 
 interface BlogDetailPageProps {
   params: Promise<{
@@ -14,15 +15,14 @@ interface BlogDetailPageProps {
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { slug } = await params
 
-  // Find the blog
-  const blog = BLOGS.find((b) => b.id === slug)
+  const blog = (await fetchBlogBySlug(slug)) || BLOGS.find((b) => b.id === slug)
 
   if (!blog) {
     notFound()
   }
 
-  // Get 3 other blogs
-  const otherBlogs = BLOGS.filter((b) => b.id !== slug).slice(0, 3)
+  const allBlogs = await fetchBlogs(12)
+  const otherBlogs = allBlogs.filter((b) => b.id !== slug).slice(0, 3)
 
   return (
     <main className="bg-[#f4f3ea] min-h-screen pt-[120px] pb-24">
@@ -113,7 +113,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               {/* Newsletter Card */}
               <div className="bg-[#fcfaef] rounded-[12px] p-6 shadow-sm border border-[#ecece0]">
                 <h3 className="text-navy text-[18px] font-bold leading-tight mb-4">
-                  What's better than insider perks, pro tips, and surprises?
+                  What&apos;s better than insider perks, pro tips, and surprises?
                 </h3>
                 <p className="text-navy/70 text-[14px] leading-relaxed mb-6">
                   Sign up to get the most recent blog articles in your email every week.<br /><br />Join now.
@@ -121,7 +121,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <form className="flex flex-col gap-3">
                   <input
                     type="email"
-                    placeholder="jane@framer.com"
+                    placeholder="jane@propabridge.com"
                     className="w-full h-[48px] bg-[#f0efe6] rounded-[8px] px-4 text-[14px] text-navy placeholder:text-navy/40 focus:outline-none focus:ring-2 focus:ring-navy/20 transition-all border border-transparent"
                     required
                   />
@@ -197,7 +197,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </h3>
 
                 {/* Author Pill */}
-                <div className="inline-flex items-center self-start gap-2.5 bg-[#eae9e0] pr-4 pl-1.5 py-1.5 rounded-full border border-[#ecece0]/80 shrink-0">
+                <div className="inline-flex items-center self-start gap-2.5 bg-[#eae9e0] pr-4 pl-1.5 py-1.5 rounded-btn border border-[#ecece0]/80 shrink-0">
                   <div className="relative flex items-center justify-center w-7 h-7 rounded-full overflow-hidden shrink-0 bg-white">
                     {b.authorName === 'PROPABRIDGE TEAM' ? (
                       <House size={14} weight="regular" className="text-navy" />

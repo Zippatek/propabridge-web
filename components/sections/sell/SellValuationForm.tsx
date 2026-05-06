@@ -135,7 +135,7 @@ export default function SellValuationForm() {
           id="sell-email"
           type="email"
           className={inputBase}
-          placeholder="jane@framer.com"
+          placeholder="jane@propabridge.com"
           value={form.email}
           onChange={(e) => update('email', e.target.value)}
           aria-invalid={!!errors.email}

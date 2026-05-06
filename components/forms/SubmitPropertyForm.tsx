@@ -338,7 +338,7 @@ export function SubmitPropertyForm() {
         {/* Email — full width */}
         <div className="mb-5">
           <label className={labelCls}>Email</label>
-          <input type="email" className={inputCls} placeholder="jane@framer.com" value={form.ownerEmail} onChange={(e) => set('ownerEmail', e.target.value)} />
+          <input type="email" className={inputCls} placeholder="jane@propabridge.com" value={form.ownerEmail} onChange={(e) => set('ownerEmail', e.target.value)} />
         </div>
 
         {/* Owner/Agent + Best Time to Call */}

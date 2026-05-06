@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin, Bed, Bathtub, ArrowRight, FrameCorners } from '@phosphor-icons/react/dist/ssr'
+import { MapPin, Bed, Bathtub, FrameCorners } from '@phosphor-icons/react/dist/ssr'
 import { Property } from '@/lib/types'
 
 interface PropertyCardProps {
@@ -27,7 +26,6 @@ const statusTextColor: Record<string, string> = {
 
 export default function PropertyCard({ property, priority = false }: PropertyCardProps) {
   const {
-    id,
     title,
     location,
     price,
@@ -45,16 +43,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const isAreaOnly = beds === undefined && baths === undefined
   const badgeColor = statusTextColor[status] ?? '#001a40'
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-  const [isClient, setIsClient] = useState(false)
-  
-  useEffect(() => setIsClient(true), [])
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY })
-  }
-
   // Robust image selection
   const displayImage = (images && images.length > 0 && images[0]) 
     ? images[0] 
@@ -62,26 +50,9 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
 
   return (
     <>
-      {isClient && isHovering && (
-        <div 
-          className="fixed top-0 left-0 pointer-events-none z-[100] transition-opacity duration-300 ease-out flex items-center justify-center w-[96px] h-[96px] rounded-full bg-navy text-white text-[13px] font-bold tracking-[0.1em] shadow-xl"
-          style={{ 
-            opacity: 1,
-            transform: `translate(${mousePos.x - 48}px, ${mousePos.y - 48}px)`,
-            willChange: 'transform'
-          }}
-          aria-hidden="true"
-        >
-          VIEW &gt;
-        </div>
-      )}
-
       <Link
         href={`/properties-details/${property.slug}`}
-        className="group relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-card cursor-none"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        onMouseMove={handleMouseMove}
+        className="group relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-card"
         aria-label={`View listing: ${title}`}
       >
       {/* ── IMAGE ── */}

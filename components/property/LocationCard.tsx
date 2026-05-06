@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CaretRight } from '@phosphor-icons/react'
@@ -12,40 +11,13 @@ interface LocationCardProps {
 
 export default function LocationCard({ location }: LocationCardProps) {
   const { name, city, image } = location
-  const href = `/listings?city=${encodeURIComponent(city)}&district=${encodeURIComponent(name)}`
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-  const [isClient, setIsClient] = useState(false)
-  
-  useEffect(() => setIsClient(true), [])
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY })
-  }
+  const href = `/neighborhood/${encodeURIComponent(location.id)}`
 
   return (
     <>
-      {isClient && isHovering && (
-        <div 
-          className="fixed top-0 left-0 pointer-events-none z-[100] transition-opacity duration-300 ease-out flex items-center justify-center w-[96px] h-[96px] rounded-full bg-navy text-white text-[13px] font-bold tracking-[0.1em] shadow-xl"
-          style={{ 
-            opacity: 1,
-            transform: `translate(${mousePos.x - 48}px, ${mousePos.y - 48}px)`,
-            willChange: 'transform'
-          }}
-          aria-hidden="true"
-        >
-          VIEW &gt;
-        </div>
-      )}
-
       <Link
         href={href}
-        className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-[16px] cursor-none"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        onMouseMove={handleMouseMove}
+        className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-[16px]"
         aria-label={`Browse properties in ${name}, ${city}`}
       >
       {/*

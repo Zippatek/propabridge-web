@@ -30,7 +30,7 @@ export default function SoldPropertiesCTA() {
         <div className="flex justify-center">
           <Link
             href="/listings"
-            className="inline-flex items-center gap-2 bg-blue hover:bg-[#0052cc] text-white font-bold text-[14px] uppercase tracking-[0.1em] px-10 h-[58px] rounded-full transition-colors duration-200 shadow-[0_4px_20px_rgba(0,106,255,0.3)]"
+            className="inline-flex items-center gap-2 bg-blue hover:bg-[#0052cc] text-white font-bold text-[14px] uppercase tracking-[0.1em] px-10 h-[58px] rounded-btn transition-colors duration-200 shadow-[0_4px_20px_rgba(0,106,255,0.3)]"
           >
             VIEW ALL PROPERTIES
             <CaretRight size={16} weight="bold" />

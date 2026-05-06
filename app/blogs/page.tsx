@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import BlogsSection from '@/components/sections/BlogsSection'
+import { fetchBlogs } from '@/lib/api'
 
 export const metadata: Metadata = {
   title: 'Blogs & News | Propabridge',
@@ -13,10 +14,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogsPage() {
+export default async function BlogsPage() {
+  const blogs = await fetchBlogs(12)
   return (
     <main className="bg-beige min-h-screen pt-[72px]">
-      <BlogsSection limit={8} isPage={true} />
+      <BlogsSection limit={8} isPage={true} blogs={blogs} />
     </main>
   )
 }
