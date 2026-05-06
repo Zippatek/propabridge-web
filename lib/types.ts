@@ -6,7 +6,8 @@ export type PropertyCity = 'Abuja' | 'Kaduna' | 'Minna'
 export type VerificationStatus = 'VERIFIED' | 'PENDING' | 'FAILED'
 
 export interface Property {
-  id: string                    // "PB-ABJ-0105"
+  id: string                    // Internal UUID
+  property_id?: string          // "PB-ABJ-0105"
   slug: string                  // URL slug
   title: string
   shortDescription?: string
