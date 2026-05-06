@@ -75,7 +75,6 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
             );
           })}
         </div>
-        </div>
 
         {/* Mobile Layout (hidden on desktop) */}
         <div className="grid md:hidden grid-cols-2 gap-3">
