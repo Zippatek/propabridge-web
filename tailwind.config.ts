@@ -10,30 +10,52 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── PRIMARY PALETTE ─────────────────────────────────────────
+        // ── PRIMARY PALETTE (matches propabridge-dashboard tokens) ──
         navy: {
-          DEFAULT: '#001a40',   // Deep Navy — headings, heavy BGs
-          light:   '#002a5e',   // Gradient endpoint only
+          DEFAULT: '#001a40',
+          light:   '#002a5e',
+          50:      '#f0f4ff',
+          100:     '#d9e4f5',
         },
         blue: {
-          DEFAULT: '#006aff',   // Electric Blue — CTAs, actions
-          hover:   '#0052cc',   // Electric Blue hover state
+          DEFAULT: '#006aff',
+          hover:   '#0052cc',
+        },
+        action: {
+          DEFAULT: '#006aff',
+          hover:   '#0052cc',
+          light:   'rgba(0, 106, 255, 0.1)',
         },
         gold: {
-          DEFAULT: '#ffc870',   // Warm Gold — verified badge, stars, decorative
-          hover:   '#f5c842',   // Hero link hover (buy/sell/rent on-hover glow)
+          DEFAULT: '#ffc870',
+          hover:   '#f5c842',
+          light:   'rgba(255, 200, 112, 0.15)',
         },
         beige: {
-          DEFAULT: '#f4f3ea',   // Light Beige — page canvas, card BGs
+          DEFAULT: '#f4f3ea',
+          dark:    '#ebe9dc',
         },
         // ── SECONDARY / SUPPORT ─────────────────────────────────────
-        verified: '#1a7a4a',    // Verified Green — success/verified status
-        amber:    '#d97706',    // Amber — pending/caution
-        danger:   '#c0392b',    // Alert Red — error/failed (never decorative)
-        grey: {
-          DEFAULT: '#4a5568',   // Cool Grey — body copy, metadata
-          light:   '#cbd5e0',   // Light Grey — borders, dividers
+        verified: {
+          DEFAULT: '#1a7a4a',
+          light:   'rgba(26, 122, 74, 0.1)',
         },
+        amber:    '#d97706',
+        warning: {
+          DEFAULT: '#d97706',
+          light:   'rgba(217, 119, 6, 0.1)',
+        },
+        danger: {
+          DEFAULT: '#c0392b',
+          light:   'rgba(192, 57, 43, 0.1)',
+        },
+        grey: {
+          DEFAULT: '#4a5568',
+          light:   '#cbd5e0',
+        },
+        subtle:      '#4a5568',
+        divider:     '#cbd5e0',
+        placeholder: '#a0aec0',
       },
 
 
@@ -75,20 +97,24 @@ const config: Config = {
       },
 
       borderRadius: {
-        'card':   '12px',
-        'btn':    '8px',
-        'badge':  '20px',
-        'panel':  '8px',
-        'avatar': '50%',
-        'full':   '9999px',
+        'card':      '12px',
+        'btn':       '8px',
+        'button':    '8px',
+        'container': '8px',
+        'input':     '8px',
+        'panel':     '8px',
+        'badge':     '20px',
+        'avatar':    '50%',
+        'full':      '9999px',
       },
 
       boxShadow: {
-        // Per design guideline exactly:
-        'card':   '0 4px 24px rgba(0, 26, 64, 0.08)',   // Cards — soft, barely visible
-        'badge':  '0 2px 12px rgba(0, 26, 64, 0.14)',   // Floating badges
-        'float':  '0 8px 32px rgba(0, 26, 64, 0.12)',   // Elevated elements
-        'navbar': '0 2px 12px rgba(0, 0, 0, 0.08)',     // Floating navbar scroll state
+        'card':       '0 4px 24px rgba(0, 26, 64, 0.08)',
+        'card-hover': '0 8px 32px rgba(0, 26, 64, 0.12)',
+        'badge':      '0 2px 12px rgba(0, 26, 64, 0.14)',
+        'float':      '0 8px 32px rgba(0, 26, 64, 0.12)',
+        'navbar':     '0 2px 12px rgba(0, 0, 0, 0.08)',
+        'modal':      '0 20px 60px rgba(0, 26, 64, 0.18)',
       },
 
       transitionDuration: {

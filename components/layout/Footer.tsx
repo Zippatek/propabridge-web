@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 import Button from '@/components/ui/Button'
+import SubscribeForm from '@/components/layout/SubscribeForm'
 
 export default function Footer() {
   return (
@@ -170,22 +171,7 @@ export default function Footer() {
                 <span className="inline-block w-2.5 h-2.5 rounded-sm bg-beige shrink-0" aria-hidden="true" />
                 <h3 className="text-white font-bold text-[11px] uppercase tracking-wider">GET FRESH UPDATES</h3>
               </div>
-              <form className="flex bg-[#fcfdf8] p-1.5 rounded-btn shadow-sm w-full h-[64px]" action={process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/newsletter/subscribe` : '#'} method="post">
-                <input 
-                  type="email" 
-                  placeholder="jane@propabridge.com" 
-                  className="flex-1 min-w-0 bg-transparent px-4 sm:px-6 border-none outline-none text-navy text-[14px] sm:text-[15px] placeholder:text-navy/40 h-full"
-                  required
-                />
-                <button 
-                  type="submit" 
-                  className="bg-navy shrink-0 text-white font-semibold text-[12px] sm:text-[13px] uppercase tracking-wider px-5 sm:px-8 h-full rounded-btn flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-navy/90 transition-colors"
-                >
-                  <span className="hidden sm:inline">SUBSCRIBE</span>
-                  <span className="sm:hidden">SUBSCRIBE</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
-              </form>
+              <SubscribeForm />
             </div>
           </div>
         </div>

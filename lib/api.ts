@@ -156,6 +156,83 @@ export async function createBlog(payload: {
   return res.json()
 }
 
+export type FrontendNeighborhood = {
+  id: string
+  slug: string
+  name: string
+  city: string
+  state: string
+  coverImage: string
+  description?: string
+  safetyScore?: number
+  averagePrice?: number
+  listingCount?: number
+  population?: number
+  amenities?: { schools?: string[]; hospitals?: string[]; markets?: string[]; transit?: string[] }
+  demographics?: Record<string, unknown>
+  reviews?: unknown[]
+}
+
+function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
+  const slug = (n.slug as string) || (n.id as string) || ''
+  const name = (n.name as string) || ''
+  return {
+    id: (n.id as string) || slug,
+    slug,
+    name,
+    city: (n.city as string) || '',
+    state: (n.city as string) === 'Abuja' ? 'FCT' : ((n.state as string) || ''),
+    coverImage: (n.coverImage as string) || (n.cover_image as string) || '',
+    description: (n.description as string) || undefined,
+    safetyScore: typeof n.safetyScore === 'number' ? (n.safetyScore as number) : (n.safety_score as number | undefined),
+    averagePrice: typeof n.averagePrice === 'number' ? (n.averagePrice as number) : (n.average_price as number | undefined),
+    listingCount: (n.listingCount as number) ?? (n.listing_count as number | undefined),
+    population: n.population as number | undefined,
+    amenities: (n.amenities as FrontendNeighborhood['amenities']) || undefined,
+    demographics: (n.demographics as Record<string, unknown>) || undefined,
+    reviews: (n.reviews as unknown[]) || undefined,
+  }
+}
+
+export async function fetchNeighborhoods(query?: string): Promise<FrontendNeighborhood[]> {
+  try {
+    const params = new URLSearchParams()
+    if (query) params.set('city', query)
+    const res = await fetch(`${API_URL}/neighborhoods?${params.toString()}`, { cache: 'no-store' })
+    if (!res.ok) return []
+    const json = await res.json()
+    const raw = json.neighborhoods || json.data || []
+    return Array.isArray(raw) ? raw.map((n) => mapNeighborhood(n as Record<string, unknown>)) : []
+  } catch {
+    return []
+  }
+}
+
+export async function fetchNeighborhood(slug: string): Promise<FrontendNeighborhood | null> {
+  try {
+    const res = await fetch(`${API_URL}/neighborhoods/${slug}`, { cache: 'no-store' })
+    if (!res.ok) return null
+    const json = await res.json()
+    const raw = json.data || json
+    return mapNeighborhood(raw as Record<string, unknown>)
+  } catch {
+    return null
+  }
+}
+
+export async function subscribeNewsletter(email: string) {
+  const res = await fetch(`${API_URL}/newsletter/subscribe`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
+  if (!res.ok) {
+    const json = await res.json().catch(() => ({}))
+    throw new Error(json.error || 'Subscription failed')
+  }
+  return res.json()
+}
+
 export async function submitLead(data: {
   name: string;
   phone: string;

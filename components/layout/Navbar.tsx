@@ -193,7 +193,7 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-end gap-3 shrink-0">
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#006aff] text-white font-semibold text-[14px] px-6 py-3 rounded-[12px] hover:bg-blue-hover transition-colors whitespace-nowrap"
+              className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#006aff] text-white font-semibold text-[14px] px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors whitespace-nowrap"
             >
               CHAT WITH PROPA
               <ArrowRight size={14} weight="bold" aria-hidden="true" />
