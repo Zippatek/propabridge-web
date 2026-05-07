@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { House, Article, Star, Lightbulb, PaintBrush, ShareNetwork } from '@phosphor-icons/react'
+import { Home, FileText, Star, Lightbulb, Paintbrush, Share2 } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { BLOGS } from '@/data/blogs'
 import type { FrontendBlog } from '@/lib/api'
@@ -48,10 +48,9 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           <h2
             id="blogs-heading"
             className={cn(
-              "text-navy font-sans leading-[1.15] tracking-[-0.02em] w-full px-4 text-center",
-              isPage ? "font-medium max-w-[900px]" : "font-medium max-w-[1000px]"
+              "font-sans w-full px-4 text-center text-heading font-medium",
+              isPage ? "max-w-[900px] text-display-xl leading-[1.02]" : "max-w-[1000px] text-display-lg"
             )}
-            style={{ fontSize: isPage ? 'clamp(28px, 3.5vw, 46px)' : 'clamp(36px, 4.5vw, 56px)' }}
           >
             {isPage ? (
               <>Everything you ever wanted to know<br className="hidden md:block" /> about buying, selling, and living better</>
@@ -64,23 +63,23 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           {isPage && (
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-10 w-full">
               <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
-                <Article weight="fill" size={16} />
+                <FileText size={16} />
                 ALL
               </button>
               <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
-                <Star weight="regular" size={16} />
+                <Star size={16} />
                 FEATURED
               </button>
               <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
-                <Lightbulb weight="regular" size={16} />
+                <Lightbulb size={16} />
                 GUIDE
               </button>
               <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
-                <PaintBrush weight="regular" size={16} />
+                <Paintbrush size={16} />
                 LIFESTYLE
               </button>
               <button className="flex items-center gap-2 bg-[#eae9e0] hover:bg-[#dfded5] text-navy text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
-                <ShareNetwork weight="regular" size={16} />
+                <Share2 size={16} />
                 NEWS
               </button>
             </div>
@@ -121,7 +120,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
               <div className="inline-flex items-center self-start gap-2.5 bg-[#eae9e0] pr-4 pl-1.5 py-1.5 rounded-full border border-[#ecece0]/80 shrink-0">
                 <div className="relative flex items-center justify-center w-7 h-7 rounded-full overflow-hidden shrink-0 bg-white">
                   {blog.authorName === 'PROPABRIDGE TEAM' ? (
-                    <House size={14} weight="regular" className="text-navy" />
+                    <Home size={14} className="text-navy" />
                   ) : (
                     <Image src={blog.authorImage || '/images/blogs/author.png'} alt={blog.authorName} fill className="object-cover" />
                   )}

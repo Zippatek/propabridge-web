@@ -3,7 +3,7 @@ import LocationCard from '@/components/property/LocationCard'
 import { MOCK_LOCATIONS } from '@/lib/mock-data'
 import { fetchNeighborhoods } from '@/lib/api'
 import type { Location } from '@/lib/types'
-import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr'
+import { Search } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Neighborhoods — Propabridge',
@@ -57,15 +57,14 @@ export default async function NeighborhoodPage({
 
         <h1
           id="neighborhoods-heading"
-          className="text-navy font-medium leading-[1.1] tracking-[-0.02em] max-w-3xl mx-auto"
-          style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+          className="text-display-xl text-heading font-medium max-w-4xl mx-auto"
         >
           Every neighborhood has its rhythm — let&apos;s find the one that fits you best.
         </h1>
 
         <form action="/neighborhood" className="mt-8 w-full max-w-[560px] mx-auto">
           <div className="flex items-center bg-white border border-grey-light rounded-btn px-4 py-3 gap-3">
-            <MagnifyingGlass size={18} className="text-navy/60 shrink-0" />
+            <Search size={18} className="text-navy/60 shrink-0" />
             <input
               name="q"
               defaultValue={params?.q || ''}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { UploadSimple, X, Image as ImageIcon, VideoCamera, File } from '@phosphor-icons/react';
+import { Upload as UploadSimple, X, Image as ImageIcon, Video as VideoCamera, File } from 'lucide-react';
 
 interface UploadedFile {
   name: string;
@@ -43,9 +43,9 @@ export function FileUploadZone() {
   };
 
   const getIcon = (type: string) => {
-    if (type.startsWith('image/')) return <ImageIcon size={18} weight="regular" />;
-    if (type.startsWith('video/')) return <VideoCamera size={18} weight="regular" />;
-    return <File size={18} weight="regular" />;
+    if (type.startsWith('image/')) return <ImageIcon size={18} />;
+    if (type.startsWith('video/')) return <VideoCamera size={18} />;
+    return <File size={18} />;
   };
 
   const formatSize = (bytes: number) => {
@@ -73,7 +73,7 @@ export function FileUploadZone() {
         `}
       >
         <div className="w-[56px] h-[56px] rounded-full bg-[#f4f3ea] flex items-center justify-center">
-          <UploadSimple size={24} weight="regular" className="text-[#001a40]" />
+          <UploadSimple size={24} className="text-[#001a40]" />
         </div>
         <p className="text-[#001a40] font-semibold text-[15px]">
           Drag & drop files here, or <span className="text-[#006aff] underline">browse</span>
@@ -112,7 +112,7 @@ export function FileUploadZone() {
                 className="ml-1 text-[#a0aec0] hover:text-[#c0392b] transition-colors"
                 aria-label={`Remove ${file.name}`}
               >
-                <X size={14} weight="bold" />
+                <X size={14} />
               </button>
             </div>
           ))}

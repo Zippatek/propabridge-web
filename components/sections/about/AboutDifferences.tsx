@@ -12,7 +12,7 @@ export const AboutDifferences = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Left Column */}
         <div>
-          <h2 className="text-[#001a40] font-medium leading-[1.1] tracking-tight" style={{ fontSize: 'clamp(36px, 4vw, 48px)' }}>
+          <h2 className="text-display-lg text-heading font-medium">
             We've built our name on integrity, technology, and results that speak for themselves — no gimmicks, no pressure.
           </h2>
         </div>

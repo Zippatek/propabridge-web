@@ -2,8 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { CaretRight } from '@phosphor-icons/react'
+import { ChevronRight } from 'lucide-react'
 import { Location } from '@/lib/types'
+import HoverCursorWrapper from '@/components/ui/HoverCursorWrapper'
 
 interface LocationCardProps {
   location: Location
@@ -14,7 +15,7 @@ export default function LocationCard({ location }: LocationCardProps) {
   const href = `/neighborhood/${encodeURIComponent(location.id)}`
 
   return (
-    <>
+    <HoverCursorWrapper>
       <Link
         href={href}
         className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-[16px]"
@@ -54,9 +55,8 @@ export default function LocationCard({ location }: LocationCardProps) {
             className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#ebebeb] group-hover:bg-navy transition-colors duration-200 shrink-0"
             aria-hidden="true"
           >
-            <CaretRight
+            <ChevronRight
               size={14}
-              weight="bold"
               className="text-navy group-hover:text-white transition-colors duration-200"
             />
           </div>
@@ -64,6 +64,6 @@ export default function LocationCard({ location }: LocationCardProps) {
 
       </div>
     </Link>
-    </>
+    </HoverCursorWrapper>
   )
 }

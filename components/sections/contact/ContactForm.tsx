@@ -25,7 +25,7 @@ export const ContactForm = () => {
     <section className="container-site px-4 md:px-8 py-16">
       <div className="max-w-xl mx-auto bg-white rounded-[16px] p-8 md:p-10 shadow-sm">
         {/* Heading */}
-        <h2 className="text-[#001a40] font-medium text-[22px] md:text-[24px] leading-snug mb-8 max-w-[88%]">
+        <h2 className="text-display-md text-heading font-medium mb-8 max-w-[88%]">
           We&apos;re just a form away—send us your question, and we&apos;ll be happy to help!
         </h2>
 

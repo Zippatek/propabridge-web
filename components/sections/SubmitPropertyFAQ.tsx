@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, X } from '@phosphor-icons/react/dist/ssr';
+import { Plus, X } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 const FAQ_ITEMS = [
@@ -76,8 +76,7 @@ export function SubmitPropertyFAQ() {
           <div>
             <h2
               id="sp-faq-heading"
-              className="text-[#001a40] font-medium leading-[1.15] tracking-[-0.02em] lg:sticky lg:top-28"
-              style={{ fontSize: 'clamp(32px, 3.8vw, 52px)' }}
+              className="text-display-md text-[#001a40] font-medium lg:sticky lg:top-28"
             >
               Everything you wanted to ask (but didn&apos;t know who to)
             </h2>
@@ -107,8 +106,8 @@ export function SubmitPropertyFAQ() {
                     {/* Circle button */}
                     <div className="shrink-0 w-[40px] h-[40px] rounded-full border border-[#c8c6bc] flex items-center justify-center text-[#001a40] group-hover:border-[#001a40] transition-colors">
                       {isOpen
-                        ? <X size={14} weight="bold" />
-                        : <Plus size={14} weight="bold" />
+                        ? <X size={14} />
+                        : <Plus size={14} />
                       }
                     </div>
                     <span className="text-[#001a40] font-bold text-[18px] leading-[1.35]">

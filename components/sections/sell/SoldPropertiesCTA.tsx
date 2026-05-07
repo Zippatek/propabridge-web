@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CaretRight } from '@phosphor-icons/react/dist/ssr'
+import { ChevronRight } from 'lucide-react'
 
 export default function SoldPropertiesCTA() {
   return (
@@ -19,8 +19,7 @@ export default function SoldPropertiesCTA() {
           {/* Heading */}
           <h2
             id="sold-properties-heading"
-            className="lg:col-span-9 text-navy font-medium leading-[1.1] tracking-[-0.02em] text-center lg:text-left"
-            style={{ fontSize: 'clamp(32px, 4.5vw, 60px)' }}
+            className="lg:col-span-9 text-display-lg font-medium text-heading text-center lg:text-left"
           >
             The properties we&apos;ve sold,<br className="hidden sm:block" /> the dreams we&apos;ve delivered
           </h2>
@@ -30,10 +29,10 @@ export default function SoldPropertiesCTA() {
         <div className="flex justify-center">
           <Link
             href="/listings"
-            className="inline-flex items-center gap-2 bg-blue hover:bg-[#0052cc] text-white font-bold text-[14px] uppercase tracking-[0.1em] px-10 h-[58px] rounded-btn transition-colors duration-200"
+            className="btn-cream-pill"
           >
             VIEW ALL PROPERTIES
-            <CaretRight size={16} weight="bold" />
+            <ChevronRight size={18} />
           </Link>
         </div>
       </div>

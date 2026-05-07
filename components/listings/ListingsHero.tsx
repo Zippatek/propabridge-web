@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { MagnifyingGlass, Buildings, Tag, Key, Handshake } from '@phosphor-icons/react/dist/ssr'
+import { Search as MagnifyingGlass, Building2 as Buildings, Tag, Key, Handshake } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 interface ListingsHeroProps {
@@ -42,14 +42,14 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
       </div>
 
       {/* Heading */}
-      <h1 className="relative z-10 text-navy text-[32px] sm:text-[40px] md:text-[48px] font-medium leading-[1.1] tracking-tight max-w-[800px] mb-12">
+      <h1 className="relative z-10 text-display-xl text-heading font-medium max-w-[980px] mb-12">
         Find a place to live, work, or dream big — all in one beautiful map of possibilities.
       </h1>
 
       {/* Search Bar */}
       <div className="relative z-10 w-full max-w-[1280px] mb-8 mx-auto px-0 md:px-0 lg:px-0">
         <div className="relative flex items-center w-full h-[64px] bg-[#fcfdf8] rounded-[16px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] px-6">
-          <MagnifyingGlass size={20} color="#6B7280" weight="regular" className="mr-3" />
+          <MagnifyingGlass size={20} color="#6B7280" className="mr-3" />
           <input
             type="text"
             value={searchQuery}
@@ -76,7 +76,7 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
                   : "bg-[#E5E7EB] text-navy hover:bg-[#D1D5DB]"
               )}
             >
-              <Icon size={16} weight={isActive ? "fill" : "regular"} />
+              <Icon size={16} />
               {status.label}
             </button>
           )

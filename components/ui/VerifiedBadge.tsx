@@ -1,4 +1,4 @@
-import { Shield, Check } from '@phosphor-icons/react/dist/ssr'
+import { Shield, Check } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 interface VerifiedBadgeProps {
@@ -24,7 +24,7 @@ export default function VerifiedBadge({ size = 'md', items, className }: Verifie
         className={cn(glass, 'gap-1 px-2 py-1', className)}
         aria-label="Verified by Propabridge"
       >
-        <Shield size={14} weight="regular" color="#ffc870" aria-hidden="true" />
+        <Shield size={14} color="#ffc870" aria-hidden="true" />
       </div>
     )
   }
@@ -33,7 +33,7 @@ export default function VerifiedBadge({ size = 'md', items, className }: Verifie
     return (
       <div className={cn(glass, 'flex-col items-start gap-2 px-4 py-3', className)}>
         <div className="flex items-center gap-2">
-          <Shield size={14} weight="regular" color="#ffc870" aria-hidden="true" />
+          <Shield size={14} color="#ffc870" aria-hidden="true" />
           <span className="text-[#001a40] font-semibold text-[11px] tracking-[0.04em]">
             Verified by Propabridge
           </span>
@@ -41,7 +41,7 @@ export default function VerifiedBadge({ size = 'md', items, className }: Verifie
         <div className="flex flex-col gap-1">
           {items.map((item) => (
             <div key={item} className="flex items-center gap-1.5">
-              <Check size={12} color="#1a7a4a" weight="regular" aria-hidden="true" />
+              <Check size={12} color="#1a7a4a" aria-hidden="true" />
               <span className="text-[11px] text-[#4a5568] font-medium">{item}</span>
             </div>
           ))}

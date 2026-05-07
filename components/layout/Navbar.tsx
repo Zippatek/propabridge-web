@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { List, X, CaretDown, CaretRight, ArrowRight, HouseSimple } from '@phosphor-icons/react'
+import { Menu as List, X, ChevronDown as CaretDown, ChevronRight as CaretRight, ArrowRight } from 'lucide-react'
 import { NavLink } from '@/lib/types'
 import { cn } from '@/lib/cn'
 
@@ -72,19 +72,17 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-sm shrink-0"
+              className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-sm shrink-0"
               aria-label="Propabridge — home"
             >
-              <div className="flex items-center justify-center w-6 h-6 lg:w-7 lg:h-7 bg-navy rounded-[6px] shrink-0">
-                <HouseSimple size={14} className="lg:hidden" color="white" weight="fill" aria-hidden="true" />
-                <HouseSimple size={16} className="hidden lg:block" color="white" weight="fill" aria-hidden="true" />
-              </div>
-              <span className="font-extrabold text-navy text-[18px] lg:text-[20px] tracking-tight leading-none">
-                PROPA
-              </span>
-              <span className="font-extrabold text-[#006aff] text-[18px] lg:text-[20px] tracking-tight leading-none">
-                BRIDGE
-              </span>
+              <Image
+                src="/propabridge-logo.svg"
+                alt="Propabridge"
+                width={163}
+                height={26}
+                priority
+                className="h-[26px] w-auto"
+              />
             </Link>
           </div>
 
@@ -111,7 +109,7 @@ export default function Navbar() {
                     aria-expanded={activeDropdown === link.label}
                   >
                     {link.label}
-                    <CaretDown size={12} weight="bold" className={cn("transition-transform", activeDropdown === link.label && "rotate-180")} aria-hidden="true" />
+                    <CaretDown size={12} className={cn("transition-transform", activeDropdown === link.label && "rotate-180")} aria-hidden="true" />
                   </Link>
                   {activeDropdown === link.label && link.label === 'LISTINGS' && (
                     <div
@@ -126,9 +124,9 @@ export default function Navbar() {
                           <Image src="/images/menu/house_in_field.png" alt="All Properties" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">All Properties</h3>
-                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
+                        <p className="text-white/70 text-[14px] leading-snug mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
                         <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
-                          SEE ALL LISTINGS <CaretRight size={12} weight="bold" />
+                          SEE ALL LISTINGS <CaretRight size={12} />
                         </div>
                       </Link>
 
@@ -138,9 +136,9 @@ export default function Navbar() {
                           <Image src="/images/menu/rainy_city_street.png" alt="Neighborhoods" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">Neighborhoods</h3>
-                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
+                        <p className="text-white/70 text-[14px] leading-snug mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
                         <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
-                          EXPLORE AREAS <CaretRight size={12} weight="bold" />
+                          EXPLORE AREAS <CaretRight size={12} />
                         </div>
                       </Link>
 
@@ -150,9 +148,9 @@ export default function Navbar() {
                           <Image src="/images/menu/men_in_suits.png" alt="Property Types" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">Property Types</h3>
-                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
+                        <p className="text-white/70 text-[14px] leading-snug mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
                         <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
-                          EXPLORE TYPES <CaretRight size={12} weight="bold" />
+                          EXPLORE TYPES <CaretRight size={12} />
                         </div>
                       </Link>
                     </div>
@@ -198,7 +196,7 @@ export default function Navbar() {
               className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#001a40] text-white font-semibold text-[13px] uppercase tracking-[0.02em] px-5 py-2.5 rounded-btn hover:bg-[#002a5e] transition-colors whitespace-nowrap"
             >
               CHAT WITH PROPA
-              <ArrowRight size={14} weight="regular" aria-hidden="true" />
+              <ArrowRight size={14} aria-hidden="true" />
             </Link>
 
             <button
@@ -207,9 +205,9 @@ export default function Navbar() {
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {mobileOpen ? (
-                <X size={20} weight="regular" aria-hidden="true" className="text-gray-400 hover:text-navy" />
+                <X size={20} aria-hidden="true" className="text-gray-400 hover:text-navy" />
               ) : (
-                <List size={24} weight="regular" aria-hidden="true" />
+                <List size={24} aria-hidden="true" />
               )}
             </button>
           </div>
@@ -253,7 +251,7 @@ export default function Navbar() {
               className="flex items-center justify-center gap-2 bg-[#001a40] text-white font-bold text-[13px] uppercase tracking-[0.02em] px-8 py-3.5 rounded-btn hover:bg-[#002a5e] transition-colors"
             >
               CHAT WITH PROPA
-              <CaretRight size={14} weight="bold" aria-hidden="true" />
+              <CaretRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>

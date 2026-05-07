@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import {
-  HouseSimple, Sparkle, Camera, User, ArrowRight, CaretDown,
-} from '@phosphor-icons/react';
+  Home as HouseSimple, Sparkles as Sparkle, Camera, User, ArrowRight, ChevronDown as CaretDown,
+} from 'lucide-react';
 
 const PROPERTY_TYPES = [
   'Single-Family Home', 'Condo / Apartment', 'Townhouse', 'Multi-Family Home',
@@ -100,7 +100,7 @@ function CustomDropdown({ options, value, onChange, placeholder }: CustomDropdow
         <span className={value ? 'text-[#001a40]' : 'text-[#a0a090] text-[14px]'}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        <CaretDown size={16} weight="bold" className="text-[#001a40]" />
+        <CaretDown size={16} className="text-[#001a40]" />
       </button>
 
       {isOpen && (
@@ -172,7 +172,7 @@ export function SubmitPropertyForm() {
 
       {/* ── SECTION A: Basic Details ──────────────────────────────────── */}
       <div className="mb-8">
-        <SectionHeader icon={<HouseSimple size={20} weight="fill" />} title="Basic Details" />
+        <SectionHeader icon={<HouseSimple size={20} />} title="Basic Details" />
 
         {/* Row 1: Property Title + Property Type */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
@@ -226,7 +226,7 @@ export function SubmitPropertyForm() {
 
       {/* ── SECTION B: Property Info ──────────────────────────────────── */}
       <div className="mb-8">
-        <SectionHeader icon={<HouseSimple size={20} weight="fill" />} title="Property info" />
+        <SectionHeader icon={<HouseSimple size={20} />} title="Property info" />
 
         {/* Row 1: Bedrooms + Bathrooms + Interior Area (3 cols) */}
         <div className="grid grid-cols-3 gap-4 mb-5">
@@ -271,7 +271,7 @@ export function SubmitPropertyForm() {
 
       {/* ── SECTION C: Features & Amenities ──────────────────────────── */}
       <div className="mb-8">
-        <SectionHeader icon={<Sparkle size={20} weight="fill" />} title="Features & amenities" />
+        <SectionHeader icon={<Sparkle size={20} />} title="Features & amenities" />
 
         <div className="space-y-5">
           <div>
@@ -306,7 +306,7 @@ export function SubmitPropertyForm() {
 
       {/* ── SECTION D: Media ─────────────────────────────────────────── */}
       <div className="mb-8">
-        <SectionHeader icon={<Camera size={20} weight="fill" />} title="Media" />
+        <SectionHeader icon={<Camera size={20} />} title="Media" />
         <div>
           <label className={labelCls}>Photo, Video & Floor Plan</label>
           <input
@@ -321,7 +321,7 @@ export function SubmitPropertyForm() {
 
       {/* ── SECTION E: Owner Info ─────────────────────────────────────── */}
       <div className="mb-8">
-        <SectionHeader icon={<User size={20} weight="fill" />} title="Owner Info" />
+        <SectionHeader icon={<User size={20} />} title="Owner Info" />
 
         {/* Name + Phone */}
         <div className="grid grid-cols-2 gap-4 mb-5">
@@ -385,7 +385,7 @@ export function SubmitPropertyForm() {
         className="w-full flex items-center justify-center gap-2 bg-[#001a40] hover:bg-[#002a5e] text-white font-bold text-[13px] uppercase tracking-[0.08em] py-4 rounded-[8px] transition-all duration-200"
       >
         SUBMIT FOR REVIEW
-        <ArrowRight size={15} weight="bold" />
+        <ArrowRight size={15} />
       </button>
 
     </form>

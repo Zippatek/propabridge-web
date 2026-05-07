@@ -34,17 +34,17 @@
   }
 
   body {
-    /* Foundation: body 15 / 400 / #4a5568 / line-height 1.4 / Inter */
-    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    /* Foundation: body 15 / 400 / navy base / line-height 1.5 */
+    font-family: var(--font-inter), 'Inter Display', 'Inter', system-ui, sans-serif;
     background-color: #f4f3ea;
-    color: #4a5568;
+    color: #001a40;
     font-size: 15px;
     font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: -0.015em;
+    line-height: 1.5;
+    letter-spacing: 0;
   }
 
-  /* Foundation typography — apply globally */
+  /* Foundation typography */
   h1,
   h2,
   h3,
@@ -52,34 +52,75 @@
   h5,
   h6 {
     color: #001a40;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.02em;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.01em;
+  }
+
+  /* General text defaults */
+  p,
+  li,
+  td,
+  dd,
+  blockquote {
+    color: #4a5568;
+    line-height: 1.6;
+    letter-spacing: 0;
   }
 
   h1 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
+    line-height: 1.15;
   }
 
   h2 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 1200px) {
+    h1 {
+      font-size: 40px;
+      letter-spacing: -1.1px;
+      line-height: 110%;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 40px;
+      letter-spacing: -1.1px;
+      line-height: 110%;
+    }
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
+    line-height: 1.3;
   }
 
   h4 {
     font-size: 18px;
     font-weight: 600;
+    line-height: 1.4;
   }
 
   h5,
   h6 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
+    line-height: 1.4;
   }
 
   p,
@@ -126,6 +167,39 @@
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 26, 64, 0.15);
+  }
+
+  .btn-cream-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #f4f3ea;
+    color: #303030;
+    border-radius: 9999px;
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 200ms ease, transform 200ms ease;
+  }
+
+  .btn-cream-pill:hover {
+    background: #ecebe2;
+    transform: translateY(-1px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card-hover-cursor:hover {
+      cursor: none;
+    }
+
+    .card-hover-cursor:hover *,
+    .card-hover-cursor:hover a,
+    .card-hover-cursor:hover button {
+      cursor: none !important;
+    }
   }
 
   /*
@@ -202,18 +276,20 @@
     outline-offset: 2px;
   }
 
-  /* ── Blog article content ────────────────────────────────────────────── */
+  /* ── Blog article content (long-form readability) ───────────────────── */
   .blog-content {
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.015em;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
     color: #2d3748;
   }
 
   .blog-content p {
     margin-bottom: 1.5rem;
     color: #2d3748;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
   }
 
   .blog-content em {
@@ -246,7 +322,8 @@
   .blog-content li {
     margin-bottom: 0.5rem;
     color: #2d3748;
-    line-height: 1.5;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
   }
 
   .blog-content strong {
@@ -271,31 +348,56 @@
 
   /* Typography utilities */
   .text-display {
-    font-size: clamp(40px, 5vw, 56px);
+    font-size: 48px;
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.035em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   .text-h1 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
   .text-h2 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .text-h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .text-body-lg {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-body {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-body-sm {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .text-nav {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
   }
 
   /* Foundation caption + badge-text */
@@ -310,5 +412,6 @@
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
+    line-height: 1.3;
   }
 }

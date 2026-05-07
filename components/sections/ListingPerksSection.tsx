@@ -1,6 +1,6 @@
 import {
-  Eye, Target, Image as PhosphorImage, Chats, ListChecks, ShieldCheck,
-} from '@phosphor-icons/react/dist/ssr';
+  Eye, Target, Image as PhosphorImage, MessagesSquare, ListChecks, ShieldCheck,
+} from 'lucide-react';
 import { ReactNode } from 'react';
 
 interface Perk {
@@ -11,32 +11,32 @@ interface Perk {
 
 const PERKS: Perk[] = [
   {
-    icon: <Eye size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <Eye size={20} className="text-[#001a40]" />,
     title: 'Maximum Visibility, Faster Closings',
     description: 'Your property is pushed to thousands of active, serious seekers across Nigeria. Better marketing means less time sitting empty.',
   },
   {
-    icon: <Target size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <Target size={20} className="text-[#001a40]" />,
     title: 'AI Speed, Human Expertise',
     description: 'Our smart AI concierge, Propa, matches your property with the exact right clients instantly, while our certified human experts handle the physical tours and negotiations.',
   },
   {
-    icon: <PhosphorImage size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <PhosphorImage size={20} className="text-[#001a40]" />,
     title: 'Polished Presentation',
     description: 'We turn your space into a showstopper with magazine-style photos and visuals that make people stop scrolling.',
   },
   {
-    icon: <Chats size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <MessagesSquare size={20} className="text-[#001a40]" />,
     title: 'Only serious buyers reach you',
     description: 'Propa pre-qualifies every inquiry before it becomes a viewing request. No tyre-kickers. No time-wasters. Just people ready to move.',
   },
   {
-    icon: <ListChecks size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <ListChecks size={20} className="text-[#001a40]" />,
     title: 'You stay behind the scenes',
     description: "Your phone isn't ringing all day from strangers. We manage every inquiry, viewing, and follow-up on your behalf.",
   },
   {
-    icon: <ShieldCheck size={20} weight="fill" className="text-[#001a40]" />,
+    icon: <ShieldCheck size={20} className="text-[#001a40]" />,
     title: 'Secure & Professional Handling',
     description: 'Founded by professional Estate Surveyors, we protect your asset. We ensure all negotiations, paperwork, and legalities meet the highest industry standards.',
   },
@@ -62,8 +62,7 @@ export function ListingPerksSection() {
 
           {/* Headline fills remaining space */}
           <h2
-            className="text-[#001a40] font-medium leading-[1.15] tracking-[-0.02em] text-center lg:text-left flex-1"
-            style={{ fontSize: 'clamp(28px, 3.8vw, 48px)' }}
+            className="text-display-lg font-medium text-heading text-center lg:text-left flex-1"
           >
             Get expert handling, AI-driven matching,<br className="hidden md:block" /> and real results — all under one roof.
           </h2>

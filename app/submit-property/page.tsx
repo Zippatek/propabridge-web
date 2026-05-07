@@ -25,12 +25,11 @@ export default function SubmitPropertyPage() {
 
         {/* Centered headline */}
         <h1
-          className="text-[#001a40] font-medium font-sans leading-[1.15] tracking-[-0.02em] w-full max-w-[800px]"
-          style={{ fontSize: 'clamp(28px, 3.5vw, 46px)' }}
+          className="text-display-xl text-heading font-medium font-sans w-full max-w-[980px]"
         >
           Submit Your Property. Reach<br className="hidden md:block" /> Thousands of Verified Clients.
         </h1>
-        <p className="mt-5 text-[#001a40]/70 text-[15px] md:text-[17px] leading-[1.6] max-w-[640px]">
+        <p className="mt-5 text-heading/70 text-[15px] md:text-[17px] leading-[1.6] max-w-[640px]">
           Get expert handling, AI-driven matching, and real results — all under one roof.
         </p>
       </section>

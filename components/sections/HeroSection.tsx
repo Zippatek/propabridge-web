@@ -1,78 +1,114 @@
+'use client'
+
 import Link from 'next/link'
-import { HERO_IMAGES } from '@/lib/bucket'
-import HeroSearchTabs from './HeroSearchTabs'
+import Image from 'next/image'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const blur = useTransform(scrollYProgress, [0, 0.7], [20, 0])
+  const filter = useTransform(blur, (b) => `blur(${b}px)`)
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.7], [0.35, 0.15])
+
   return (
     <section
+      ref={sectionRef}
       className="relative w-full overflow-hidden"
-      // Pull the hero UP by the navbar spacer height so the background fills
-      // the full viewport including the area BEHIND the floating navbar
       style={{ minHeight: '100vh', marginTop: '-84px' }}
       aria-labelledby="hero-heading"
     >
-      {/* ── BACKGROUND IMAGE — covers full 100vh including behind floating navbar ── */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('${HERO_IMAGES.homeHero}')`,
-        }}
-        role="img"
-        aria-label="Nigerian residential property"
+      <motion.div
+        className="absolute inset-0 will-change-[filter]"
+        style={{ filter }}
+      >
+        <Image
+          src="/images/hero/buy-sell-rent.png"
+          alt="Nigerian residential property"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </motion.div>
+
+      <motion.div
+        className="absolute inset-0 bg-black"
+        style={{ opacity: overlayOpacity }}
+        aria-hidden="true"
       />
 
-      {/* Dark overlay — ~55% to match reference */}
-      <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+      {/* Faint white grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-overlay"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '120px 120px',
+        }}
+      />
 
-      {/* ── HERO CONTENT ── centered vertically, padded top to clear floating navbar */}
       <div
         className="relative z-10 flex flex-col items-center justify-center text-center w-full px-6"
         style={{ minHeight: '100vh', paddingTop: 100 }}
       >
-        {/*
-          "buy. sell. rent." — each word is a link
-          Hover: turns golden/amber (#f5c842) matching reference screenshot
-          Cursor: pointer (hand) — shown in reference
-        */}
         <h1
           id="hero-heading"
-          className="font-medium leading-none tracking-[-0.02em] mb-6 text-center"
-          style={{ fontSize: 'clamp(72px, 12vw, 160px)' }}
+          className="mb-8 text-center font-medium leading-[0.95] tracking-[-0.04em] text-[#f0efeb] text-[clamp(64px,14vw,200px)]"
         >
           <Link
             href="/listings?type=buy"
-            className="text-white hover:text-[#f5c842] transition-colors duration-200"
+            className="text-[#ffc870] hover:opacity-90 transition-opacity duration-200"
           >
-            buy
-          </Link>
-          <span className="text-white">. </span>
+            buy.
+          </Link>{' '}
           <Link
             href="/listings?type=sell"
-            className="text-white hover:text-gold-hover transition-colors duration-200"
+            className="text-[#f0efeb] hover:opacity-90 transition-opacity duration-200"
           >
-            sell
-          </Link>
-          <span className="text-white">. </span>
+            sell.
+          </Link>{' '}
           <Link
             href="/listings?type=rent"
-            className="text-white hover:text-gold-hover transition-colors duration-200"
+            className="text-[#f0efeb] hover:opacity-90 transition-opacity duration-200"
           >
-            rent
+            rent.
           </Link>
-          <span className="text-white">.</span>
         </h1>
 
-        {/* Subtitle — perfectly centered, two lines */}
-        <p
-          className="text-white font-normal leading-[1.6] mb-10 text-center mx-auto"
-          style={{ fontSize: 'clamp(18px, 2.4vw, 26px)', maxWidth: 650 }}
-        >
-          The Smartest Way to<br />
-          <span className="bg-white/20 px-2 py-0.5 rounded-sm">Rent, Buy</span> and <span className="bg-white/20 px-2 py-0.5 rounded-sm">Invest</span> in <span className="bg-white/20 px-2 py-0.5 rounded-sm">Properties</span> in <span className="bg-white/20 px-2 py-0.5 rounded-sm">Nigeria</span>
+        <p className="mx-auto mb-10 max-w-[820px] text-center text-[clamp(20px,2.4vw,34px)] font-medium leading-[1.25] tracking-[-0.02em] text-[#f0efeb]">
+          <span>The Smartest Way to</span>
+          <br />
+          <span className="inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
+            <span className="rounded-sm bg-black/30 px-2 py-0.5 backdrop-blur-[2px]">
+              Rent, Buy
+            </span>
+            <span>and</span>
+            <span className="rounded-sm bg-black/30 px-2 py-0.5 backdrop-blur-[2px]">
+              Invest
+            </span>
+            <span>in</span>
+            <span className="rounded-sm bg-black/30 px-2 py-0.5 backdrop-blur-[2px]">
+              Properties
+            </span>
+            <span>in</span>
+            <span className="rounded-sm bg-black/30 px-2 py-0.5 backdrop-blur-[2px]">
+              Nigeria
+            </span>
+          </span>
         </p>
 
-        {/* Tabbed search — buy/rent/sell */}
-        <HeroSearchTabs />
+        <Link href="/listings" className="btn-cream-pill shadow-lg shadow-black/20">
+          VIEW PROPERTIES
+          <span className="text-[18px] leading-none">&rsaquo;</span>
+        </Link>
       </div>
     </section>
   )

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Property } from "@/lib/types";
-import { MapPin } from "@phosphor-icons/react/dist/ssr";
+import { MapPin } from "lucide-react";
 
 interface PropertyHeroProps {
   property: Property;
@@ -31,12 +31,12 @@ export function PropertyHero({ property }: PropertyHeroProps) {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        <h1 className="text-[#001a40] text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] max-w-4xl mb-4">
+        <h1 className="text-display-xl text-heading font-medium max-w-5xl mb-4">
           {property.title}
         </h1>
         
         <div className="flex items-center gap-2 text-[#4a5568] font-medium">
-          <MapPin size={20} weight="fill" className="text-[#001a40]" />
+          <MapPin size={20} className="text-[#001a40]" />
           <span>{property.location}</span>
         </div>
       </div>

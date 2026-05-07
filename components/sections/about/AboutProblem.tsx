@@ -4,7 +4,7 @@ export const AboutProblem = () => {
   return (
     <section className="container-site px-4 md:px-8">
       <div className="flex flex-col gap-12 items-center">
-        <h2 className="text-center text-[#001a40] font-medium leading-tight max-w-2xl" style={{ fontSize: 'clamp(32px, 4vw, 44px)' }}>
+        <h2 className="text-display-lg text-center text-heading font-medium max-w-4xl">
           Looking for a home? You've probably been here before...
         </h2>
         

@@ -113,14 +113,14 @@ export const ContactOffices = () => {
             {/* Details with left border */}
             <div className="border-l-[4px] border-[#001a40] pl-4 flex flex-col gap-2">
               {office.address && (
-                <p className="text-[#001a40]/80 text-[14px] leading-relaxed">{office.address}</p>
+                <p className="text-[#001a40]/80 text-[14px] leading-snug">{office.address}</p>
               )}
               <p className="text-[#001a40]/80 text-[14px]">{office.phone}</p>
               <Link href={`mailto:${office.email}`} className="text-[#001a40]/80 text-[14px] hover:text-[#006aff] transition-colors underline underline-offset-2">
                 {office.email}
               </Link>
               {office.hours.map((line, i) => (
-                <p key={i} className="text-[#001a40]/80 text-[14px] leading-relaxed">{line}</p>
+                <p key={i} className="text-[#001a40]/80 text-[14px] leading-snug">{line}</p>
               ))}
             </div>
           </div>

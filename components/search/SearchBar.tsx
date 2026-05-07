@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { Search } from 'lucide-react'
 
 const SUGGESTIONS = [
   'Apartment in Gwarinpa, Abuja',
@@ -53,7 +53,7 @@ export default function SearchBar() {
       <form onSubmit={handleSubmit}>
         {/* White pill container — matches reference: light shadow, rounded pill */}
         <div className="flex items-center bg-white rounded-full shadow-md border border-grey-light/30 px-5 py-1.5 gap-3">
-          <MagnifyingGlass size={18} color="#9ca3af" weight="regular" aria-hidden="true" />
+          <Search size={18} color="#9ca3af" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
@@ -88,7 +88,7 @@ export default function SearchBar() {
               onClick={() => handleSuggestionClick(suggestion)}
               className="w-full text-left px-5 py-3 text-[14px] text-navy hover:bg-beige transition-colors flex items-center gap-3"
             >
-              <MagnifyingGlass size={13} color="#9ca3af" aria-hidden="true" />
+              <Search size={13} color="#9ca3af" aria-hidden="true" />
               {suggestion}
             </button>
           ))}

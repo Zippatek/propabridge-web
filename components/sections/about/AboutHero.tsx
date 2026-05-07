@@ -18,8 +18,7 @@ export const AboutHero = () => {
       {/* Content */}
       <div className="relative z-10 container-site text-center px-4 md:px-8 max-w-[1000px] pt-20">
         <h1 
-          className="text-white font-medium leading-[1.2] tracking-tight mx-auto max-w-[850px]"
-          style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}
+          className="text-display-xl text-[#f0efeb] font-medium mx-auto max-w-[980px]"
         >
           We&apos;re a tech-driven real estate platform helping Nigerians find homes without stress, scams, or hidden fees.
         </h1>

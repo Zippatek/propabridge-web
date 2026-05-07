@@ -57,7 +57,7 @@ export default async function NeighborhoodDetailPage({ params }: NeighborhoodDet
               <span className="w-2 h-2 rounded-sm bg-navy inline-block" />
               <span className="text-[11px] font-semibold text-navy uppercase tracking-[0.12em]">Neighborhood</span>
             </div>
-            <h1 className="text-navy font-bold leading-[1.1] tracking-[-0.02em]" style={{ fontSize: 'clamp(30px, 4vw, 54px)' }}>
+            <h1 className="text-display-xl text-heading font-medium">
               {name}, {city}
             </h1>
             <p className="text-grey text-[16px] leading-[1.8] mt-6 max-w-[620px]">{description}</p>
@@ -93,7 +93,7 @@ export default async function NeighborhoodDetailPage({ params }: NeighborhoodDet
 
         {amenities && (
           <section className="mt-12">
-            <h2 className="text-navy text-[20px] font-bold mb-4">What&apos;s Around</h2>
+            <h2 className="text-display-md text-heading font-medium mb-4">What&apos;s Around</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <AmenityList title="Schools" items={amenities.schools} />
               <AmenityList title="Hospitals" items={amenities.hospitals} />
@@ -106,7 +106,7 @@ export default async function NeighborhoodDetailPage({ params }: NeighborhoodDet
 
       <section className="container-site mt-16">
         <div className="flex items-center justify-between mb-7">
-          <h2 className="text-navy text-[24px] font-bold">Properties in this Neighborhood</h2>
+          <h2 className="text-display-md text-heading font-medium">Properties in this Neighborhood</h2>
           <span className="text-[13px] text-grey font-semibold">{related.length} listing(s)</span>
         </div>
         {related.length > 0 ? (

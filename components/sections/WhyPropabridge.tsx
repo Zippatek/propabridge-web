@@ -67,8 +67,7 @@ export default function WhyPropabridge() {
           {/* Heading — takes remaining space, centered within it */}
           <h2
             id="uniqueness-heading"
-            className="flex-1 text-center text-navy font-medium leading-[1.15] tracking-[-0.02em]"
-            style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+            className="flex-1 text-center text-display-lg font-medium text-heading"
           >
             Why We Are Not Just<br className="hidden md:block" /> Another Property Platform.
           </h2>
@@ -98,7 +97,7 @@ export default function WhyPropabridge() {
                         className="mt-[8px] shrink-0 w-[6px] h-[6px] bg-navy"
                         aria-hidden="true"
                       />
-                      <span className="text-[14.5px] text-grey leading-relaxed pr-2">
+                      <span className="text-[14.5px] text-grey leading-snug pr-2">
                         {bullet}
                       </span>
                     </div>

@@ -69,31 +69,39 @@ const config: Config = {
         subtle:      '#4a5568',
         divider:     '#cbd5e0',
         placeholder: '#a0aec0',
+        heading:     '#001a40',
       },
 
 
       fontFamily: {
-        // Design guideline: Inter first, Plus Jakarta Sans as fallback
-        sans: ['var(--font-inter)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        // Dashboard-aligned typography stack
+        sans: ['var(--font-inter)', 'Inter Display', 'Inter', 'system-ui', 'sans-serif'],
       },
 
       fontSize: {
+        'display-2xl': ['clamp(56px, 10vw, 128px)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        'display-xl': ['clamp(40px, 6vw, 64px)', { lineHeight: '1.02', letterSpacing: '-0.03em' }],
+        'display-lg': ['clamp(32px, 4.2vw, 52px)', { lineHeight: '1.08', letterSpacing: '-0.024em' }],
+        'display-md': ['clamp(28px, 3.2vw, 40px)', { lineHeight: '1.12', letterSpacing: '-0.02em' }],
+        'display-sm': ['28px', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
         // Display
-        'display': ['clamp(40px, 5vw, 56px)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display': ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
         // H1
-        'h1': ['clamp(32px, 3.5vw, 40px)', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h1': ['36px', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '700' }],
         // H2
-        'h2': ['clamp(24px, 2.5vw, 30px)', { lineHeight: '1.25', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2': ['28px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
         // H3
-        'h3': ['clamp(20px, 2vw, 24px)', { lineHeight: '1.3', fontWeight: '600' }],
+        'h3': ['22px', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'h4': ['18px', { lineHeight: '1.4', fontWeight: '600' }],
         // Body
         'body-lg': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
         'body':    ['15px', { lineHeight: '1.6', fontWeight: '400' }],
         'body-sm': ['14px', { lineHeight: '1.5', fontWeight: '400' }],
         // Caption
-        'caption': ['13px', { lineHeight: '1.4', fontWeight: '400' }],
+        'caption': ['12px', { lineHeight: '1.4', fontWeight: '400' }],
         // Badge
-        'badge':   ['12px', { lineHeight: '1', fontWeight: '600', letterSpacing: '0.02em' }],
+        'badge':   ['11px', { lineHeight: '1.3', fontWeight: '600', letterSpacing: '0.04em' }],
+        'nav': ['13px', { lineHeight: '1', fontWeight: '500', letterSpacing: '0.02em' }],
       },
 
       spacing: {
@@ -107,6 +115,10 @@ const config: Config = {
         '12': '48px',
         '16': '64px',
         '24': '96px',
+        '4.5': '18px',
+        '18': '72px',
+        '22': '88px',
+        '30': '120px',
       },
 
       borderRadius: {

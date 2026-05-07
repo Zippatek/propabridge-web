@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { XSquare, CheckSquare } from '@phosphor-icons/react'
+import { XSquare, CheckSquare } from 'lucide-react'
 import { HERO_IMAGES } from '@/lib/bucket'
 
 /* ─────────────────────────────────────────────────────────────
@@ -65,8 +65,7 @@ export default function WhyChooseUs() {
           {/* Main Title */}
           <h2
             id="choose-us-heading"
-            className="text-navy font-medium leading-[1.15] tracking-[-0.02em] whitespace-pre-line"
-            style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+            className="text-display-lg font-medium text-heading whitespace-pre-line"
           >
             {'We Removed Everything\nThat Was Wrong.'}
           </h2>
@@ -85,11 +84,10 @@ export default function WhyChooseUs() {
               {OLD_WAY_ITEMS.map((item, i) => (
                 <li key={i} className="flex flex-col">
                   <div className="flex items-start gap-4 py-4">
-                    <XSquare 
-                      size={20} 
-                      weight="fill" 
-                      className="text-navy shrink-0 mt-[1px] opacity-90" 
-                      aria-hidden="true" 
+                    <XSquare
+                      size={20}
+                      className="text-navy shrink-0 mt-[1px] opacity-90"
+                      aria-hidden="true"
                     />
                     <span className="text-[15px] font-medium text-navy/90 leading-snug">
                       {item}
@@ -114,11 +112,10 @@ export default function WhyChooseUs() {
               {NEW_WAY_ITEMS.map((item, i) => (
                 <li key={i} className="flex flex-col">
                   <div className="flex items-start gap-4 py-4">
-                    <CheckSquare 
-                      size={20} 
-                      weight="fill" 
-                      className="text-white shrink-0 mt-[1px]" 
-                      aria-hidden="true" 
+                    <CheckSquare
+                      size={20}
+                      className="text-white shrink-0 mt-[1px]"
+                      aria-hidden="true"
                     />
                     <span className="text-[15px] font-medium text-white leading-snug">
                       {item}

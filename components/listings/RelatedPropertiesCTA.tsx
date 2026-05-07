@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight } from 'lucide-react';
 
 export function RelatedPropertiesCTA() {
   return (
@@ -17,8 +17,7 @@ export function RelatedPropertiesCTA() {
 
       {/* Headline */}
       <h2
-        className="text-center text-[#001a40] font-sans font-bold leading-[1.25] mb-12"
-        style={{ fontSize: 'clamp(28px, 3.2vw, 44px)' }}
+        className="text-display-lg text-center text-heading font-sans font-medium mb-12"
       >
         If this one caught your eye,
         <br />
@@ -29,10 +28,10 @@ export function RelatedPropertiesCTA() {
       <div className="flex justify-center">
         <Link
           href="/listings"
-          className="inline-flex items-center gap-2 bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-7 py-3.5 rounded-btn transition-all duration-200"
+          className="btn-cream-pill"
         >
           VIEW PROPERTIES
-          <ArrowRight size={16} weight="bold" />
+          <ArrowRight size={18} />
         </Link>
       </div>
     </section>

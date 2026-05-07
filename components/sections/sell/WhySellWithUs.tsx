@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import {
-  ChartLine,
+  LineChart as ChartLine,
   Camera,
-  MegaphoneSimple,
-  ChatCircleDots,
+  Megaphone as MegaphoneSimple,
+  MessageCircle as ChatCircleDots,
   Handshake,
-} from '@phosphor-icons/react/dist/ssr'
+} from 'lucide-react'
 
 const PERKS = [
   {
@@ -61,8 +61,7 @@ export default function WhySellWithUs() {
             {/* Display heading */}
             <h2
               id="why-sell-heading"
-              className="text-navy font-medium leading-[1.1] tracking-[-0.02em]"
-              style={{ fontSize: 'clamp(28px, 3.5vw, 48px)' }}
+              className="text-display-lg text-navy font-medium"
             >
               Selling your property in Nigeria, made simple. We&apos;ve fixed the problem of unreliable agents and fake listings.
             </h2>
@@ -118,7 +117,7 @@ export default function WhySellWithUs() {
                   <div key={perk.id} className="flex items-start gap-4">
                     {/* Icon box */}
                     <div className="shrink-0 w-[40px] h-[40px] rounded-btn border border-navy/15 flex items-center justify-center bg-navy shadow-sm">
-                      <Icon size={18} weight="regular" className="text-white" />
+                      <Icon size={18} className="text-white" />
                     </div>
                     <div>
                       <p className="text-navy font-bold text-[15px] leading-snug">{perk.title}</p>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight } from 'lucide-react'
 import LocationCard from '@/components/property/LocationCard'
 import { MOCK_LOCATIONS } from '@/lib/mock-data'
 
@@ -23,8 +23,7 @@ export default function LocationSection() {
         {/* Heading — centered, font-bold, same size as listings heading */}
         <h2
           id="locations-heading"
-          className="text-navy font-medium leading-[1.15] tracking-[-0.02em] text-center"
-          style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+          className="text-display-lg font-medium text-heading text-center"
         >
           Where you live matters—pick the perfect spot.
         </h2>

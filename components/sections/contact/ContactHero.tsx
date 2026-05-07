@@ -9,8 +9,7 @@ export const ContactHero = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="text-[#001a40] font-medium leading-[1.15] tracking-tight max-w-2xl mx-auto"
-        style={{ fontSize: 'clamp(32px, 4.5vw, 52px)' }}>
+      <h1 className="text-display-xl text-heading font-medium max-w-4xl mx-auto">
         We&apos;d love to hear from you<br />
         (seriously, we actually reply)
       </h1>

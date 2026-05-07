@@ -14,7 +14,7 @@ export const AboutCompany = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {/* Left Column */}
         <div className="flex flex-col gap-8">
-          <h2 className="text-[#001a40] font-medium leading-[1.1] tracking-tight" style={{ fontSize: 'clamp(36px, 4vw, 48px)' }}>
+          <h2 className="text-display-lg text-heading font-medium">
             A verified property bridge helping buyers, renters, and investors find inspected homes across Nigeria.
           </h2>
           <div className="relative w-full aspect-video rounded-[24px] overflow-hidden">

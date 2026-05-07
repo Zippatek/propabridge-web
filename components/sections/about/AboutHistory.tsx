@@ -51,7 +51,7 @@ export const AboutHistory = () => {
         {/* Left Column - Sticky Heading */}
         <div className="lg:w-1/2">
           <div className="sticky top-24 pr-4 lg:pr-12">
-            <h2 className="text-[#001a40] font-medium leading-[1.1] tracking-tight text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] max-w-[800px]">
+            <h2 className="text-display-lg text-heading font-medium max-w-[800px]">
               Our journey to a better real estate market.
             </h2>
           </div>

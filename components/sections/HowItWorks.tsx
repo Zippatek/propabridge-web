@@ -66,8 +66,7 @@ export default function HowItWorks() {
           </div>
           <h2
             id="process-heading"
-            className="text-navy font-medium leading-[1.15] tracking-[-0.02em]"
-            style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+            className="text-display-lg font-medium text-heading"
           >
             Chat. Choose. Move In.
           </h2>

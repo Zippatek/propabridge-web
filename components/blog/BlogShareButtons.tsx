@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { LinkSimple } from '@phosphor-icons/react'
+import { Link2 as LinkSimple } from 'lucide-react'
 
 interface BlogShareButtonsProps {
   title: string
@@ -49,7 +49,7 @@ export function BlogShareButtons({ title }: BlogShareButtonsProps) {
         aria-label="Copy link to clipboard"
         className="w-[42px] h-[42px] flex items-center justify-center rounded-[8px] border border-[#d0cfc5] bg-white/60 hover:bg-white transition-colors text-navy"
       >
-        <LinkSimple size={18} weight="regular" />
+        <LinkSimple size={18} />
       </button>
 
       {/* Feedback */}

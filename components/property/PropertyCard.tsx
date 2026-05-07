@@ -2,8 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin, Bed, Bathtub, FrameCorners } from '@phosphor-icons/react/dist/ssr'
+import { MapPin, Bed, Bath, Maximize2 } from 'lucide-react'
 import { Property } from '@/lib/types'
+import HoverCursorWrapper from '@/components/ui/HoverCursorWrapper'
 
 interface PropertyCardProps {
   property: Property
@@ -49,7 +50,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
     : null;
 
   return (
-    <>
+    <HoverCursorWrapper>
       <Link
         href={`/properties-details/${property.slug}`}
         className="group relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-card"
@@ -94,7 +95,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
       <div className="pt-3 pb-4">
         {/* Row 1: Location */}
         <div className="flex items-start gap-1.5 mb-2.5">
-          <MapPin size={14} color="#4a5568" weight="fill" className="mt-0.5 shrink-0" aria-hidden="true" />
+          <MapPin size={14} color="#4a5568" className="mt-0.5 shrink-0" aria-hidden="true" />
           <p className="text-[11px] font-semibold text-grey uppercase tracking-[0.08em] leading-tight">
             {location}
           </p>
@@ -105,7 +106,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
           <div className="flex items-center gap-1.5 text-grey text-[12px] min-w-0 flex-shrink">
             {isAreaOnly ? (
               <div className="flex items-center gap-1.5">
-                <FrameCorners size={16} color="#4a5568" weight="regular" aria-hidden="true" />
+                <Maximize2 size={16} color="#4a5568" aria-hidden="true" />
                 <span className="font-medium whitespace-nowrap">
                   {areaLabel ?? areaDisplay ?? '—'}
                 </span>
@@ -115,7 +116,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
                 {beds !== undefined && (
                   <>
                     <div className="flex items-center gap-1">
-                      <Bed size={16} color="#4a5568" weight="regular" aria-hidden="true" />
+                      <Bed size={16} color="#4a5568" aria-hidden="true" />
                       <span className="font-medium">{beds}</span>
                     </div>
                     <span className="text-[10px] font-bold text-navy select-none leading-none">●</span>
@@ -124,7 +125,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
                 {baths !== undefined && (
                   <>
                     <div className="flex items-center gap-1">
-                      <Bathtub size={16} color="#4a5568" weight="regular" aria-hidden="true" />
+                      <Bath size={16} color="#4a5568" aria-hidden="true" />
                       <span className="font-medium">{baths}</span>
                     </div>
                     {areaDisplay && (
@@ -134,7 +135,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
                 )}
                 {areaDisplay && (
                   <div className="flex items-center gap-1">
-                    <FrameCorners size={16} color="#4a5568" weight="regular" aria-hidden="true" />
+                    <Maximize2 size={16} color="#4a5568" aria-hidden="true" />
                     <span className="font-medium whitespace-nowrap">{areaDisplay}</span>
                   </div>
                 )}
@@ -154,6 +155,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
         </h3>
       </div>
     </Link>
-    </>
+    </HoverCursorWrapper>
   )
 }

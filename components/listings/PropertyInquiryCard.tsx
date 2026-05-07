@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Envelope, Phone, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { Mail as Envelope, Phone, ArrowRight } from 'lucide-react';
 import { Property } from '@/lib/types';
 
 interface Props { property: Property }
@@ -68,7 +68,7 @@ export function PropertyInquiryCard({ property }: Props) {
             <p className="text-[#001a40] font-bold text-[14px] mb-1">Email</p>
             <a href="mailto:hello@propabridge.com" className="text-[#006aff] text-[14px] hover:underline">hello@propabridge.com</a>
           </div>
-          <Envelope size={22} color="#4a5568" weight="light" />
+          <Envelope size={22} color="#4a5568" />
         </div>
         <hr className="border-t border-[#cbd5e0] border-dashed mb-5" />
         <div className="flex items-center justify-between mb-6">
@@ -76,10 +76,10 @@ export function PropertyInquiryCard({ property }: Props) {
             <p className="text-[#001a40] font-bold text-[14px] mb-1">Phone</p>
             <a href="tel:+2348090892219" className="text-[#006aff] text-[14px] hover:underline">+234 809 089 2219</a>
           </div>
-          <Phone size={22} color="#4a5568" weight="light" />
+          <Phone size={22} color="#4a5568" />
         </div>
         <button className="w-full flex items-center justify-center gap-2 bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[13px] uppercase tracking-[0.06em] py-3.5 rounded-[8px] transition-all duration-200">
-          AGENT DETAILS <ArrowRight size={16} weight="bold" />
+          AGENT DETAILS <ArrowRight size={16} />
         </button>
       </div>
 
@@ -128,7 +128,7 @@ export function PropertyInquiryCard({ property }: Props) {
             <button type="submit" disabled={loading}
               className="w-full flex items-center justify-center gap-2 bg-[#001a40] hover:bg-[#002a5e] text-white font-bold text-[13px] uppercase tracking-[0.06em] py-4 rounded-[8px] transition-all duration-200 mt-1 disabled:opacity-60">
               {loading ? 'SUBMITTING...' : 'REQUEST A TOUR'}
-              {!loading && <ArrowRight size={16} weight="bold" />}
+              {!loading && <ArrowRight size={16} />}
             </button>
           </form>
         )}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, X, ArrowRight } from '@phosphor-icons/react'
+import { Plus, X, ArrowRight } from 'lucide-react'
 
 /* ── Service data — content from reference ─────────────────────────── */
 const SERVICES = [
@@ -89,8 +89,7 @@ export default function ServicesSection() {
         {/* Heading — large, centered */}
         <h2
           id="services-heading"
-          className="text-navy font-medium leading-[1.15] tracking-[-0.02em]"
-          style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+          className="text-display-lg font-medium text-heading"
         >
           Everything You Need. Under One Roof.
         </h2>
@@ -129,8 +128,8 @@ export default function ServicesSection() {
                         aria-hidden="true"
                       >
                         {isOpen
-                          ? <X size={14} color="#001a40" weight="regular" />
-                          : <Plus size={14} color="#001a40" weight="regular" />
+                          ? <X size={14} color="#001a40" />
+                          : <Plus size={14} color="#001a40" />
                         }
                       </span>
                       <h3 className="text-navy font-bold text-[22px] leading-snug">
@@ -140,7 +139,7 @@ export default function ServicesSection() {
 
                     {/* Description — always visible, inside clickable area */}
                     <div className="pt-5 pl-[60px]">
-                      <p className="text-grey text-[15px] leading-relaxed">
+                      <p className="text-grey text-[15px] leading-snug">
                         {service.description}
                       </p>
                     </div>
@@ -177,7 +176,7 @@ export default function ServicesSection() {
                           className="inline-flex items-center gap-2 bg-blue text-white font-semibold text-[13px] uppercase tracking-wider px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors duration-200 mb-2"
                         >
                           {service.cta}
-                          <ArrowRight size={13} weight="bold" aria-hidden="true" />
+                          <ArrowRight size={13} aria-hidden="true" />
                         </Link>
                       </div>
                     </div>

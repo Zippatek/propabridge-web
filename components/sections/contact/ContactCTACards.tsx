@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HoverCursorWrapper from "@/components/ui/HoverCursorWrapper";
 
 const cards = [
   {
@@ -30,44 +31,45 @@ export const ContactCTACards = () => {
     <section className="container-site px-4 md:px-8 pb-16">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className="relative rounded-[16px] overflow-hidden group"
-            style={{ minHeight: "420px" }}
-          >
-            {/* Background Image */}
-            <Image
-              src={card.image}
-              alt={card.title}
-              fill
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-            />
+          <HoverCursorWrapper key={index} size={85}>
+            <div
+              className="relative rounded-[16px] overflow-hidden group"
+              style={{ minHeight: "420px" }}
+            >
+              {/* Background Image */}
+              <Image
+                src={card.image}
+                alt={card.title}
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
 
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
 
-            {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8">
-              {/* Title — top left */}
-              <h3 className="text-white font-semibold text-[20px] lg:text-[22px] leading-snug max-w-[85%]">
-                {card.title}
-              </h3>
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8">
+                {/* Title — top left */}
+                <h3 className="text-white font-semibold text-[20px] lg:text-[22px] leading-snug max-w-[85%]">
+                  {card.title}
+                </h3>
 
-              {/* Description + CTA — bottom left */}
-              <div className="flex flex-col gap-4">
-                <p className="text-white/90 text-[14px] leading-[1.6]">
-                  {card.description}
-                </p>
-                <Link
-                  href={card.href}
-                  className="inline-flex items-center gap-2 text-white text-[14px] font-bold tracking-widest uppercase hover:gap-3 transition-all duration-200"
-                >
-                  {card.cta}
-                  <span className="text-[18px]">&rsaquo;</span>
-                </Link>
+                {/* Description + CTA — bottom left */}
+                <div className="flex flex-col gap-4">
+                  <p className="text-white/90 text-[14px] leading-[1.6]">
+                    {card.description}
+                  </p>
+                  <Link
+                    href={card.href}
+                    className="inline-flex items-center gap-2 text-white text-[14px] font-bold tracking-widest uppercase hover:gap-3 transition-all duration-200"
+                  >
+                    {card.cta}
+                    <span className="text-[18px]">&rsaquo;</span>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </HoverCursorWrapper>
         ))}
       </div>
     </section>

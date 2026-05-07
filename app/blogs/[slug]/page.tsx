@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BLOGS } from '@/data/blogs'
-import { House } from '@phosphor-icons/react/dist/ssr'
+import { Home } from 'lucide-react'
 import { BlogShareButtons } from '@/components/blog/BlogShareButtons'
 import { fetchBlogBySlug, fetchBlogs } from '@/lib/api'
 
@@ -40,7 +40,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-navy text-[32px] md:text-[38px] lg:text-[42px] font-medium leading-[1.2] tracking-tight mb-6 font-sans">
+            <h1 className="text-display-xl text-heading font-medium mb-6 font-sans">
               {blog.title}
             </h1>
 
@@ -96,7 +96,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <div className="relative w-[60px] h-[60px] rounded-[8px] overflow-hidden bg-white/10 shrink-0">
                     {blog.authorName === 'PROPABRIDGE TEAM' ? (
                       <div className="w-full h-full flex items-center justify-center bg-white/5">
-                        <House size={28} className="text-white" />
+                        <Home size={28} className="text-white" />
                       </div>
                     ) : (
                       <Image src={blog.authorImage || '/images/blogs/author.png'} alt={blog.authorName} fill className="object-cover" />
@@ -115,7 +115,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <h3 className="text-navy text-[18px] font-bold leading-tight mb-4">
                   What&apos;s better than insider perks, pro tips, and surprises?
                 </h3>
-                <p className="text-navy/70 text-[14px] leading-relaxed mb-6">
+                <p className="text-navy/70 text-[14px] leading-snug mb-6">
                   Sign up to get the most recent blog articles in your email every week.<br /><br />Join now.
                 </p>
                 <form className="flex flex-col gap-3">
@@ -157,7 +157,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <span className="text-[12px] font-bold text-navy uppercase tracking-[0.08em]">OTHER BLOGS</span>
           </div>
 
-          <h2 className="text-navy text-[32px] md:text-[40px] font-medium leading-[1.1] tracking-tight mb-12 max-w-[800px] mx-auto text-center">
+          <h2 className="text-display-lg text-heading font-medium mb-12 max-w-[900px] mx-auto text-center">
             Why stop here? Explore more blogs and take your knowledge to the next level.
           </h2>
 
@@ -200,7 +200,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="inline-flex items-center self-start gap-2.5 bg-[#eae9e0] pr-4 pl-1.5 py-1.5 rounded-btn border border-[#ecece0]/80 shrink-0">
                   <div className="relative flex items-center justify-center w-7 h-7 rounded-full overflow-hidden shrink-0 bg-white">
                     {b.authorName === 'PROPABRIDGE TEAM' ? (
-                      <House size={14} weight="regular" className="text-navy" />
+                      <Home size={14} className="text-navy" />
                     ) : (
                       <Image src={b.authorImage || '/images/blogs/author.png'} alt={b.authorName} fill className="object-cover" />
                     )}

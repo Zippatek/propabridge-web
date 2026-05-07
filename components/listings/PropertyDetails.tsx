@@ -1,24 +1,24 @@
 import {
-  Tree, GraduationCap, ArrowSquareUpRight, Armchair, Bus, Flower,
-  Package, ForkKnife, Car, House, CheckCircle,
-} from '@phosphor-icons/react/dist/ssr';
+  TreePine as Tree, GraduationCap, SquareArrowOutUpRight as ArrowSquareUpRight, Armchair, Bus, Flower2 as Flower,
+  Package, Utensils as ForkKnife, Car, Home as House, CircleCheck as CheckCircle,
+} from 'lucide-react';
 import { Property } from '@/lib/types';
 import { ReactNode } from 'react';
 
 // ── Amenity pill icon map ──────────────────────────────────────────────────────
 const AMENITY_ICON_MAP: Record<string, ReactNode> = {
-  'Park':               <Tree size={18} weight="regular" />,
-  'School/university':  <GraduationCap size={18} weight="regular" />,
-  'Highway access':     <ArrowSquareUpRight size={18} weight="regular" />,
-  'Terrace':            <Armchair size={18} weight="regular" />,
-  'Near bus stop':      <Bus size={18} weight="regular" />,
-  'Garden':             <Flower size={18} weight="regular" />,
-  'Walk-in closet':     <Package size={18} weight="regular" />,
-  'Fitted Kitchen':     <ForkKnife size={18} weight="regular" />,
-  'Parking':            <Car size={18} weight="regular" />,
-  'Balcony':            <House size={18} weight="regular" />,
+  'Park':               <Tree size={18} />,
+  'School/university':  <GraduationCap size={18} />,
+  'Highway access':     <ArrowSquareUpRight size={18} />,
+  'Terrace':            <Armchair size={18} />,
+  'Near bus stop':      <Bus size={18} />,
+  'Garden':             <Flower size={18} />,
+  'Walk-in closet':     <Package size={18} />,
+  'Fitted Kitchen':     <ForkKnife size={18} />,
+  'Parking':            <Car size={18} />,
+  'Balcony':            <House size={18} />,
 };
-const DEFAULT_ICON = <CheckCircle size={18} weight="regular" />;
+const DEFAULT_ICON = <CheckCircle size={18} />;
 
 function formatNaira(amount: number) {
   return `₦${amount.toLocaleString('en-NG')}`;

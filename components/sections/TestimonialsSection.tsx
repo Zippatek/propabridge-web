@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
-import { CaretLeft, CaretRight, PlayCircle } from '@phosphor-icons/react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 export type Review = {
@@ -259,8 +259,7 @@ export default function TestimonialsSection({
             <div className="md:col-span-9 flex items-center">
               <h2
                 id="reviews-heading"
-                className="text-navy font-medium leading-[1.15] tracking-[-0.02em] max-w-[850px]"
-                style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+                className="text-display-lg font-medium text-heading max-w-[850px]"
               >
                 {heading}
               </h2>
@@ -275,8 +274,7 @@ export default function TestimonialsSection({
             </div>
             <h2
               id="reviews-heading"
-              className="text-navy font-medium font-sans leading-[1.15] tracking-[-0.03em] w-full max-w-[1000px] px-4 text-center"
-              style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+              className="text-display-lg font-medium font-sans text-heading w-full max-w-[1000px] px-4 text-center"
             >
               Stories from the buyers, sellers,<br className="hidden md:block" /> and dream-chasers we've helped
             </h2>
@@ -298,7 +296,7 @@ export default function TestimonialsSection({
                  className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.15)] hidden md:flex"
                  aria-label="Previous Review"
                >
-                  <CaretLeft size={24} weight="bold" />
+                  <ChevronLeft size={24} />
                </button>
              )}
 
@@ -309,7 +307,7 @@ export default function TestimonialsSection({
                  className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.15)] hidden md:flex"
                  aria-label="Next Review"
                >
-                  <CaretRight size={24} weight="bold" />
+                  <ChevronRight size={24} />
                </button>
              )}
 

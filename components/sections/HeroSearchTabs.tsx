@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { Search } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 type Tab = 'buy' | 'rent' | 'sell'
@@ -56,7 +56,7 @@ export default function HeroSearchTabs() {
         onSubmit={onSubmit}
         className="flex items-center bg-white rounded-[14px] p-2 gap-2"
       >
-        <MagnifyingGlass size={20} className="text-gray-400 ml-2" weight="regular" />
+        <Search size={20} className="text-gray-400 ml-2" />
         <input
           type="text"
           value={q}

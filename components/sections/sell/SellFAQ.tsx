@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, X } from '@phosphor-icons/react/dist/ssr'
+import { Plus, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 const FAQ_ITEMS = [
@@ -80,8 +80,7 @@ export default function SellFAQ() {
           <div>
             <h2
               id="sell-faq-heading"
-              className="text-navy font-medium leading-[1.1] tracking-[-0.02em] lg:sticky lg:top-28"
-              style={{ fontSize: 'clamp(30px, 3.8vw, 50px)' }}
+              className="text-display-md text-navy font-medium lg:sticky lg:top-28"
             >
               Everything you wanted to ask (but didn&apos;t know who to)
             </h2>
@@ -110,9 +109,9 @@ export default function SellFAQ() {
                     {/* Circle + icon */}
                     <div className="shrink-0 w-[40px] h-[40px] rounded-full border border-grey-light flex items-center justify-center text-navy group-hover:border-navy transition-colors">
                       {isOpen ? (
-                        <X size={14} weight="bold" />
+                        <X size={14} />
                       ) : (
-                        <Plus size={14} weight="bold" />
+                        <Plus size={14} />
                       )}
                     </div>
                     <span className="text-navy font-semibold text-[17px] leading-[1.35]">

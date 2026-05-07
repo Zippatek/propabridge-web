@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, X } from '@phosphor-icons/react/dist/ssr'
+import { Plus, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 const FAQ_ITEMS = [
@@ -90,8 +90,7 @@ export default function FAQSection() {
           </div>
           <h2
             id="faq-heading"
-            className="text-navy font-medium leading-[1.15] tracking-[-0.02em] md:w-[70%] max-w-[650px] mr-auto"
-            style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+            className="text-display-lg font-medium text-heading md:w-[70%] max-w-[650px] mr-auto"
           >
             Everything you wanted to ask (but didn&apos;t know who to)
           </h2>
@@ -188,9 +187,9 @@ export default function FAQSection() {
                   >
                     <div className="shrink-0 mt-0.5 w-[36px] h-[36px] rounded-full border border-grey-light flex items-center justify-center text-navy group-hover:border-navy transition-colors">
                       {isOpen ? (
-                        <X size={14} weight="regular" />
+                        <X size={14} />
                       ) : (
-                        <Plus size={14} weight="regular" />
+                        <Plus size={14} />
                       )}
                     </div>
 
@@ -209,7 +208,7 @@ export default function FAQSection() {
                       isOpen ? 'max-h-[400px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
                     )}
                   >
-                    <p className="text-grey text-[15px] lg:text-[16px] leading-relaxed max-w-[600px] pb-2">
+                    <p className="text-grey text-[15px] lg:text-[16px] leading-snug max-w-[600px] pb-2">
                       {item.answer}
                     </p>
                   </div>

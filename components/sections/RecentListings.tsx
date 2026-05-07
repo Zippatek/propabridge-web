@@ -24,8 +24,7 @@ export default async function RecentListings() {
         </div>
         <h2
           id="listings-heading"
-          className="text-navy font-medium leading-[1.15] tracking-[-0.02em] text-center"
-          style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
+          className="text-display-lg font-medium text-heading text-center"
         >
           Verified, Curated, and Made for You.
         </h2>
@@ -37,18 +36,16 @@ export default async function RecentListings() {
               <PropertyCard key={property.id} property={property} priority={index < 2} />
             ))
           ) : (
-            <p className="text-navy/60 text-[14px]">No listings available right now.</p>
+            <p className="text-heading/60 text-[14px]">No listings available right now.</p>
           )}
         </div>
         <div className="flex justify-center mt-8">
           <Link
             href="/listings"
-            className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+            className="btn-cream-pill"
           >
             VIEW PROPERTIES
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-              <path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path>
-            </svg>
+            <span className="text-[18px] leading-none">&rsaquo;</span>
           </Link>
         </div>
       </div>

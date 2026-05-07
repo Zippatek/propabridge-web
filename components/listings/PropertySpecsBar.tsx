@@ -1,19 +1,19 @@
 'use client';
 
-import { 
-  Key, 
-  Money, 
-  Bed, 
-  Bathtub, 
-  Calendar, 
-  Stairs, 
-  Car, 
-  IdentificationCard, 
-  Copy, 
-  DownloadSimple,
+import {
+  Key,
+  Banknote as Money,
+  Bed,
+  Bath as Bathtub,
+  Calendar,
+  Layers as Stairs,
+  Car,
+  IdCard as IdentificationCard,
+  Copy,
+  Download as DownloadSimple,
   Ruler,
-  SquaresFour
-} from "@phosphor-icons/react/dist/ssr";
+  LayoutGrid as SquaresFour
+} from "lucide-react";
 import { Property } from "@/lib/types";
 
 interface PropertySpecsBarProps {
@@ -31,12 +31,12 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
     { 
       label: "Type", 
       value: property.status === "FOR RENT" ? "For Rent" : "For Sale", 
-      icon: <Key size={26} weight="light" color="#001a40" /> 
+      icon: <Key size={26} color="#001a40" /> 
     },
     { 
       label: "Price", 
       value: property.priceLabel || `₦${property.price?.toLocaleString()}`, 
-      icon: <Money size={26} weight="light" color="#001a40" /> 
+      icon: <Money size={26} color="#001a40" /> 
     },
   ];
 
@@ -46,35 +46,35 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
       { 
         label: "Size", 
         value: property.areaLabel || (property.area ? `${property.area} SQM` : "—"), 
-        icon: <Ruler size={26} weight="light" color="#001a40" /> 
+        icon: <Ruler size={26} color="#001a40" /> 
       },
       { 
         label: "Lot Size", 
         value: property.landArea || "—", 
-        icon: <SquaresFour size={26} weight="light" color="#001a40" /> 
+        icon: <SquaresFour size={26} color="#001a40" /> 
       }
     );
   } else {
     // Residential-specific specs
     if (property.beds) {
-      specs.push({ label: "Beds", value: property.beds, icon: <Bed size={26} weight="light" color="#001a40" /> });
+      specs.push({ label: "Beds", value: property.beds, icon: <Bed size={26} color="#001a40" /> });
     }
     if (property.baths) {
-      specs.push({ label: "Baths", value: property.baths, icon: <Bathtub size={26} weight="light" color="#001a40" /> });
+      specs.push({ label: "Baths", value: property.baths, icon: <Bathtub size={26} color="#001a40" /> });
     }
     if (property.floors) {
-      specs.push({ label: "Floors", value: property.floors, icon: <Stairs size={26} weight="light" color="#001a40" /> });
+      specs.push({ label: "Floors", value: property.floors, icon: <Stairs size={26} color="#001a40" /> });
     }
   }
 
   // Always show Built in and Property ID
-  specs.push({ label: "Built in", value: builtIn, icon: <Calendar size={26} weight="light" color="#001a40" /> });
+  specs.push({ label: "Built in", value: builtIn, icon: <Calendar size={26} color="#001a40" /> });
   
   // Property ID (Priority to property_id)
   specs.push({ 
     label: "Property ID", 
     value: property.property_id || property.id, 
-    icon: <IdentificationCard size={26} weight="light" color="#001a40" />, 
+    icon: <IdentificationCard size={26} color="#001a40" />, 
     isId: true 
   });
 
@@ -102,7 +102,7 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
                       navigator.clipboard.writeText(String(spec.value));
                     }}
                   >
-                    <Copy size={14} weight="regular" />
+                    <Copy size={14} />
                   </button>
                 )}
               </div>
@@ -114,7 +114,7 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
       {/* Download Plan Button (Outside the card) */}
       <div className="flex justify-center">
         <button className="inline-flex items-center justify-center bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-8 py-4 rounded-[8px] transition-all duration-300 gap-2 outline-none focus:outline-none focus:ring-0 border-none">
-          <DownloadSimple size={20} weight="bold" />
+          <DownloadSimple size={20} />
           DOWNLOAD PLAN
         </button>
       </div>
