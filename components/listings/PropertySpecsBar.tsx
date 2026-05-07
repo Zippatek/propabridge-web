@@ -27,7 +27,14 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
   // Define specs based on property type
   const isLand = property.type === "Land";
   
-  const specs = [
+  interface Spec {
+    label: string;
+    value: string | number;
+    icon: React.ReactNode;
+    isId?: boolean;
+  }
+
+  const specs: Spec[] = [
     { 
       label: "Type", 
       value: property.status === "FOR RENT" ? "For Rent" : "For Sale", 
@@ -73,7 +80,7 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
   // Property ID (Priority to property_id)
   specs.push({ 
     label: "Property ID", 
-    value: property.property_id || property.id, 
+    value: property.property_id || property.id || "—", 
     icon: <IdentificationCard size={26} color="#001a40" />, 
     isId: true 
   });

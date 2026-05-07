@@ -13,6 +13,11 @@ interface PageProps {
 export default async function PropertyDetailsPage({ params }: PageProps) {
   const { slug } = await params;
 
+  // Artificial delay to prevent "negative timestamp" performance measure bug in Turbopack
+  if (process.env.NODE_ENV === 'development') {
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
   let property;
   try {
     const listings = await fetchListings({ limit: 100 });
