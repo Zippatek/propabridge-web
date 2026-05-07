@@ -19,7 +19,7 @@ export default function SoldPropertiesCTA() {
           {/* Heading */}
           <h2
             id="sold-properties-heading"
-            className="lg:col-span-9 text-navy font-bold leading-[1.1] tracking-[-0.02em] text-center lg:text-left"
+            className="lg:col-span-9 text-navy font-medium leading-[1.1] tracking-[-0.02em] text-center lg:text-left"
             style={{ fontSize: 'clamp(32px, 4.5vw, 60px)' }}
           >
             The properties we&apos;ve sold,<br className="hidden sm:block" /> the dreams we&apos;ve delivered
@@ -30,7 +30,7 @@ export default function SoldPropertiesCTA() {
         <div className="flex justify-center">
           <Link
             href="/listings"
-            className="inline-flex items-center gap-2 bg-blue hover:bg-[#0052cc] text-white font-bold text-[14px] uppercase tracking-[0.1em] px-10 h-[58px] rounded-btn transition-colors duration-200 shadow-[0_4px_20px_rgba(0,106,255,0.3)]"
+            className="inline-flex items-center gap-2 bg-blue hover:bg-[#0052cc] text-white font-bold text-[14px] uppercase tracking-[0.1em] px-10 h-[58px] rounded-btn transition-colors duration-200"
           >
             VIEW ALL PROPERTIES
             <CaretRight size={16} weight="bold" />

@@ -9,19 +9,9 @@ interface PropertyGalleryProps {
   property: Property;
 }
 
-const EXTENDED_GALLERY = [
-  'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=85',
-  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85',
-  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=85',
-  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=85',
-  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85',
-  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=85',
-  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=85',
-  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=85',
-  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=85',
-  'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=85',
-  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=85',
-];
+import { FALLBACK_PROPERTY_GALLERY } from '@/lib/bucket';
+
+const EXTENDED_GALLERY = FALLBACK_PROPERTY_GALLERY;
 
 export function PropertyGallery({ property }: PropertyGalleryProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -158,7 +148,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
           <div className="mt-8 flex justify-center">
             <button 
               onClick={() => setIsExpanded(!isExpanded)}
-              className="bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[13px] uppercase tracking-[0.05em] px-8 py-3.5 rounded-[8px] transition-all duration-300 shadow-md flex items-center justify-center gap-2 outline-none focus:outline-none focus:ring-0 border-none"
+              className="bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[13px] uppercase tracking-[0.05em] px-8 py-3.5 rounded-[8px] transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:outline-none focus:ring-0 border-none"
             >
               {isExpanded ? 'Show Less Images' : `View All Images (${displayImages.length})`}
             </button>

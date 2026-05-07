@@ -2,6 +2,24 @@ import { BLOGS } from '@/data/blogs'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
+const DEFAULT_TIMEOUT_MS = 3000
+
+// Wrapper around fetch that aborts after `timeoutMs` so server-rendered pages
+// never hang waiting on an unreachable backend.
+async function fetchWithTimeout(
+  input: string,
+  init: RequestInit = {},
+  timeoutMs: number = DEFAULT_TIMEOUT_MS,
+): Promise<Response> {
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    return await fetch(input, { ...init, signal: controller.signal })
+  } finally {
+    clearTimeout(id)
+  }
+}
+
 export type FrontendBlog = {
   id: string
   date: string
@@ -75,22 +93,28 @@ export async function fetchListings(filters?: {
   if (filters?.type && filters.type !== 'ALL') params.set('category', filters.type);
   if (filters?.limit) params.set('limit', filters.limit.toString());
 
-  const res = await fetch(`${API_URL}/listings?${params.toString()}`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) throw new Error('Failed to fetch listings');
-
-  const json = await res.json();
-  const raw = json.data || json.listings || json || [];
-  return Array.isArray(raw) ? raw.map(mapListing) : [];
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/listings?${params.toString()}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) throw new Error('Failed to fetch listings');
+    const json = await res.json();
+    const raw = json.data || json.listings || json || [];
+    return Array.isArray(raw) ? raw.map(mapListing) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function fetchListing(id: string) {
-  const res = await fetch(`${API_URL}/listings/${id}`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Listing not found');
-  const json = await res.json();
-  return mapListing(json.data || json);
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/listings/${id}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Listing not found');
+    const json = await res.json();
+    return mapListing(json.data || json);
+  } catch {
+    return null;
+  }
 }
 
 export async function fetchBlogs(limit?: number): Promise<FrontendBlog[]> {
@@ -98,7 +122,7 @@ export async function fetchBlogs(limit?: number): Promise<FrontendBlog[]> {
     const params = new URLSearchParams()
     if (limit) params.set('limit', String(limit))
 
-    const res = await fetch(`${API_URL}/blogs?${params.toString()}`, {
+    const res = await fetchWithTimeout(`${API_URL}/blogs?${params.toString()}`, {
       cache: 'no-store',
     })
 
@@ -116,7 +140,7 @@ export async function fetchBlogs(limit?: number): Promise<FrontendBlog[]> {
 
 export async function fetchBlogBySlug(slug: string): Promise<FrontendBlog | null> {
   try {
-    const res = await fetch(`${API_URL}/blogs/${slug}`, {
+    const res = await fetchWithTimeout(`${API_URL}/blogs/${slug}`, {
       cache: 'no-store',
     })
     if (!res.ok) throw new Error('Not found')
@@ -198,7 +222,7 @@ export async function fetchNeighborhoods(query?: string): Promise<FrontendNeighb
   try {
     const params = new URLSearchParams()
     if (query) params.set('city', query)
-    const res = await fetch(`${API_URL}/neighborhoods?${params.toString()}`, { cache: 'no-store' })
+    const res = await fetchWithTimeout(`${API_URL}/neighborhoods?${params.toString()}`, { cache: 'no-store' })
     if (!res.ok) return []
     const json = await res.json()
     const raw = json.neighborhoods || json.data || []
@@ -210,7 +234,7 @@ export async function fetchNeighborhoods(query?: string): Promise<FrontendNeighb
 
 export async function fetchNeighborhood(slug: string): Promise<FrontendNeighborhood | null> {
   try {
-    const res = await fetch(`${API_URL}/neighborhoods/${slug}`, { cache: 'no-store' })
+    const res = await fetchWithTimeout(`${API_URL}/neighborhoods/${slug}`, { cache: 'no-store' })
     if (!res.ok) return null
     const json = await res.json()
     const raw = json.data || json

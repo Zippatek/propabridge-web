@@ -45,7 +45,7 @@ const FAQ_ITEMS = [
     id: 'sell-faq-7',
     question: 'Can you help me get a mortgage or loan?',
     answer:
-      "Yes! We work with a network of trusted lenders and mortgage brokers. While we don't give out loans ourselves, we connect you with the right people, explain your financing options, and help you understand the paperwork. Think of us as your bridge between lenders and your dream home.",
+      "Yes! We work with a network of verified lenders and mortgage brokers. While we don't give out loans ourselves, we connect you with the right people, explain your financing options, and help you understand the paperwork. Think of us as your bridge between lenders and your dream home.",
   },
   {
     id: 'sell-faq-8',
@@ -80,7 +80,7 @@ export default function SellFAQ() {
           <div>
             <h2
               id="sell-faq-heading"
-              className="text-navy font-bold leading-[1.1] tracking-[-0.02em] lg:sticky lg:top-28"
+              className="text-navy font-medium leading-[1.1] tracking-[-0.02em] lg:sticky lg:top-28"
               style={{ fontSize: 'clamp(30px, 3.8vw, 50px)' }}
             >
               Everything you wanted to ask (but didn&apos;t know who to)

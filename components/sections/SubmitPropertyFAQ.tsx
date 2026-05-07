@@ -76,7 +76,7 @@ export function SubmitPropertyFAQ() {
           <div>
             <h2
               id="sp-faq-heading"
-              className="text-[#001a40] font-bold leading-[1.15] tracking-[-0.02em] lg:sticky lg:top-28"
+              className="text-[#001a40] font-medium leading-[1.15] tracking-[-0.02em] lg:sticky lg:top-28"
               style={{ fontSize: 'clamp(32px, 3.8vw, 52px)' }}
             >
               Everything you wanted to ask (but didn&apos;t know who to)

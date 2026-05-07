@@ -30,6 +30,9 @@ export default function SubmitPropertyPage() {
         >
           Submit Your Property. Reach<br className="hidden md:block" /> Thousands of Verified Clients.
         </h1>
+        <p className="mt-5 text-[#001a40]/70 text-[15px] md:text-[17px] leading-[1.6] max-w-[640px]">
+          Get expert handling, AI-driven matching, and real results — all under one roof.
+        </p>
       </section>
 
       {/* ── FORM ────────────────────────────────────────────────────── */}

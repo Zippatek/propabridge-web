@@ -1,8 +1,12 @@
 import { Property, Location, Testimonial, BlogPost } from './types'
+import {
+  BUCKET_BASE,
+  PROPERTY_GALLERY,
+  NEIGHBORHOOD_COVERS,
+  BLOG_COVERS,
+} from './bucket'
 
-const BUCKET_BASE =
-  process.env.NEXT_PUBLIC_GCS_BUCKET_BASE ||
-  'https://storage.googleapis.com/propabridge-listings-us'
+void BUCKET_BASE
 
 export const MOCK_PROPERTIES: Property[] = [
   {
@@ -63,10 +67,7 @@ export const MOCK_PROPERTIES: Property[] = [
     area: 280,
     areaUnit: 'sqm',
     parkingSpaces: 2,
-    images: [
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['gudu-apo-duplex'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Title Verified', 'Physically Inspected', 'Zero Inspection Fees'],
@@ -91,9 +92,7 @@ export const MOCK_PROPERTIES: Property[] = [
     type: 'Commercial',
     area: 14,
     areaUnit: 'sqm',
-    images: [
-      'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['lokogoma-promenade'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Title Verified', 'Physically Inspected'],
@@ -118,9 +117,7 @@ export const MOCK_PROPERTIES: Property[] = [
     type: 'Land',
     area: 450,
     areaUnit: 'sqm',
-    images: [
-      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['kaduna-millenium'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Survey Plan Available', 'Title Verified'],
@@ -148,9 +145,7 @@ export const MOCK_PROPERTIES: Property[] = [
     areaUnit: 'sqm',
     parkingSpaces: 3,
     floors: 2,
-    images: [
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['guzape-residences'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Title Verified', 'Physically Inspected', 'Zero Inspection Fees'],
@@ -179,9 +174,7 @@ export const MOCK_PROPERTIES: Property[] = [
     areaUnit: 'sqm',
     floors: 2,
     parkingSpaces: 3,
-    images: [
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['maitama-duplex'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Title Verified', 'Physically Inspected', 'Zero Inspection Fees'],
@@ -206,9 +199,7 @@ export const MOCK_PROPERTIES: Property[] = [
     baths: 3,
     area: 185,
     areaUnit: 'sqm',
-    images: [
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    ],
+    images: PROPERTY_GALLERY['kaduna-millenium'],
     verified: true,
     verificationStatus: 'VERIFIED',
     verificationItems: ['Title Verified', 'Physically Inspected'],
@@ -226,7 +217,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Gwarinpa Estate',
     city: 'Abuja',
     state: 'FCT',
-    image: `${BUCKET_BASE}/neighborhoods/gwarinpa-abuja.jpg`,
+    image: NEIGHBORHOOD_COVERS['gwarinpa-abuja'],
     propertyCount: 42,
     description: 'One of Abuja\'s largest residential districts with a mix of housing types.',
   },
@@ -236,7 +227,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Maitama',
     city: 'Abuja',
     state: 'FCT',
-    image: `${BUCKET_BASE}/neighborhoods/maitama-abuja.jpg`,
+    image: NEIGHBORHOOD_COVERS['maitama-abuja'],
     propertyCount: 28,
     description: 'Abuja\'s most prestigious district, home to embassies and high-end residences.',
   },
@@ -246,7 +237,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Karsana North',
     city: 'Abuja',
     state: 'FCT',
-    image: `${BUCKET_BASE}/neighborhoods/karsana-abuja.jpg`,
+    image: NEIGHBORHOOD_COVERS['gwarinpa-abuja'],
     propertyCount: 15,
     description: 'A fast-growing residential district with modern estate developments.',
   },
@@ -256,7 +247,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Asokoro',
     city: 'Abuja',
     state: 'FCT',
-    image: `${BUCKET_BASE}/neighborhoods/asokoro-abuja.jpg`,
+    image: NEIGHBORHOOD_COVERS['guzape-abuja'],
     propertyCount: 19,
     description: 'Government and diplomatic hub with upscale residential properties.',
   },
@@ -266,7 +257,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Central',
     city: 'Kaduna',
     state: 'Kaduna',
-    image: `${BUCKET_BASE}/neighborhoods/kaduna-city.jpg`,
+    image: NEIGHBORHOOD_COVERS['barnawa-kaduna'],
     propertyCount: 22,
     description: 'Northern Nigeria\'s commercial capital with diverse property options.',
   },
@@ -276,7 +267,7 @@ export const MOCK_LOCATIONS: Location[] = [
     district: 'Central',
     city: 'Minna',
     state: 'Niger',
-    image: `${BUCKET_BASE}/neighborhoods/minna.jpg`,
+    image: NEIGHBORHOOD_COVERS['chanchaga-minna'],
     propertyCount: 11,
     description: 'Niger State\'s capital city with affordable housing opportunities.',
   },
@@ -323,7 +314,7 @@ export const MOCK_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Property prices in Abuja\'s key districts have shifted significantly this year. Here is what the data says and what it means for buyers.',
     content: '',
     category: 'Market Insight',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80',
+    image: BLOG_COVERS['abuja-prices'],
     author: 'Propabridge Team',
     publishedAt: '2026-04-10',
     readTime: 5,
@@ -335,7 +326,7 @@ export const MOCK_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Gwarinpa is one of Abuja\'s largest residential estates. From schools to markets, here is everything you need to know before moving.',
     content: '',
     category: 'Neighbourhood Guide',
-    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80',
+    image: BLOG_COVERS['living-in-gwarinpa'],
     author: 'Propabridge Team',
     publishedAt: '2026-04-01',
     readTime: 7,
@@ -347,7 +338,7 @@ export const MOCK_BLOG_POSTS: BlogPost[] = [
     excerpt: 'The C of O is the most important document in any Nigerian property transaction. Here is what it means and why you must always demand one.',
     content: '',
     category: 'Legal Tips',
-    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=80',
+    image: BLOG_COVERS['property-documents'],
     author: 'Propabridge Team',
     publishedAt: '2026-03-25',
     readTime: 6,

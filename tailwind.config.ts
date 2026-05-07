@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── PRIMARY PALETTE (matches propabridge-dashboard tokens) ──
+        // ── PRIMARY PALETTE — Propabridge Design Foundation ──
         navy: {
           DEFAULT: '#001a40',
           light:   '#002a5e',
@@ -19,6 +19,7 @@ const config: Config = {
         },
         blue: {
           DEFAULT: '#006aff',
+          action:  '#006aff',
           hover:   '#0052cc',
         },
         action: {
@@ -36,22 +37,34 @@ const config: Config = {
           dark:    '#ebe9dc',
         },
         // ── SECONDARY / SUPPORT ─────────────────────────────────────
+        green: {
+          verified: '#1a7a4a',
+        },
         verified: {
           DEFAULT: '#1a7a4a',
           light:   'rgba(26, 122, 74, 0.1)',
         },
-        amber:    '#d97706',
+        amber: {
+          DEFAULT: '#d97706',
+          warn:    '#d97706',
+        },
         warning: {
           DEFAULT: '#d97706',
           light:   'rgba(217, 119, 6, 0.1)',
+        },
+        red: {
+          alert:   '#c0392b',
         },
         danger: {
           DEFAULT: '#c0392b',
           light:   'rgba(192, 57, 43, 0.1)',
         },
         grey: {
-          DEFAULT: '#4a5568',
-          light:   '#cbd5e0',
+          DEFAULT:     '#4a5568',
+          subtle:      '#4a5568',
+          divider:     '#cbd5e0',
+          placeholder: '#a0aec0',
+          light:       '#cbd5e0',
         },
         subtle:      '#4a5568',
         divider:     '#cbd5e0',
@@ -104,6 +117,7 @@ const config: Config = {
         'input':     '8px',
         'panel':     '8px',
         'badge':     '20px',
+        'pill':      '20px',
         'avatar':    '50%',
         'full':      '9999px',
       },
@@ -111,6 +125,7 @@ const config: Config = {
       boxShadow: {
         'card':       '0 4px 24px rgba(0, 26, 64, 0.08)',
         'card-hover': '0 8px 32px rgba(0, 26, 64, 0.12)',
+        'verified':   '0 2px 12px rgba(0, 26, 64, 0.14)',
         'badge':      '0 2px 12px rgba(0, 26, 64, 0.14)',
         'float':      '0 8px 32px rgba(0, 26, 64, 0.12)',
         'navbar':     '0 2px 12px rgba(0, 0, 0, 0.08)',

@@ -15,11 +15,11 @@ export const AboutCompany = () => {
         {/* Left Column */}
         <div className="flex flex-col gap-8">
           <h2 className="text-[#001a40] font-medium leading-[1.1] tracking-tight" style={{ fontSize: 'clamp(36px, 4vw, 48px)' }}>
-            A trusted property bridge helping buyers, renters, and investors find verified homes across Nigeria.
+            A verified property bridge helping buyers, renters, and investors find inspected homes across Nigeria.
           </h2>
           <div className="relative w-full aspect-video rounded-[24px] overflow-hidden">
             <Image 
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071&auto=format&fit=crop"
+              src="https://storage.googleapis.com/propabridge-listings-us/properties/mixed-use-residential-retail-—-the-hills-residences-guzape-district-abuja/0241bd77b2a8.webp"
               alt="Team discussing blueprints"
               fill
               className="object-cover object-center"
@@ -36,7 +36,7 @@ export const AboutCompany = () => {
             <div className="flex items-center gap-4">
               <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0">
                 <Image 
-                  src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=400&auto=format&fit=crop"
+                  src="https://storage.googleapis.com/propabridge-listings-us/agents/propabridge-team/00cc8bac9257.webp"
                   alt="Aminu S. Muhammad"
                   fill
                   className="object-cover object-center"

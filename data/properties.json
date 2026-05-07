@@ -18,10 +18,10 @@
     "floors": 2,
     "parkingSpaces": 4,
     "images": [
-      "/hero-bg.webp",
-      "/images/property-2.png",
-      "/images/property-3.png",
-      "/images/property-4.png"
+      "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp",
+      "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/0b9fd3a9cd26.webp",
+      "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/24cb4b9cd754.webp",
+      "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/79abef207c67.webp"
     ],
     "verified": true,
     "verificationStatus": "VERIFIED",
@@ -74,8 +74,8 @@
     "area": 12,
     "areaLabel": "12\u201316 SQM",
     "images": [
-      "/images/property-5.png",
-      "/images/property-6.png"
+      "https://storage.googleapis.com/propabridge-listings-us/properties/mixed-residential-estate-—-the-promenade-estate-lokogoma-abuja/047dc1f48f8d.webp",
+      "https://storage.googleapis.com/propabridge-listings-us/properties/mixed-residential-estate-—-the-promenade-estate-lokogoma-abuja/1a4b2eb91793.webp"
     ],
     "verified": true,
     "verificationStatus": "VERIFIED",

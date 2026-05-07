@@ -63,7 +63,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           {/* ── CATEGORY FILTERS (Only for the dedicated page) ── */}
           {isPage && (
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-10 w-full">
-              <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors shadow-sm uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <Article weight="fill" size={16} />
                 ALL
               </button>
@@ -96,7 +96,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
               className="group block transition-transform hover:-translate-y-1 duration-300 flex flex-col h-full"
             >
               {/* Image Thumbnail */}
-              <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-[16px] overflow-hidden bg-[#e0e0d5] mb-6 border border-[#ecece0]/50 shadow-sm transition-shadow shrink-0">
+              <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-[16px] overflow-hidden bg-[#e0e0d5] mb-6 border border-[#ecece0]/50 transition-shadow shrink-0">
                 <Image
                   src={blog.image}
                   alt={blog.title}
@@ -139,7 +139,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           <div className="mt-16 md:mt-24 flex justify-center">
             <Link
               href="/blogs"
-              className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 shadow-[0_4px_14px_rgba(0,106,255,0.3)] gap-2"
+              className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
             >
               READ ALL BLOGS
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">

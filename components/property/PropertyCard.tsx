@@ -43,10 +43,10 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const isAreaOnly = beds === undefined && baths === undefined
   const badgeColor = statusTextColor[status] ?? '#001a40'
 
-  // Robust image selection
-  const displayImage = (images && images.length > 0 && images[0]) 
-    ? images[0] 
-    : 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80';
+  // Robust image selection — fall back to neutral skeleton, never to Unsplash.
+  const displayImage = (images && images.length > 0 && images[0])
+    ? images[0]
+    : null;
 
   return (
     <>
@@ -56,15 +56,17 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
         aria-label={`View listing: ${title}`}
       >
       {/* ── IMAGE ── */}
-      <div className="relative overflow-hidden rounded-card" style={{ height: 320 }}>
-        <Image
-          src={displayImage}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
-        />
+      <div className="relative overflow-hidden rounded-card bg-divider" style={{ height: 320 }}>
+        {displayImage && (
+          <Image
+            src={displayImage}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
+          />
+        )}
       </div>
 
       <div

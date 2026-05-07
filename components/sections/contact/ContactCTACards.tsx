@@ -7,21 +7,21 @@ const cards = [
     description: "Find out what your property is actually worth — backed by real market data and expert analysis",
     cta: "GET VALUATION",
     href: "/sell",
-    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop",
+    image: "https://storage.googleapis.com/propabridge-listings-us/properties/mixed-residential-estate-—-the-promenade-estate-lokogoma-abuja/047dc1f48f8d.webp",
   },
   {
     title: "List your property with us",
     description: "Submit your property details and we'll verify, photograph, and list it across our verified buyer network.",
     cta: "SUBMIT PROPERTY",
     href: "/submit-property",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop",
+    image: "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp",
   },
   {
     title: "Chat With Propa Now",
     description: "Our AI concierge is available 24/7 on web and WhatsApp. Fastest way to find what you need.",
     cta: "TALK TO PROPA",
     href: "https://wa.me/2348090892219",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop",
+    image: "https://storage.googleapis.com/propabridge-listings-us/properties/millenium-city-kaduna-babban-saura/1b787d3f61d9.webp",
   },
 ];
 

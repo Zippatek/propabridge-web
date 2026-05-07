@@ -7,22 +7,24 @@ interface PropertyHeroProps {
 }
 
 export function PropertyHero({ property }: PropertyHeroProps) {
-  // Use the first image as the hero background, or a placeholder if none exists
-  const heroImage = (property.images && property.images.length > 0 && property.images[0]) 
-    ? property.images[0] 
-    : "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=80";
+  // Use the first image as the hero background, or null for a neutral fill.
+  const heroImage = (property.images && property.images.length > 0 && property.images[0])
+    ? property.images[0]
+    : null;
 
   return (
     <section className="relative w-full h-[60vh] min-h-[500px] flex flex-col items-center justify-end pb-16 -mt-[84px] pt-[84px]">
       {/* Background Image with Gradient Overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <Image
-          src={heroImage}
-          alt={property.title}
-          fill
-          className="object-cover object-center"
-          priority
-        />
+      <div className="absolute inset-0 z-0 overflow-hidden bg-divider">
+        {heroImage && (
+          <Image
+            src={heroImage}
+            alt={property.title}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        )}
         {/* Gradient that fades from transparent to the beige page background */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#f4f3ea] via-[#f4f3ea]/70 to-transparent" />
       </div>

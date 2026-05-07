@@ -22,7 +22,7 @@ const PERKS: Perk[] = [
   },
   {
     icon: <PhosphorImage size={20} weight="fill" className="text-[#001a40]" />,
-    title: 'Premium Presentation',
+    title: 'Polished Presentation',
     description: 'We turn your space into a showstopper with magazine-style photos and visuals that make people stop scrolling.',
   },
   {
@@ -62,7 +62,7 @@ export function ListingPerksSection() {
 
           {/* Headline fills remaining space */}
           <h2
-            className="text-[#001a40] font-bold leading-[1.15] tracking-[-0.02em] text-center lg:text-left flex-1"
+            className="text-[#001a40] font-medium leading-[1.15] tracking-[-0.02em] text-center lg:text-left flex-1"
             style={{ fontSize: 'clamp(28px, 3.8vw, 48px)' }}
           >
             Get expert handling, AI-driven matching,<br className="hidden md:block" /> and real results — all under one roof.

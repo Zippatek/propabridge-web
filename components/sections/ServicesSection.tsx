@@ -174,7 +174,7 @@ export default function ServicesSection() {
                         {/* CTA Button */}
                         <Link
                           href={service.href}
-                          className="inline-flex items-center gap-2 bg-blue text-white font-semibold text-[13px] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-blue-hover transition-colors duration-200 mb-2"
+                          className="inline-flex items-center gap-2 bg-blue text-white font-semibold text-[13px] uppercase tracking-wider px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors duration-200 mb-2"
                         >
                           {service.cta}
                           <ArrowRight size={13} weight="bold" aria-hidden="true" />

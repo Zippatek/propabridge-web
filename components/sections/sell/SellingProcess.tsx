@@ -61,7 +61,7 @@ export default function SellingProcess() {
           </div>
           <h2
             id="selling-process-heading"
-            className="lg:col-span-9 text-navy font-bold leading-[1.1] tracking-[-0.02em]"
+            className="lg:col-span-9 text-navy font-medium leading-[1.1] tracking-[-0.02em]"
             style={{ fontSize: 'clamp(28px, 4vw, 52px)' }}
           >
             We make the selling process simple, friendly, and easy to follow — just how it should be.
@@ -74,7 +74,7 @@ export default function SellingProcess() {
           {/* LEFT: Image */}
           <div className="relative rounded-[20px] overflow-hidden aspect-[4/5] lg:aspect-[3/4] shadow-card">
             <Image
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+              src="https://storage.googleapis.com/propabridge-listings-us/properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp"
               alt="Financial market chart representing property valuation"
               fill
               className="object-cover"

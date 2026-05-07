@@ -15,25 +15,25 @@ export const AboutHistory = () => {
       year: "2023",
       title: "The idea sparked",
       description: "We saw the pains of house-hunting in Nigeria—the stress, the fake agents, the wasted money. With a shared dream of transparency, we set out to build a platform that protects seekers and rewards genuine property owners.",
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop",
+      image: "https://storage.googleapis.com/propabridge-listings-us/neighborhoods/maitama-abuja/0eb3ad94ffd7.webp",
     },
     {
       year: "2024",
       title: "The breakthrough",
       description: "We introduced the \"Zero Fees, Zero Fears\" model. By removing registration and viewing fees, we instantly brought trust back to the people.",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073&auto=format&fit=crop",
+      image: "https://storage.googleapis.com/propabridge-listings-us/properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/411190295027.webp",
     },
     {
       year: "2025",
       title: "Embracing AI technology",
       description: "We launched \"Propa,\" our intelligent AI assistant, making property matching faster than ever. Clients could now find, filter, and book verified homes from their phones in seconds.",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2070&auto=format&fit=crop",
+      image: "https://storage.googleapis.com/propabridge-listings-us/agents/propabridge-team/2c5cdc267690.webp",
     },
     {
       year: "2026",
       title: "Still growing, still grounded",
       description: "Today, we continue doing what we love — connecting genuine buyers with genuine sellers. Because for us, every closed deal is more than a transaction; it's a story of trust restored.",
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
+      image: "https://storage.googleapis.com/propabridge-listings-us/properties/shopping-mall-—-guzape-mall-guzape-district-abuja/26193854795e.webp",
     }
   ];
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HERO_IMAGES } from '@/lib/bucket'
 
 export const AboutMission = () => {
   return (
@@ -39,7 +40,7 @@ export const AboutMission = () => {
           {/* Right Column: Image */}
           <div className="relative w-full h-full min-h-[400px] lg:min-h-full rounded-[16px] overflow-hidden">
             <Image 
-              src="/images/sell-hero-bg.jpg"
+              src={HERO_IMAGES.aboutCompany}
               alt="Propabridge team working"
               fill
               className="object-cover object-center"

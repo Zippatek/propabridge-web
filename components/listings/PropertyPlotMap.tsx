@@ -3,11 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-// Two distinct static map images
-// Satellite: warm aerial photo of a Nigerian-style neighborhood
-const SATELLITE_IMAGE = 'https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1400&q=90';
-// Blueprint: cooler desaturated overhead street-map look
-const BLUEPRINT_IMAGE = 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=90';
+// Two distinct static map images sourced from the propabridge bucket.
+const SATELLITE_IMAGE = 'https://storage.googleapis.com/propabridge-listings-us/neighborhoods/millenium-city/1d89c15ac857.webp';
+const BLUEPRINT_IMAGE = 'https://storage.googleapis.com/propabridge-listings-us/neighborhoods/millenium-city/219282d2f5af.webp';
 
 // Plot grid — 2 rows × 3 cols, each cell has a status color
 const PLOT_GRID = [

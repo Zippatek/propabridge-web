@@ -51,7 +51,7 @@ const FAQ_ITEMS = [
     id: 'faq-8',
     question: 'Can you help me get a mortgage or loan?',
     answer:
-      "Yes! We work with a network of trusted lenders and mortgage brokers. While we don't give out loans ourselves, we connect you with the right people, explain your financing options, and help you understand the paperwork. Think of us as your bridge between lenders and your dream home.",
+      "Yes! We work with a network of verified lenders and mortgage brokers. While we don't give out loans ourselves, we connect you with the right people, explain your financing options, and help you understand the paperwork. Think of us as your bridge between lenders and your dream home.",
   },
   {
     id: 'faq-9',

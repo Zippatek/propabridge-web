@@ -29,7 +29,7 @@ export function RelatedPropertiesCTA() {
       <div className="flex justify-center">
         <Link
           href="/listings"
-          className="inline-flex items-center gap-2 bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-7 py-3.5 rounded-btn transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="inline-flex items-center gap-2 bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[14px] uppercase tracking-[0.05em] px-7 py-3.5 rounded-btn transition-all duration-200"
         >
           VIEW PROPERTIES
           <ArrowRight size={16} weight="bold" />

@@ -43,7 +43,7 @@ export default async function RecentListings() {
         <div className="flex justify-center mt-8">
           <Link
             href="/listings"
-            className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 shadow-[0_4px_14px_rgba(0,106,255,0.3)] gap-2"
+            className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
           >
             VIEW PROPERTIES
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">

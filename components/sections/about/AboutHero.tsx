@@ -6,7 +6,7 @@ export const AboutHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop"
+          src="https://storage.googleapis.com/propabridge-listings-us/properties/stunning-5-bedroom-smart-villa-on-julius-nyerere-crescent-asokoro/4de1cd4a4697.webp"
           alt="Propabridge team background"
           fill
           className="object-cover object-center blur-md scale-105"
@@ -21,8 +21,11 @@ export const AboutHero = () => {
           className="text-white font-medium leading-[1.2] tracking-tight mx-auto max-w-[850px]"
           style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}
         >
-          We're a tech-driven real estate platform helping Nigerians find homes without stress, scams, or hidden fees.
+          We&apos;re a tech-driven real estate platform helping Nigerians find homes without stress, scams, or hidden fees.
         </h1>
+        <p className="mt-6 text-white/85 text-[15px] md:text-[17px] leading-[1.6] max-w-[640px] mx-auto">
+          Every verified listing, every safe transaction, every happy move — it all starts here.
+        </p>
       </div>
     </section>
   );

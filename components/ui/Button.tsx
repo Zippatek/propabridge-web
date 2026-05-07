@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/cn'
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   icon?: React.ReactNode
@@ -17,19 +17,22 @@ interface ButtonProps {
   disabled?: boolean
 }
 
+// Foundation: primary px-32 py-14, transitions 150ms
 const sizeStyles = {
-  sm:  'px-4 py-2 text-sm',
-  md:  'px-7 py-3.5 text-[14px]',
-  lg:  'px-8 py-4 text-base',
+  sm: 'px-4 py-2 text-[13px]',
+  md: 'px-8 py-3.5 text-[14px]',
+  lg: 'px-10 py-4 text-[15px]',
 }
 
 const variantStyles = {
   primary:
-    'bg-blue text-white font-semibold rounded-btn hover:bg-blue-hover active:scale-[0.99] transition-all duration-150',
+    'bg-[#006aff] text-white font-semibold rounded-btn hover:bg-[#0052cc] transition-colors duration-150',
   secondary:
-    'bg-transparent border-[1.5px] border-navy text-navy font-semibold rounded-btn hover:bg-navy/5 transition-all duration-150',
+    'bg-transparent border-[1.5px] border-[#001a40] text-[#001a40] font-semibold rounded-btn hover:bg-[#001a40]/5 transition-colors duration-150',
   ghost:
-    'bg-beige text-navy font-semibold rounded-btn border-0 hover:bg-beige/80 transition-all duration-150',
+    'bg-[#f4f3ea] text-[#001a40] font-semibold rounded-btn hover:bg-[#ebe9dc] transition-colors duration-150',
+  danger:
+    'bg-transparent border-[1.5px] border-[#c0392b] text-[#c0392b] font-semibold rounded-btn hover:bg-[#c0392b]/5 transition-colors duration-150',
 }
 
 export default function Button({
@@ -46,28 +49,33 @@ export default function Button({
   disabled = false,
 }: ButtonProps) {
   const classes = cn(
-    'inline-flex items-center justify-center gap-2 cursor-pointer font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue',
+    'inline-flex items-center justify-center gap-2 cursor-pointer font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006aff]',
     variantStyles[variant],
     sizeStyles[size],
-    (loading || disabled) && 'opacity-50 cursor-not-allowed pointer-events-none',
+    loading && 'opacity-80 cursor-wait pointer-events-none',
+    disabled && !loading && 'opacity-50 cursor-not-allowed pointer-events-none',
     className
   )
 
-  const content = (
+  const spinner = (
+    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+    </svg>
+  )
+
+  // Foundation: when loading, spinner replaces text
+  const content = loading ? (
+    spinner
+  ) : (
     <>
-      {loading && (
-        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      )}
-      {!loading && icon && iconPosition === 'left' && icon}
+      {icon && iconPosition === 'left' && icon}
       {children}
-      {!loading && icon && iconPosition === 'right' && icon}
+      {icon && iconPosition === 'right' && icon}
     </>
   )
 
-  if (href) {
+  if (href && !disabled && !loading) {
     return (
       <Link href={href} className={classes}>
         {content}
@@ -81,6 +89,7 @@ export default function Button({
       className={classes}
       onClick={onClick}
       disabled={disabled || loading}
+      aria-busy={loading || undefined}
     >
       {content}
     </button>

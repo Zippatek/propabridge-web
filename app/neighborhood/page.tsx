@@ -49,7 +49,7 @@ export default async function NeighborhoodPage({
   return (
     <main className="bg-beige min-h-screen">
       <section className="container-site pt-20 pb-14 text-center" aria-labelledby="neighborhoods-heading">
-        <div className="inline-flex items-center gap-2 border border-navy/20 rounded-full px-4 py-1.5 mb-8">
+        <div className="inline-flex items-center gap-2.5 bg-[#eae9e0] rounded-[8px] px-4 py-2 mb-8">
           <span className="w-2 h-2 rounded-sm bg-navy inline-block" aria-hidden="true" />
           <span className="text-[11px] font-semibold text-navy uppercase tracking-[0.12em]">Neighborhoods</span>
           <span className="w-2 h-2 rounded-sm bg-navy inline-block" aria-hidden="true" />
@@ -57,7 +57,7 @@ export default async function NeighborhoodPage({
 
         <h1
           id="neighborhoods-heading"
-          className="text-navy font-bold leading-[1.1] tracking-[-0.02em] max-w-3xl mx-auto"
+          className="text-navy font-medium leading-[1.1] tracking-[-0.02em] max-w-3xl mx-auto"
           style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
         >
           Every neighborhood has its rhythm — let&apos;s find the one that fits you best.

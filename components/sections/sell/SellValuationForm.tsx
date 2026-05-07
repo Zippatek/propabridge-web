@@ -273,7 +273,7 @@ export default function SellValuationForm() {
       {/* Submit */}
       <button
         type="submit"
-        className="w-full flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white font-bold text-[14px] uppercase tracking-[0.1em] h-[58px] rounded-[10px] transition-colors duration-200 shadow-[0_4px_20px_rgba(0,26,64,0.25)] mt-2"
+        className="w-full flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white font-bold text-[14px] uppercase tracking-[0.1em] h-[58px] rounded-[10px] transition-colors duration-200 mt-2"
       >
         SHOW ME THE VALUE
         <CaretRight size={16} weight="bold" />

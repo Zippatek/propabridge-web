@@ -18,7 +18,7 @@ const PERKS = [
     id: 'presentation',
     icon: Camera,
     title: 'Presentation',
-    desc: 'Premium visuals & optimized listings make your property stand out.',
+    desc: 'Polished visuals & optimized listings make your property stand out.',
   },
   {
     id: 'marketing',
@@ -61,10 +61,10 @@ export default function WhySellWithUs() {
             {/* Display heading */}
             <h2
               id="why-sell-heading"
-              className="text-navy font-bold leading-[1.1] tracking-[-0.02em]"
+              className="text-navy font-medium leading-[1.1] tracking-[-0.02em]"
               style={{ fontSize: 'clamp(28px, 3.5vw, 48px)' }}
             >
-              With Us Selling or Buying your property in Nigeria is not hard. Because we have fixed the problem of Unreliable agents and Fake Listings
+              Selling your property in Nigeria, made simple. We&apos;ve fixed the problem of unreliable agents and fake listings.
             </h2>
 
             {/* Stat card */}
@@ -81,7 +81,7 @@ export default function WhySellWithUs() {
           {/* ── COL 2: Photo card ── */}
           <div className="relative rounded-[20px] overflow-hidden aspect-[3/4] shadow-card">
             <Image
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
+              src="https://storage.googleapis.com/propabridge-listings-us/agents/propabridge-team/00cc8bac9257.webp"
               alt="Two Nigerian real estate professionals reviewing a property together"
               fill
               className="object-cover"

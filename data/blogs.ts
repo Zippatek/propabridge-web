@@ -1,3 +1,5 @@
+import { BLOG_COVERS, bucketUrl } from '@/lib/bucket'
+
 export type Blog = {
   id: string
   date: string
@@ -10,13 +12,15 @@ export type Blog = {
   excerpt?: string
 }
 
+const AUTHOR_IMAGE = bucketUrl('agents/propabridge-team/00cc8bac9257.webp')
+
 export const BLOGS: Blog[] = [
   {
     id: 'living-in-gwarinpa',
     date: 'MAR 6, 2026',
     category: 'GUIDE',
     title: "What It's Actually Like to Live in Gwarinpa — A Real Resident's Guide",
-    image: '/images/blogs/rent.png',
+    image: BLOG_COVERS['living-in-gwarinpa'],
     authorName: 'PROPABRIDGE TEAM',
     excerpt: "Gwarinpa is Abuja's largest residential estate — but what is daily life actually like? This guide cuts through the listings and gives you the real picture.",
     content: `
@@ -52,9 +56,9 @@ export const BLOGS: Blog[] = [
     date: 'MAR 5, 2026',
     category: 'GUIDE',
     title: 'First Time Renting in Abuja? Start Here. The Complete Honest Guide.',
-    image: '/images/blogs/rent.png',
+    image: BLOG_COVERS['renting-abuja'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: '/images/blogs/author.png',
+    authorImage: AUTHOR_IMAGE,
     excerpt: "Buying your first home is exciting — and a little overwhelming. Between mortgages, inspections, and endless listings, it's easy to feel lost. But with the right guidance (and the right agent), you can turn confusion into confidence and make smart, secure decisions every step of the way.",
     content: `
 <p className="text-grey font-bold text-[16px] md:text-[18px] font-sans leading-[1.8] mb-10">
@@ -175,9 +179,9 @@ export const BLOGS: Blog[] = [
     date: 'JAN 5, 2026',
     category: 'GUIDE',
     title: 'How to Spot a Fake Property Listing in Nigeria — and What to Do When You Find One',
-    image: '/images/blogs/docs.png',
+    image: BLOG_COVERS['spot-fake-listing'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: '/images/blogs/author.png',
+    authorImage: AUTHOR_IMAGE,
     excerpt: 'Property fraud costs Nigerians billions every year. Most victims paid for a listing they never verified. Here is how to tell the difference — before it costs you anything.',
     content: `
 <p><em>"The listing looked exactly right. The price was good. The photos were clear. Three days later, the landlord had disappeared with ₦150,000."</em></p>
@@ -210,9 +214,9 @@ export const BLOGS: Blog[] = [
     date: 'FEB 8, 2026',
     category: 'GUIDE',
     title: 'The 7 Documents You Must See Before Paying Rent on Any Nigerian Property',
-    image: '/images/blogs/docs.png',
+    image: BLOG_COVERS['property-documents'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: '/images/blogs/author.png',
+    authorImage: AUTHOR_IMAGE,
     excerpt: 'Most property fraud succeeds because tenants do not know which documents to demand. These seven are non-negotiable — and here is what each one actually means.',
     content: `
 <p><em>"The documents are what separate a legitimate transaction from a very expensive lesson."</em></p>
@@ -241,7 +245,7 @@ export const BLOGS: Blog[] = [
     date: 'FEB 5, 2026',
     category: 'NEWS',
     title: 'Gwarinpa vs Jabi vs Kubwa — Which Area Fits Your Budget in Abuja Right Now?',
-    image: '/images/blogs/rent.png',
+    image: BLOG_COVERS['gwarinpa-vs-jabi'],
     authorName: 'PROPABRIDGE TEAM',
     excerpt: 'Three areas. Three different price points. One decision. If your budget sits between ₦800k and ₦3M per year, this comparison will save you weeks of searching.',
     content: `
@@ -281,9 +285,9 @@ export const BLOGS: Blog[] = [
     date: 'JUL 5, 2025',
     category: 'NEWS',
     title: 'Why Inspection Fees Are Exploitative — and Why We Banned Them',
-    image: '/images/blogs/fees.png',
+    image: BLOG_COVERS['inspection-fees'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: '/images/blogs/author.png',
+    authorImage: AUTHOR_IMAGE,
     excerpt: 'The standard practice of charging a fee just to view a property is structurally designed to encourage fake listings. Here is why Propabridge refused to allow it.',
     content: `
 <p><em>"If an agent is paid every time someone views a property, the agent's incentive is to show the property to as many people as possible — not to find a tenant."</em></p>
@@ -312,7 +316,7 @@ export const BLOGS: Blog[] = [
     date: 'JAN 5, 2026',
     category: 'NEWS',
     title: "Abuja Property Prices in 2026 — What's Actually Happening",
-    image: '/images/blogs/docs.png',
+    image: BLOG_COVERS['abuja-prices'],
     authorName: 'PROPABRIDGE TEAM',
     excerpt: 'Inflation, infrastructure changes, and shifting demographics are pushing Abuja property prices in unexpected directions. Here is the data-driven view of what to expect this year.',
     content: `
@@ -342,9 +346,9 @@ export const BLOGS: Blog[] = [
     date: 'DEC 5, 2026',
     category: 'NEWS',
     title: 'Why Smart Investors Are Looking at Minna and Lokogoma Right Now',
-    image: '/images/blogs/rent.png',
+    image: BLOG_COVERS['smart-investors-minna'],
     authorName: 'MUHAMMAD TUKUR',
-    authorImage: '/images/blogs/author.png',
+    authorImage: AUTHOR_IMAGE,
     excerpt: 'While retail buyers fight over overpriced plots in central Abuja, institutional and smart private money is quietly moving to the edges. Here is the investment case for the next growth corridors.',
     content: `
 <p><em>"The best time to buy land in Wuse was 1995. The second best time was 2005. The third best option is figuring out where the next Wuse will be."</em></p>

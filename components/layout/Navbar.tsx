@@ -59,8 +59,8 @@ export default function Navbar() {
 
       <header
         className={cn(
-          'fixed top-3 left-4 right-4 z-50 bg-[#fcfdf8] rounded-[24px] transition-all duration-500 ease-in-out overflow-hidden lg:overflow-visible flex flex-col',
-          scrolled && !mobileOpen ? 'shadow-[0_4px_24px_rgba(0,0,0,0.12)]' : 'shadow-[0_2px_12px_rgba(0,0,0,0.08)]',
+          'fixed top-0 left-0 right-0 z-50 bg-white transition-[border-color] duration-200 ease-out overflow-hidden lg:overflow-visible flex flex-col border-b',
+          scrolled && !mobileOpen ? 'border-[#cbd5e0]' : 'border-transparent',
           mobileOpen ? 'max-h-[850px]' : 'max-h-[72px]'
         )}
         role="banner"
@@ -78,10 +78,11 @@ export default function Navbar() {
                 <HouseSimple size={14} className="lg:hidden" color="white" weight="fill" aria-hidden="true" />
                 <HouseSimple size={16} className="hidden lg:block" color="white" weight="fill" aria-hidden="true" />
               </div>
-              <span className="font-extrabold text-blue text-[18px] lg:text-[20px] tracking-tight leading-none">
+              <span className="font-extrabold text-navy text-[18px] lg:text-[20px] tracking-tight leading-none">
                 PROPA
               </span>
-              <span className="font-normal text-navy text-[18px] lg:text-[20px] tracking-tight leading-none">
+              <span className="font-extrabold text-[#006aff] text-[18px] lg:text-[20px] tracking-tight leading-none">
+                BRIDGE
               </span>
             </Link>
           </div>
@@ -99,7 +100,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
+                      "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.01em] transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
                       activeDropdown === link.label ? "bg-beige" : "bg-transparent",
                       (pathname?.startsWith('/listings') || pathname?.startsWith('/properties-details')) && link.label === 'LISTINGS'
                         ? "text-blue"
@@ -113,7 +114,7 @@ export default function Navbar() {
                   </Link>
                   {activeDropdown === link.label && link.label === 'LISTINGS' && (
                     <div
-                      className="fixed top-[96px] left-4 right-4 w-auto bg-beige rounded-[16px] shadow-[0_20px_40px_rgba(0,0,0,0.2)] p-6 z-50 flex gap-6 cursor-default before:absolute before:-top-8 before:left-0 before:w-full before:h-8 before:bg-transparent"
+                      className="fixed top-[72px] left-4 right-4 w-auto bg-beige rounded-[16px] shadow-[0_20px_40px_rgba(0,0,0,0.2)] p-6 z-50 flex gap-6 cursor-default before:absolute before:-top-8 before:left-0 before:w-full before:h-8 before:bg-transparent"
                       onMouseEnter={() => setActiveDropdown(link.label)}
                       onMouseLeave={() => setActiveDropdown(null)}
                       onClick={(e) => e.stopPropagation()}
@@ -177,7 +178,7 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "flex items-center text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors rounded-btn px-3.5 py-2 whitespace-nowrap",
+                    "flex items-center text-[13px] font-semibold uppercase tracking-[0.01em] transition-colors rounded-btn px-3.5 py-2 whitespace-nowrap",
                     pathname === link.href || (pathname?.startsWith(link.href) && link.href !== '/')
                       ? "bg-beige text-navy"
                       : "text-navy hover:bg-beige hover:text-[#6b7280]"
@@ -193,10 +194,10 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-end gap-3 shrink-0">
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#006aff] text-white font-semibold text-[14px] px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors whitespace-nowrap"
+              className="hidden lg:inline-flex items-center justify-center gap-2 bg-[#001a40] text-white font-semibold text-[13px] uppercase tracking-[0.02em] px-5 py-2.5 rounded-btn hover:bg-[#002a5e] transition-colors whitespace-nowrap"
             >
               CHAT WITH PROPA
-              <ArrowRight size={14} weight="bold" aria-hidden="true" />
+              <ArrowRight size={14} weight="regular" aria-hidden="true" />
             </Link>
 
             <button
@@ -236,7 +237,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-navy font-bold text-[13px] uppercase tracking-[0.08em] hover:text-blue transition-colors"
+                className="text-navy font-bold text-[13px] uppercase tracking-[0.01em] hover:text-blue transition-colors"
               >
                 {link.label}
               </Link>
@@ -248,7 +249,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#006aff] text-white font-bold text-[13px] px-8 py-3.5 rounded-btn shadow-md hover:bg-[#0052cc] transition-colors"
+              className="flex items-center justify-center gap-2 bg-[#001a40] text-white font-bold text-[13px] uppercase tracking-[0.02em] px-8 py-3.5 rounded-btn hover:bg-[#002a5e] transition-colors"
             >
               CHAT WITH PROPA
               <CaretRight size={14} weight="bold" aria-hidden="true" />
@@ -258,7 +259,7 @@ export default function Navbar() {
       </header>
 
       {/* Spacer: navbar height (72px) + top margin (12px) = 84px */}
-      <div className="h-[84px]" aria-hidden="true" />
+      <div className="h-[72px]" aria-hidden="true" />
     </>
   )
 }

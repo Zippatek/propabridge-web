@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SellValuationForm from './SellValuationForm'
+import { HERO_IMAGES } from '@/lib/bucket'
 
 export default function SellHero() {
   return (
@@ -17,7 +18,7 @@ export default function SellHero() {
         {/* Background image + overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/sell-hero-bg.jpg"
+            src={HERO_IMAGES.sellHero}
             alt=""
             fill
             className="object-cover object-center"
@@ -35,10 +36,10 @@ export default function SellHero() {
             className="text-white font-medium font-sans leading-[1.05] tracking-[-0.02em] mb-3 w-full max-w-[700px]"
             style={{ fontSize: 'clamp(36px, 5vw, 53px)' }}
           >
-            faster, and with less stress.
+            Sell your home smarter, faster, and with less stress.
           </h1>
           <p className="text-white/80 text-center text-[15px] lg:text-[16px] leading-[1.6] w-full max-w-[900px]">
-            We filter out the noise. By combining expert valuation, AI matchmaking, and premium marketing,<br className="hidden md:block" />
+            We filter out the noise. By combining expert valuation, AI matchmaking, and high-impact marketing,<br className="hidden md:block" />
             we help you sell or rent your property to serious clients—without the hassle of unverified agents.
           </p>
         </div>

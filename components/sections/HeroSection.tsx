@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { HERO_IMAGES } from '@/lib/bucket'
+import HeroSearchTabs from './HeroSearchTabs'
 
 export default function HeroSection() {
   return (
@@ -13,8 +15,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          // Use a blurred Nigerian lifestyle/property image matching the original
-          backgroundImage: `url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=85')`,
+          backgroundImage: `url('${HERO_IMAGES.homeHero}')`,
         }}
         role="img"
         aria-label="Nigerian residential property"
@@ -70,27 +71,8 @@ export default function HeroSection() {
           <span className="bg-white/20 px-2 py-0.5 rounded-sm">Rent, Buy</span> and <span className="bg-white/20 px-2 py-0.5 rounded-sm">Invest</span> in <span className="bg-white/20 px-2 py-0.5 rounded-sm">Properties</span> in <span className="bg-white/20 px-2 py-0.5 rounded-sm">Nigeria</span>
         </p>
 
-        {/* CTA */}
-        <Link
-          href="/listings"
-          className="inline-flex items-center gap-2 bg-white text-navy font-semibold rounded-btn hover:bg-white/90 transition-all duration-200 uppercase tracking-wide"
-          style={{ fontSize: 14, paddingTop: 16, paddingBottom: 16, paddingLeft: 24, paddingRight: 24 }}
-        >
-          VIEW PROPERTIES
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </Link>
+        {/* Tabbed search — buy/rent/sell */}
+        <HeroSearchTabs />
       </div>
     </section>
   )

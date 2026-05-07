@@ -10,7 +10,7 @@ export const AboutProblem = () => {
         
         <div className="relative w-full max-w-5xl aspect-video md:aspect-[21/9] rounded-[24px] overflow-hidden">
           <Image 
-            src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=2070&auto=format&fit=crop"
+            src="https://storage.googleapis.com/propabridge-listings-us/properties/mixed-residential-estate-—-brick-city-valley-kubwa–zuba-expressway-abuja/0725388b301e.webp"
             alt="Frustrated man looking at laptop"
             fill
             className="object-cover object-center"

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { XSquare, CheckSquare } from '@phosphor-icons/react'
+import { HERO_IMAGES } from '@/lib/bucket'
 
 /* ─────────────────────────────────────────────────────────────
    WHY CHOOSE US (COMPARISON SECTION)
@@ -35,9 +36,10 @@ export default function WhyChooseUs() {
       aria-labelledby="choose-us-heading"
     >
       {/* Background Image (Full width overlay) */}
-      <div 
-        className="absolute inset-0 bg-[url('/images/comparison-bg.png')] bg-cover bg-center bg-no-repeat" 
-        aria-hidden="true" 
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${HERO_IMAGES.aboutProblem}')` }}
+        aria-hidden="true"
       />
       
       {/* Light gradient overlay to ensure text readability at the top and give a soft glass feel */}
