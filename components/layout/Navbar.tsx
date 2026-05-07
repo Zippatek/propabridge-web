@@ -59,9 +59,10 @@ export default function Navbar() {
 
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 bg-white transition-[border-color] duration-200 ease-out overflow-hidden lg:overflow-visible flex flex-col border-b',
-          scrolled && !mobileOpen ? 'border-[#cbd5e0]' : 'border-transparent',
-          mobileOpen ? 'max-h-[850px]' : 'max-h-[72px]'
+          'fixed z-50 bg-white transition-all duration-200 ease-out flex flex-col',
+          'top-4 left-4 right-4 lg:left-8 lg:right-8 xl:w-[calc(100%-4rem)] xl:max-w-[1280px] xl:left-1/2 xl:-translate-x-1/2 rounded-[16px]',
+          scrolled && !mobileOpen ? 'shadow-[0_8px_30px_rgba(0,0,0,0.08)]' : 'shadow-sm',
+          mobileOpen ? 'max-h-[850px] overflow-hidden lg:overflow-visible' : 'max-h-[72px] overflow-visible lg:overflow-visible'
         )}
         role="banner"
       >
@@ -100,7 +101,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.01em] transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
+                      "flex items-center gap-1 text-[13px] font-bold uppercase tracking-tight transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
                       activeDropdown === link.label ? "bg-beige" : "bg-transparent",
                       (pathname?.startsWith('/listings') || pathname?.startsWith('/properties-details')) && link.label === 'LISTINGS'
                         ? "text-blue"
@@ -114,7 +115,7 @@ export default function Navbar() {
                   </Link>
                   {activeDropdown === link.label && link.label === 'LISTINGS' && (
                     <div
-                      className="fixed top-[72px] left-4 right-4 w-auto bg-beige rounded-[16px] shadow-[0_20px_40px_rgba(0,0,0,0.2)] p-6 z-50 flex gap-6 cursor-default before:absolute before:-top-8 before:left-0 before:w-full before:h-8 before:bg-transparent"
+                      className="fixed top-[92px] left-4 right-4 lg:left-8 lg:right-8 xl:w-[calc(100%-4rem)] xl:max-w-[1280px] xl:left-1/2 xl:-translate-x-1/2 bg-[#001a40] rounded-[16px] shadow-[0_20px_40px_rgba(0,0,0,0.4)] p-6 z-50 flex gap-6 cursor-default before:absolute before:-top-8 before:left-0 before:w-full before:h-8 before:bg-transparent"
                       onMouseEnter={() => setActiveDropdown(link.label)}
                       onMouseLeave={() => setActiveDropdown(null)}
                       onClick={(e) => e.stopPropagation()}
@@ -124,9 +125,9 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/house_in_field.png" alt="All Properties" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-gray font-semibold text-[18px] mb-1.5 transition-colors">All Properties</h3>
-                        <p className="text-gray/70 text-[14px] leading-relaxed mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
-                        <div className="text-gray font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
+                        <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">All Properties</h3>
+                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
+                        <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           SEE ALL LISTINGS <CaretRight size={12} weight="bold" />
                         </div>
                       </Link>
@@ -136,9 +137,9 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/rainy_city_street.png" alt="Neighborhoods" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-gray font-semibold text-[18px] mb-1.5 transition-colors">Neighborhoods</h3>
-                        <p className="text-gray/70 text-[14px] leading-relaxed mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
-                        <div className="text-gray font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
+                        <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">Neighborhoods</h3>
+                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
+                        <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           EXPLORE AREAS <CaretRight size={12} weight="bold" />
                         </div>
                       </Link>
@@ -148,9 +149,9 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/men_in_suits.png" alt="Property Types" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-gray font-semibold text-[18px] mb-1.5 transition-colors">Property Types</h3>
-                        <p className="text-gray/70 text-[14px] leading-relaxed mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
-                        <div className="text-gray font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
+                        <h3 className="text-white font-semibold text-[18px] mb-1.5 transition-colors">Property Types</h3>
+                        <p className="text-white/70 text-[14px] leading-relaxed mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
+                        <div className="text-white font-semibold text-[13px] uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           EXPLORE TYPES <CaretRight size={12} weight="bold" />
                         </div>
                       </Link>
@@ -178,7 +179,7 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "flex items-center text-[13px] font-semibold uppercase tracking-[0.01em] transition-colors rounded-btn px-3.5 py-2 whitespace-nowrap",
+                    "flex items-center text-[13px] font-bold uppercase tracking-tight transition-colors rounded-btn px-3.5 py-2 whitespace-nowrap",
                     pathname === link.href || (pathname?.startsWith(link.href) && link.href !== '/')
                       ? "bg-beige text-navy"
                       : "text-navy hover:bg-beige hover:text-[#6b7280]"

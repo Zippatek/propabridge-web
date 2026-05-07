@@ -5,18 +5,20 @@
 @layer base {
   :root {
     /* Brand colors — per design guideline v2.0 */
-    --color-navy:        #001a40;
-    --color-navy-light:  #002a5e;
-    --color-blue:        #006aff;
-    --color-blue-hover:  #0052cc;   /* Electric Blue hover — buttons */
-    --color-gold:        #ffc870;
-    --color-gold-hover:  #f5c842;   /* Gold hover — hero buy/sell/rent links */
-    --color-beige:       #f4f3ea;
-    --color-grey:        #4a5568;
-    --color-divider:     #cbd5e0;
-    --color-verified:    #1a7a4a;
+    --color-navy: #001a40;
+    --color-navy-light: #002a5e;
+    --color-blue: #006aff;
+    --color-blue-hover: #0052cc;
+    /* Electric Blue hover — buttons */
+    --color-gold: #ffc870;
+    --color-gold-hover: #f5c842;
+    /* Gold hover — hero buy/sell/rent links */
+    --color-beige: #f4f3ea;
+    --color-grey: #4a5568;
+    --color-divider: #cbd5e0;
+    --color-verified: #1a7a4a;
     /* Transition standard — 200ms ease-in-out for all interactions */
-    --transition:        200ms ease-in-out;
+    --transition: 200ms ease-in-out;
   }
 
   * {
@@ -32,45 +34,57 @@
   }
 
   body {
-    /* Foundation: body 15 / 400 / #4a5568 / line-height 1.6 / Inter */
+    /* Foundation: body 15 / 400 / #4a5568 / line-height 1.4 / Inter */
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     background-color: #f4f3ea;
     color: #4a5568;
     font-size: 15px;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
   }
 
   /* Foundation typography — apply globally */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: #001a40;
-    line-height: 1.2;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
+
   h1 {
     font-size: 32px;
     font-weight: 700;
-    letter-spacing: -0.02em;
   }
+
   h2 {
     font-size: 26px;
     font-weight: 700;
-    letter-spacing: -0.02em;
   }
+
   h3 {
     font-size: 20px;
     font-weight: 600;
-    letter-spacing: -0.01em;
   }
+
   h4 {
     font-size: 18px;
     font-weight: 600;
   }
-  h5, h6 {
+
+  h5,
+  h6 {
     font-size: 16px;
     font-weight: 600;
   }
 
-  p, li, span {
+  p,
+  li,
+  span {
     text-align: left;
   }
 
@@ -93,6 +107,7 @@
 }
 
 @layer components {
+
   /* Verified badge glassmorphism */
   .verified-badge {
     background: rgba(255, 255, 255, 0.85);
@@ -107,6 +122,7 @@
   .card-hover {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 26, 64, 0.15);
@@ -121,11 +137,13 @@
    * ─────────────────────────────────────────────────────────────────────
    */
   .section-pb {
-    padding-bottom: 7rem;    /* 112px — Tailwind pb-28 */
+    padding-bottom: 7rem;
+    /* 112px — Tailwind pb-28 */
   }
 
   .section-pt {
-    padding-top: 5rem;       /* 80px  — Tailwind pt-20 */
+    padding-top: 5rem;
+    /* 80px  — Tailwind pt-20 */
   }
 
   /* Legacy alias — retains same values for any section using section-padding */
@@ -188,7 +206,8 @@
   .blog-content {
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.85;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
     color: #2d3748;
   }
 
@@ -227,7 +246,7 @@
   .blog-content li {
     margin-bottom: 0.5rem;
     color: #2d3748;
-    line-height: 1.85;
+    line-height: 1.5;
   }
 
   .blog-content strong {
@@ -242,6 +261,7 @@
 }
 
 @layer utilities {
+
   /* Faint watermark text */
   .watermark-text {
     opacity: 0.05;
@@ -260,21 +280,22 @@
   .text-h1 {
     font-size: 32px;
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
 
   .text-h2 {
     font-size: 26px;
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
 
   .text-h3 {
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
 
   /* Foundation caption + badge-text */
