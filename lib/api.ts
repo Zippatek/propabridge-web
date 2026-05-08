@@ -168,7 +168,18 @@ export async function fetchListings(filters?: {
   limit?: number;
 }) {
   const params = new URLSearchParams();
-  if (filters?.status && filters.status !== 'ALL') params.set('status', filters.status);
+  if (filters?.status && filters.status !== 'ALL') {
+    const normalized = filters.status.trim().toUpperCase();
+    // UI status chips represent transaction intent for most options; map them
+    // to backend `type` to avoid filtering on the sparsely populated `status` column.
+    if (normalized === 'FOR SALE') {
+      params.set('type', 'sale');
+    } else if (normalized === 'FOR RENT') {
+      params.set('type', 'rent');
+    } else {
+      params.set('status', filters.status);
+    }
+  }
   if (filters?.type && filters.type !== 'ALL') params.set('category', filters.type);
   if (filters?.limit) params.set('limit', filters.limit.toString());
 
