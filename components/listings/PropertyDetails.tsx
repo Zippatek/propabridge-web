@@ -91,14 +91,11 @@ export function PropertyDetails({ property }: Props) {
         </h3>
         <ul className="space-y-2.5 list-disc list-inside text-[#001a40] text-[15px] font-medium">
           {beds !== undefined && <li>Bedrooms: {beds}</li>}
-          {baths !== undefined && <li>Bathrooms: {baths} (all ensuite)</li>}
-          <li>BQ: 1-room</li>
-          <li>Study: Yes</li>
+          {baths !== undefined && <li>Bathrooms: {baths}</li>}
           {type && <li>Type: {type}</li>}
           {condition && <li>Condition: {condition}</li>}
           {floors !== undefined && <li>Floors: {floors}</li>}
-          <li>Parking: Ample — on compound</li>
-          {water && <li>Water: {water}</li>}
+          {water && <li>Water supply: {water}</li>}
           {location && <li>Location: {location}</li>}
         </ul>
       </div>
@@ -155,11 +152,13 @@ export function PropertyDetails({ property }: Props) {
         <div className="rounded-[10px] overflow-hidden border border-[#e2e8f0]" style={{ height: 280 }}>
           <iframe
             title="Property Location Map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=7.4614%2C9.0372%2C7.5014%2C9.0572&layer=mapnik&marker=9.0472%2C7.4814"
+            src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(location ? `${location}, Nigeria` : 'Abuja, Nigeria')}&zoom=15`}
             width="100%"
             height="100%"
-            style={{ border: 0, filter: 'grayscale(20%)' }}
+            style={{ border: 0 }}
             loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
           />
         </div>
       </div>

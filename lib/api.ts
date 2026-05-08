@@ -1,6 +1,7 @@
 import { BLOGS } from '@/data/blogs'
 import { MOCK_PROPERTIES } from '@/lib/mock-data'
 import { FALLBACK_PROPERTY_GALLERY } from '@/lib/bucket'
+import { Property } from '@/lib/types'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
@@ -36,34 +37,97 @@ export type FrontendBlog = {
 
 // Maps backend DB fields → frontend Property type
 function mapListing(p: Record<string, unknown>) {
+  const transactionType = String(p.transaction_type || p.transactionType || '').toUpperCase()
+  const rawStatus = String(p.status || p.listing_status || '').toUpperCase()
+  const normalizedStatus =
+    rawStatus === 'FOR SALE' || rawStatus === 'FOR RENT' || rawStatus === 'SOLD' || rawStatus === 'OFF-PLAN' || rawStatus === 'RESERVED'
+      ? rawStatus
+      : transactionType.includes('RENT')
+        ? 'FOR RENT'
+        : 'FOR SALE'
+
+  const rawImages =
+    Array.isArray(p.images) ? (p.images as string[]) :
+    Array.isArray(p.media) ? (p.media as string[]) :
+    Array.isArray(p.gallery) ? (p.gallery as string[]) :
+    []
+  const images = rawImages.filter((image) => typeof image === 'string' && image.trim().length > 0)
+
+  const bedrooms = parseInt(String(p.bedrooms ?? p.beds ?? ''), 10)
+  const bathrooms = parseInt(String(p.bathrooms ?? p.baths ?? ''), 10)
+
+  const amenitiesArr: string[] = Array.isArray(p.amenities) ? (p.amenities as string[]) : []
+  const descriptionStr = (p.description as string) || ''
+  const bodyParagraphs = descriptionStr
+    ? descriptionStr.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
+    : undefined
+
   return {
     id: (p.property_id as string) || (p.id as string),
     slug: (p.slug as string) || (p.property_id as string),
     title: (p.title as string) || '',
-    location: (p.location as string) || '',
-    district: (p.neighbourhood as string) || '',
+    location: (p.location as string) || (p.address as string) || (p.neighbourhood as string) || '',
+    district: (p.neighbourhood as string) || (p.neighborhood as string) || '',
     city: (p.city as string) || 'Abuja',
     state: 'FCT',
     price: parseFloat(String(p.price || '0').replace(/[^0-9.]/g, '')) || 0,
-    status: String(p.transaction_type || '').toUpperCase().includes('RENT') ? 'FOR RENT' : 'FOR SALE',
-    type: (p.category as string) || 'Apartment',
-    beds: parseInt(String(p.bedrooms || '')) || undefined,
-    baths: parseInt(String(p.bathrooms || '')) || undefined,
+    status: normalizedStatus,
+    type: (p.property_type as string) || (p.category as string) || 'Apartment',
+    beds: Number.isNaN(bedrooms) ? undefined : bedrooms,
+    baths: Number.isNaN(bathrooms) ? undefined : bathrooms,
     area: (p.size_sqm as number) || undefined,
-    images: Array.isArray(p.images) && (p.images as string[]).length > 0
-      ? (p.images as string[])
-      : FALLBACK_PROPERTY_GALLERY.slice(0, 3),
-    verified: Boolean(p.verified),
-    verificationStatus: p.verified ? 'VERIFIED' : 'PENDING',
+    floors: (p.floors as number) || (p.floor_count as number) || undefined,
+    images: images.length > 0 ? images : FALLBACK_PROPERTY_GALLERY.slice(0, 3),
+    verified: Boolean(p.verified || (p.verification_status as string) === 'verified'),
+    verificationStatus: (p.verification_status as string) === 'verified' || p.verified ? 'VERIFIED' : 'PENDING',
     verificationItems: [],
     titleDocumentAvailable: false,
     featured: Boolean(p.featured),
-    amenities: Array.isArray(p.amenities) ? (p.amenities as string[]) : [],
-    fullDescription: (p.description as string) || undefined,
-    shortDescription: p.description ? `${String(p.description).substring(0, 150)}...` : undefined,
+    amenities: amenitiesArr,
+    amenityTags: amenitiesArr.length > 0 ? amenitiesArr : undefined,
+    condition: (p.condition as string) || undefined,
+    water: (p.water_supply as string) || undefined,
+    fullDescription: descriptionStr || undefined,
+    shortDescription: descriptionStr ? `${descriptionStr.substring(0, 150)}...` : undefined,
+    bodyParagraphs: bodyParagraphs && bodyParagraphs.length > 0 ? bodyParagraphs : undefined,
     createdAt: (p.created_at as string) || new Date().toISOString(),
     updatedAt: (p.updated_at as string) || new Date().toISOString(),
   };
+}
+
+function extractRawListings(payload: unknown): unknown[] {
+  if (Array.isArray(payload)) return payload
+  if (!payload || typeof payload !== 'object') return []
+
+  const root = payload as Record<string, unknown>
+  const data = root.data
+
+  if (Array.isArray(data)) return data
+  if (Array.isArray(root.listings)) return root.listings as unknown[]
+  if (Array.isArray(root.results)) return root.results as unknown[]
+  if (Array.isArray(root.items)) return root.items as unknown[]
+
+  if (data && typeof data === 'object') {
+    const dataObj = data as Record<string, unknown>
+    if (Array.isArray(dataObj.listings)) return dataObj.listings as unknown[]
+    if (Array.isArray(dataObj.items)) return dataObj.items as unknown[]
+    if (Array.isArray(dataObj.results)) return dataObj.results as unknown[]
+  }
+
+  return []
+}
+
+async function fetchListingsFromEndpoint(path: string, params: URLSearchParams): Promise<Property[]> {
+  const query = params.toString()
+  const url = `${API_URL}${path}${query ? `?${query}` : ''}`
+  const res = await fetchWithTimeout(url, { cache: 'no-store' })
+  if (!res.ok) {
+    throw new Error(`Failed to fetch listings from ${path}`)
+  }
+
+  const json = await res.json()
+  const raw = extractRawListings(json)
+  return raw.map((item) => mapListing(item as Record<string, unknown>))
 }
 
 function normalizeBlogDate(input?: string) {
@@ -98,16 +162,11 @@ export async function fetchListings(filters?: {
   if (filters?.limit) params.set('limit', filters.limit.toString());
 
   try {
-    const res = await fetchWithTimeout(`${API_URL}/listings?${params.toString()}`, {
-      cache: 'no-store',
-    });
-    if (!res.ok) throw new Error('Failed to fetch listings');
-    const json = await res.json();
-    const raw = json.data || json.listings || json || [];
-    const mapped = Array.isArray(raw) ? raw.map(mapListing) : [];
-    return mapped.length ? mapped : MOCK_PROPERTIES;
+    // Use the same /listings endpoint as the admin dashboard (propabridge-backend).
+    return await fetchListingsFromEndpoint('/listings', params)
   } catch {
-    return MOCK_PROPERTIES;
+    // Keep mock fallback only when backend endpoint is unavailable.
+    return MOCK_PROPERTIES
   }
 }
 
