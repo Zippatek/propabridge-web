@@ -11,18 +11,17 @@ interface PropertyCardProps {
   priority?: boolean
 }
 
-/** Format full Naira */
 function formatNairaFull(amount: number): string {
   return `₦${amount.toLocaleString('en-NG')}`
 }
 
-/** Status text colour — badge bg is always beige per design spec */
+/** Status colours — brand tokens */
 const statusTextColor: Record<string, string> = {
-  'FOR SALE':  '#1a7a4a',   // Verified Green
-  'FOR RENT':  '#006aff',   // Electric Blue
-  'OFF-PLAN':  '#d97706',   // Amber
-  'SOLD':      '#c0392b',   // Alert Red
-  'RESERVED':  '#7c3aed',   // Purple
+  'FOR SALE': '#324F07',
+  'FOR RENT': '#006AFF',
+  'OFF-PLAN': '#9E6100',
+  SOLD: '#800000',
+  RESERVED: '#7c3aed',
 }
 
 export default function PropertyCard({ property, priority = false }: PropertyCardProps) {
@@ -42,119 +41,103 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const areaDisplay = area !== undefined ? `${area} M²` : null
   const priceDisplay = priceLabel ?? formatNairaFull(price)
   const isAreaOnly = beds === undefined && baths === undefined
-  const badgeColor = statusTextColor[status] ?? '#001a40'
+  const badgeColor = statusTextColor[status] ?? '#001A40'
 
-  // Robust image selection — fall back to neutral skeleton, never to Unsplash.
-  const displayImage = (images && images.length > 0 && images[0])
-    ? images[0]
-    : null;
+  const displayImage = images && images.length > 0 && images[0] ? images[0] : null
 
   return (
     <HoverCursorWrapper>
       <Link
         href={`/properties-details/${property.slug}`}
-        className="group relative block focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2 rounded-card"
+        className="group relative block rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue focus-visible:outline-offset-2"
         aria-label={`View listing: ${title}`}
       >
-      {/* ── IMAGE ── */}
-      <div className="relative overflow-hidden rounded-card bg-divider" style={{ height: 320 }}>
-        {displayImage && (
-          <Image
-            src={displayImage}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            priority={priority}
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
-          />
-        )}
-      </div>
-
-      <div
-        className="absolute top-0 right-0 flex flex-row items-center justify-center flex-nowrap overflow-visible"
-        style={{
-          padding: '0px 0px 10px 10px',
-          backgroundColor: '#f4f3ea',
-          borderRadius: '0px 0px 0px 17px',
-          zIndex: 1,
-          gap: '10px',
-          width: 'min-content',
-          height: 'min-content',
-        }}
-        aria-label={status}
-      >
-        <span
-          className="text-[11px] font-bold uppercase tracking-[0.08em] whitespace-nowrap"
-          style={{ color: badgeColor }}
-        >
-          {status}
-        </span>
-      </div>
-
-      {/* ── INFO — sits on beige page bg ── */}
-      <div className="pt-3 pb-4">
-        {/* Row 1: Location */}
-        <div className="flex items-start gap-1.5 mb-2.5">
-          <MapPin size={14} color="#4a5568" className="mt-0.5 shrink-0" aria-hidden="true" />
-          <p className="text-[11px] font-semibold text-grey uppercase tracking-[0.08em] leading-tight">
-            {location}
-          </p>
+        {/* Image wrapper → image */}
+        <div className="relative h-[320px] overflow-hidden rounded-card bg-divider">
+          {displayImage && (
+            <Image
+              src={displayImage}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              priority={priority}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
+            />
+          )}
         </div>
 
-        {/* Row 2: Specs + Price — on one line */}
-        <div className="flex items-center justify-between gap-2 mb-2.5">
-          <div className="flex items-center gap-1.5 text-grey text-[12px] min-w-0 flex-shrink">
-            {isAreaOnly ? (
-              <div className="flex items-center gap-1.5">
-                <Maximize2 size={16} color="#4a5568" aria-hidden="true" />
-                <span className="font-medium whitespace-nowrap">
-                  {areaLabel ?? areaDisplay ?? '—'}
-                </span>
-              </div>
-            ) : (
-              <>
-                {beds !== undefined && (
-                  <>
-                    <div className="flex items-center gap-1">
-                      <Bed size={16} color="#4a5568" aria-hidden="true" />
-                      <span className="font-medium">{beds}</span>
-                    </div>
-                    <span className="text-[10px] font-bold text-navy select-none leading-none">●</span>
-                  </>
-                )}
-                {baths !== undefined && (
-                  <>
-                    <div className="flex items-center gap-1">
-                      <Bath size={16} color="#4a5568" aria-hidden="true" />
-                      <span className="font-medium">{baths}</span>
-                    </div>
-                    {areaDisplay && (
-                      <span className="text-[10px] font-bold text-navy select-none leading-none">●</span>
-                    )}
-                  </>
-                )}
-                {areaDisplay && (
-                  <div className="flex items-center gap-1">
-                    <Maximize2 size={16} color="#4a5568" aria-hidden="true" />
-                    <span className="font-medium whitespace-nowrap">{areaDisplay}</span>
-                  </div>
-                )}
-              </>
-            )}
+        {/* Text block */}
+        <div className="pt-4 pb-1">
+          {/* Location */}
+          <div className="mb-3 flex items-start gap-1.5">
+            <MapPin size={14} className="mt-0.5 shrink-0 text-grey" aria-hidden />
+            <p className="text-body-uppercase font-semibold uppercase leading-tight tracking-normal text-grey">
+              {location}
+            </p>
           </div>
 
-          <span className="text-navy font-bold text-[15px] shrink-0 whitespace-nowrap ml-2">
-            {priceDisplay}
-          </span>
+          {/* Summary + price */}
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div className="flex min-w-0 shrink items-center gap-1.5 text-body-sm text-grey">
+              {isAreaOnly ? (
+                <div className="flex items-center gap-1.5">
+                  <Maximize2 size={16} className="shrink-0 text-grey" aria-hidden />
+                  <span className="font-medium whitespace-nowrap">{areaLabel ?? areaDisplay ?? '—'}</span>
+                </div>
+              ) : (
+                <>
+                  {beds !== undefined && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <Bed size={16} className="shrink-0 text-grey" aria-hidden />
+                        <span className="font-medium">{beds}</span>
+                      </div>
+                      <span className="select-none text-[10px] font-bold leading-none text-navy">●</span>
+                    </>
+                  )}
+                  {baths !== undefined && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <Bath size={16} className="shrink-0 text-grey" aria-hidden />
+                        <span className="font-medium">{baths}</span>
+                      </div>
+                      {areaDisplay && (
+                        <span className="select-none text-[10px] font-bold leading-none text-navy">●</span>
+                      )}
+                    </>
+                  )}
+                  {areaDisplay && (
+                    <div className="flex items-center gap-1">
+                      <Maximize2 size={16} className="shrink-0 text-grey" aria-hidden />
+                      <span className="font-medium whitespace-nowrap">{areaDisplay}</span>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            <span className="ml-2 shrink-0 whitespace-nowrap text-h5 font-bold text-navy">{priceDisplay}</span>
+          </div>
+
+          <hr className="mb-3 border-t border-grey-light/80" aria-hidden />
+
+          {/* Title */}
+          <h3 className="text-h3-s line-clamp-2 font-bold leading-snug text-navy">{title}</h3>
+
+          {/* Tag wrapper — curved beige treatment */}
+          <div
+            className="mt-3 inline-flex min-w-0 items-center bg-brand-light2 pl-3 pr-4 py-2 shadow-sm"
+            style={{
+              borderRadius: '4px 20px 4px 20px',
+            }}
+            aria-label={status}
+          >
+            <span className="badge-text font-bold uppercase tracking-[0.08em]" style={{ color: badgeColor }}>
+              {status}
+            </span>
+          </div>
         </div>
-
-        <hr className="border-t border-[#b0b8c5] mb-2.5" aria-hidden="true" />
-
-        <h3 className="text-navy font-bold text-[15px] leading-snug line-clamp-2">
-          {title}
-        </h3>
-      </div>
-    </Link>
+      </Link>
     </HoverCursorWrapper>
   )
 }

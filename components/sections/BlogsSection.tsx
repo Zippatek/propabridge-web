@@ -62,7 +62,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           {/* ── CATEGORY FILTERS (Only for the dedicated page) ── */}
           {isPage && (
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-10 w-full">
-              <button className="flex items-center gap-2 bg-navy text-white text-[13px] font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
+              <button className="flex items-center gap-2 bg-navy text-brand-textWhite text-nav font-bold font-sans px-5 py-2.5 rounded-btn transition-colors uppercase tracking-wider">
                 <FileText size={16} />
                 ALL
               </button>
@@ -118,7 +118,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
 
               {/* Author Pill */}
               <div className="inline-flex items-center self-start gap-2.5 bg-[#eae9e0] pr-4 pl-1.5 py-1.5 rounded-full border border-[#ecece0]/80 shrink-0">
-                <div className="relative flex items-center justify-center w-7 h-7 rounded-full overflow-hidden shrink-0 bg-white">
+                <div className="relative flex items-center justify-center w-7 h-7 rounded-full overflow-hidden shrink-0 bg-brand-light1">
                   {blog.authorName === 'PROPABRIDGE TEAM' ? (
                     <Home size={14} className="text-navy" />
                   ) : (
@@ -138,7 +138,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           <div className="mt-16 md:mt-24 flex justify-center">
             <Link
               href="/blogs"
-              className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+              className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-brand-textWhite font-sans font-semibold text-body uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
             >
               READ ALL BLOGS
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">

@@ -4,20 +4,30 @@
 
 @layer base {
   :root {
-    /* Brand colors — per design guideline v2.0 */
-    --color-navy: #001a40;
+    /* Brand — Framer tokens (surfaces: never pure #ffffff) */
+    --brand-cta: #006aff;
+    --brand-navy: #001a40;
+    --brand-light-1: #fffff2;
+    --brand-light-2: #f4f3ea;
+    --brand-text-white: #fff8ed;
+    --brand-text-black: #21201b;
+    --brand-light-green: #dff1c4;
+    --brand-gold: #ffc870;
+    --brand-red: #ff8585;
+    --brand-dark-green: #324f07;
+    --brand-dark-brown: #9e6100;
+    --brand-dark-red: #800000;
+    /* Legacy aliases */
+    --color-navy: var(--brand-navy);
     --color-navy-light: #002a5e;
-    --color-blue: #006aff;
+    --color-blue: var(--brand-cta);
     --color-blue-hover: #0052cc;
-    /* Electric Blue hover — buttons */
-    --color-gold: #ffc870;
+    --color-gold: var(--brand-gold);
     --color-gold-hover: #f5c842;
-    /* Gold hover — hero buy/sell/rent links */
-    --color-beige: #f4f3ea;
+    --color-beige: var(--brand-light-2);
     --color-grey: #4a5568;
     --color-divider: #cbd5e0;
-    --color-verified: #1a7a4a;
-    /* Transition standard — 200ms ease-in-out for all interactions */
+    --color-verified: var(--brand-dark-green);
     --transition: 200ms ease-in-out;
   }
 
@@ -34,93 +44,98 @@
   }
 
   body {
-    /* Foundation: body 15 / 400 / navy base / line-height 1.5 */
     font-family: var(--font-inter), 'Inter Display', 'Inter', system-ui, sans-serif;
-    background-color: #f4f3ea;
-    color: #001a40;
-    font-size: 15px;
+    background-color: var(--brand-light-2);
+    color: var(--brand-navy);
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
   }
 
-  /* Foundation typography */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    color: #001a40;
+    color: var(--brand-navy);
   }
 
-  h1,
-  h2 {
-    letter-spacing: -0.02em;
-  }
-
-  h3,
-  h4,
-  h5,
-  h6 {
-    letter-spacing: -0.01em;
-  }
-
-  /* General text defaults */
   p,
   li,
   td,
   dd,
   blockquote {
     color: #4a5568;
-    line-height: 1.6;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
+  /* Framer heading scale — mobile defaults; hero breakpoint 1200px */
   h1 {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 700;
-    line-height: 1.15;
-  }
-
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   @media (min-width: 1200px) {
     h1 {
-      font-size: 40px;
-      letter-spacing: -1.1px;
-      line-height: 110%;
-      margin-bottom: 40px;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.02em;
     }
+  }
 
+  h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 1200px) {
     h2 {
-      font-size: 40px;
-      letter-spacing: -1.1px;
-      line-height: 110%;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
   }
 
   h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 1200px) {
+    h3 {
+      font-size: 26px;
+      line-height: 1.3;
+    }
   }
 
   h4 {
     font-size: 18px;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
   }
 
-  h5,
-  h6 {
-    font-size: 18px;
+  h5 {
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.4;
+    letter-spacing: -0.04em;
+  }
+
+  h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   p,
@@ -151,10 +166,10 @@
 
   /* Verified badge glassmorphism */
   .verified-badge {
-    background: rgba(255, 255, 255, 0.85);
+    background: color-mix(in srgb, var(--brand-text-white) 85%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid color-mix(in srgb, var(--brand-text-white) 55%, transparent);
     border-radius: 20px;
     box-shadow: 0 2px 12px rgba(0, 26, 64, 0.14);
   }
@@ -174,19 +189,20 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #f4f3ea;
-    color: #303030;
+    background: var(--brand-light-2);
+    color: var(--brand-text-black);
     border-radius: 9999px;
     padding: 14px 32px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    line-height: 1.5;
     transition: background-color 200ms ease, transform 200ms ease;
   }
 
   .btn-cream-pill:hover {
-    background: #ecebe2;
+    background: var(--brand-light-1);
     transform: translateY(-1px);
   }
 
@@ -239,17 +255,18 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     text-transform: uppercase;
-    color: #001a40;
+    line-height: 1.5;
+    color: var(--brand-navy);
     margin-bottom: 16px;
   }
 
   .section-label::before {
     content: '●';
-    color: #006aff;
+    color: var(--brand-cta);
     font-size: 10px;
   }
 
@@ -270,9 +287,8 @@
     overflow: hidden;
   }
 
-  /* Focus rings — Electric Blue */
   :focus-visible {
-    outline: 2px solid #006aff;
+    outline: 2px solid var(--brand-cta);
     outline-offset: 2px;
   }
 
@@ -339,14 +355,133 @@
 
 @layer utilities {
 
-  /* Faint watermark text */
   .watermark-text {
     opacity: 0.05;
     user-select: none;
     pointer-events: none;
   }
 
-  /* Typography utilities */
+  /* Framer text styles — use with font-weight utilities as needed */
+  .text-h1-l {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h1-s {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2-l {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2-s {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h3-l {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h3-m {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h3-s {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h4 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h5 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+  }
+
+  .text-p-xxl {
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -3.7px;
+  }
+
+  .text-para-l {
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+  }
+
+  .text-para-m {
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+  }
+
+  .text-para-s {
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+  }
+
+  .text-para-xs {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .text-body-token {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .text-body-uppercase {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 1200px) {
+    .text-para-l {
+      font-size: 28px;
+      line-height: 1.3;
+      letter-spacing: -0.8px;
+    }
+
+    .text-body-uppercase {
+      letter-spacing: 0;
+    }
+  }
+
+  /* Legacy aliases */
   .text-display {
     font-size: 48px;
     font-weight: 800;
@@ -355,24 +490,44 @@
   }
 
   .text-h1 {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.1;
     letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 1200px) {
+    .text-h1 {
+      font-size: 56px;
+      line-height: 1;
+    }
   }
 
   .text-h2 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.3;
     letter-spacing: -0.02em;
   }
 
+  @media (min-width: 1200px) {
+    .text-h2 {
+      font-size: 48px;
+      line-height: 1.1;
+    }
+  }
+
   .text-h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 1200px) {
+    .text-h3 {
+      font-size: 26px;
+    }
   }
 
   .text-body-lg {
@@ -382,9 +537,9 @@
   }
 
   .text-body {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .text-body-sm {
@@ -400,7 +555,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* Foundation caption + badge-text */
   .caption {
     font-size: 12px;
     font-weight: 400;
