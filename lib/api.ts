@@ -167,26 +167,46 @@ export async function fetchListings(filters?: {
   type?: string;
   limit?: number;
 }) {
-  const params = new URLSearchParams();
-  if (filters?.status && filters.status !== 'ALL') {
-    const normalized = filters.status.trim().toUpperCase();
-    // UI status chips represent transaction intent for most options; map them
-    // to backend `type` to avoid filtering on the sparsely populated `status` column.
-    if (normalized === 'FOR SALE') {
-      params.set('type', 'sale');
-    } else if (normalized === 'FOR RENT') {
-      params.set('type', 'rent');
-    } else {
-      params.set('status', filters.status);
-    }
-  }
-  if (filters?.type && filters.type !== 'ALL') params.set('category', filters.type);
-  if (filters?.limit) params.set('limit', filters.limit.toString());
-
   try {
-    // Same /listings endpoint as the admin dashboard (propabridge-backend api-gateway).
-    const rows = await fetchListingsFromEndpoint('/listings', params)
-    return rows
+    // Pull from the same canonical source table path as admin listings.
+    // We intentionally avoid backend-side status/category filters here because
+    // those legacy mappings can hide valid properties that admin still shows.
+    const sourceLimit = Math.max(filters?.limit ?? 50, 200)
+    const rows = await fetchListingsFromEndpoint('/listings', new URLSearchParams({ limit: String(sourceLimit) }))
+
+    const normalizedStatus = filters?.status?.trim().toUpperCase()
+    const normalizedType = filters?.type?.trim().toUpperCase()
+
+    const statusFiltered =
+      normalizedStatus && normalizedStatus !== 'ALL'
+        ? rows.filter((row) => row.status.toUpperCase() === normalizedStatus)
+        : rows
+
+    const typeFiltered =
+      normalizedType && normalizedType !== 'ALL'
+        ? statusFiltered.filter((row) => {
+            const rowType = String(row.type || '').trim().toUpperCase()
+            if (rowType === normalizedType) return true
+            // Keep current UX labels working even when backend taxonomy differs.
+            if (normalizedType === 'LUXURY HOMES') {
+              const title = row.title.toUpperCase()
+              return title.includes('LUXURY') || title.includes('PREMIUM') || title.includes('MANSION')
+            }
+            if (normalizedType === 'SINGLE FAMILY HOME') {
+              return ['DETACHED', 'SEMI-DETACHED', 'DUPLEX', 'VILLA', 'HOUSE'].includes(rowType)
+            }
+            if (normalizedType === 'OFFICE SPACE') {
+              return rowType === 'OFFICE' || row.title.toUpperCase().includes('OFFICE')
+            }
+            if (normalizedType === 'RETAIL SHOP') {
+              return rowType === 'SHOP' || rowType === 'COMMERCIAL'
+            }
+            return false
+          })
+        : statusFiltered
+
+    const finalLimit = filters?.limit ?? typeFiltered.length
+    return typeFiltered.slice(0, finalLimit)
   } catch {
     // Never serve mock property data in production paths.
     return []
