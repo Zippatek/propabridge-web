@@ -1,4 +1,5 @@
 import { BLOGS } from '@/data/blogs'
+import { pickMarkdownFields } from '@/lib/property-markdown'
 import { Property } from '@/lib/types'
 
 import { PUBLIC_API_URL } from '@/lib/env-public'
@@ -105,7 +106,11 @@ function mapListing(p: Record<string, unknown>) {
   const bathrooms = parseInt(String(p.bathrooms ?? p.baths ?? ''), 10)
 
   const amenitiesArr: string[] = Array.isArray(p.amenities) ? (p.amenities as string[]) : []
-  const descriptionStr = String(p.description ?? p.overview ?? '')
+  const mdFields = pickMarkdownFields(p)
+
+  const descriptionStr = String(
+    p.description ?? p.long_description ?? p.longDescription ?? p.overview ?? p.body ?? '',
+  )
   const bodyParagraphs = descriptionStr
     ? descriptionStr.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
     : undefined
@@ -142,6 +147,9 @@ function mapListing(p: Record<string, unknown>) {
     condition: (p.condition as string) || undefined,
     water: (p.water_supply as string) || undefined,
     fullDescription: descriptionStr || undefined,
+    descriptionMarkdown: mdFields.descriptionMarkdown,
+    overviewMarkdown: mdFields.overviewMarkdown,
+    specsMarkdown: mdFields.specsMarkdown,
     shortDescription: descriptionStr ? `${descriptionStr.substring(0, 150)}...` : undefined,
     bodyParagraphs: bodyParagraphs && bodyParagraphs.length > 0 ? bodyParagraphs : undefined,
     createdAt: (p.created_at as string) || new Date().toISOString(),

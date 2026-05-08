@@ -1,24 +1,6 @@
-import {
-  TreePine as Tree, GraduationCap, SquareArrowOutUpRight as ArrowSquareUpRight, Armchair, Bus, Flower2 as Flower,
-  Package, Utensils as ForkKnife, Car, Home as House, CircleCheck as CheckCircle,
-} from 'lucide-react';
+import { PropertyMarkdown } from '@/components/listings/PropertyMarkdown';
+import { amenityIconForLabel, normalizeAmenityLabel } from '@/lib/amenity-icons';
 import { Property } from '@/lib/types';
-import { ReactNode } from 'react';
-
-// ── Amenity pill icon map ──────────────────────────────────────────────────────
-const AMENITY_ICON_MAP: Record<string, ReactNode> = {
-  'Park':               <Tree size={18} />,
-  'School/university':  <GraduationCap size={18} />,
-  'Highway access':     <ArrowSquareUpRight size={18} />,
-  'Terrace':            <Armchair size={18} />,
-  'Near bus stop':      <Bus size={18} />,
-  'Garden':             <Flower size={18} />,
-  'Walk-in closet':     <Package size={18} />,
-  'Fitted Kitchen':     <ForkKnife size={18} />,
-  'Parking':            <Car size={18} />,
-  'Balcony':            <House size={18} />,
-};
-const DEFAULT_ICON = <CheckCircle size={18} />;
 
 function formatNaira(amount: number) {
   return `₦${amount.toLocaleString('en-NG')}`;
@@ -28,7 +10,6 @@ interface Props { property: Property }
 
 export function PropertyDetails({ property }: Props) {
   const {
-    bodyParagraphs,
     amenityTags,
     features,
     pricingBreakdown,
@@ -39,7 +20,10 @@ export function PropertyDetails({ property }: Props) {
     floors,
     type,
     location,
-    title,
+    fullDescription,
+    overviewMarkdown,
+    descriptionMarkdown,
+    specsMarkdown,
   } = property;
 
   return (
@@ -49,7 +33,7 @@ export function PropertyDetails({ property }: Props) {
       {amenityTags && amenityTags.length > 0 && (
         <div className="mb-10">
           <h2
-            className="text-[#001a40] font-bold mb-5"
+            className="text-navy font-bold mb-5"
             style={{ fontSize: 'clamp(22px, 2vw, 28px)' }}
           >
             Amenities
@@ -58,10 +42,10 @@ export function PropertyDetails({ property }: Props) {
             {amenityTags.map((tag) => (
               <div
                 key={tag}
-                className="inline-flex items-center gap-2 border border-[#cbd5e0] bg-white text-[#001a40] text-[14px] font-medium px-4 py-2 rounded-[8px] hover:border-[#001a40] transition-colors duration-200"
+                className="inline-flex items-center gap-2 border border-divider bg-brand-light1 text-navy text-[14px] font-medium px-4 py-2 rounded-panel hover:border-navy transition-colors duration-200"
               >
-                <span className="text-[#4a5568]">
-                  {AMENITY_ICON_MAP[tag] ?? DEFAULT_ICON}
+                <span className="text-grey">
+                  {amenityIconForLabel(normalizeAmenityLabel(tag))}
                 </span>
                 {tag}
               </div>
@@ -70,43 +54,60 @@ export function PropertyDetails({ property }: Props) {
         </div>
       )}
 
-      {/* ── BODY PARAGRAPHS ──────────────────────────────────────────────── */}
-      {bodyParagraphs && bodyParagraphs.length > 0 && (
-        <div className="mb-10 space-y-4">
-          {bodyParagraphs.map((para, i) => (
-            <p
-              key={i}
-              className="text-[#001a40] leading-[1.7] text-[15px] font-medium"
-            >
-              {para}
-            </p>
-          ))}
+      {/* ── LONG-FORM COPY (Markdown when API/heuristic signals GFM) ─────── */}
+      {(overviewMarkdown || descriptionMarkdown || fullDescription) && (
+        <div className="mb-10">
+          {overviewMarkdown !== undefined && overviewMarkdown.trim().length > 0 && (
+            <PropertyMarkdown forceMarkdown content={overviewMarkdown} />
+          )}
+          {descriptionMarkdown !== undefined && descriptionMarkdown.trim().length > 0 && (
+            <PropertyMarkdown
+              forceMarkdown
+              content={descriptionMarkdown}
+              className={overviewMarkdown?.trim() ? 'mt-6' : ''}
+            />
+          )}
+          {!(overviewMarkdown?.trim()) && !(descriptionMarkdown?.trim()) && fullDescription && (
+            <PropertyMarkdown content={fullDescription} />
+          )}
         </div>
       )}
 
-      {/* ── SPECS ────────────────────────────────────────────────────────── */}
-      <div className="mb-8">
-        <h3 className="text-[#001a40] font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
-          SPECS
-        </h3>
-        <ul className="space-y-2.5 list-disc list-inside text-[#001a40] text-[15px] font-medium">
-          {beds !== undefined && <li>Bedrooms: {beds}</li>}
-          {baths !== undefined && <li>Bathrooms: {baths}</li>}
-          {type && <li>Type: {type}</li>}
-          {condition && <li>Condition: {condition}</li>}
-          {floors !== undefined && <li>Floors: {floors}</li>}
-          {water && <li>Water supply: {water}</li>}
-          {location && <li>Location: {location}</li>}
-        </ul>
-      </div>
+      {/* ── SPECS (GFM tables from API) ─────────────────────────────────── */}
+      {specsMarkdown !== undefined && specsMarkdown.trim().length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-navy font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
+            SPECS
+          </h3>
+          <PropertyMarkdown forceMarkdown content={specsMarkdown} />
+        </div>
+      )}
+
+      {/* ── SPECS — structured fallback when no Markdown table block ─────── */}
+      {!specsMarkdown?.trim() && (
+        <div className="mb-8">
+          <h3 className="text-navy font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
+            SPECS
+          </h3>
+          <ul className="space-y-2.5 list-disc list-inside text-navy text-[15px] font-medium">
+            {beds !== undefined && <li>Bedrooms: {beds}</li>}
+            {baths !== undefined && <li>Bathrooms: {baths}</li>}
+            {type && <li>Type: {type}</li>}
+            {condition && <li>Condition: {condition}</li>}
+            {floors !== undefined && <li>Floors: {floors}</li>}
+            {water && <li>Water supply: {water}</li>}
+            {location && <li>Location: {location}</li>}
+          </ul>
+        </div>
+      )}
 
       {/* ── PRICING ──────────────────────────────────────────────────────── */}
       {pricingBreakdown && (
         <div className="mb-8">
-          <h3 className="text-[#001a40] font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
+          <h3 className="text-navy font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
             PRICING
           </h3>
-          <ul className="space-y-2.5 list-disc list-inside text-[#001a40] text-[15px] font-medium">
+          <ul className="space-y-2.5 list-disc list-inside text-navy text-[15px] font-medium">
             {pricingBreakdown.netRent !== undefined && (
               <li>Net Rent: {formatNaira(pricingBreakdown.netRent)}</li>
             )}
@@ -132,13 +133,13 @@ export function PropertyDetails({ property }: Props) {
       {/* ── AMENITIES / FEATURES ─────────────────────────────────────────── */}
       {features && features.length > 0 && (
         <div className="mb-12">
-          <h3 className="text-[#001a40] font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
+          <h3 className="text-navy font-bold text-[14px] uppercase tracking-[0.06em] mb-3">
             AMENITIES / FEATURES
           </h3>
-          <p className="text-[#001a40] text-[15px] leading-[1.8] font-medium">
+          <p className="text-navy text-[15px] leading-[1.8] font-medium">
             {features.map((f, i) => (
               <span key={i}>
-                <span className="text-[#001a40] font-semibold">✓</span>{' '}
+                <span className="text-navy font-semibold">✓</span>{' '}
                 {f}
                 {i < features.length - 1 && ' '}
               </span>

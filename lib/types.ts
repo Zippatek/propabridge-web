@@ -44,7 +44,12 @@ export interface Property {
 
   // Details Page
   fullDescription?: string
-  bodyParagraphs?: string[]          // Multi-paragraph body text
+  /** Long-form Markdown from API-only fields (`*_md` / camelCase equivalents). Prefer over plain when set. */
+  descriptionMarkdown?: string
+  overviewMarkdown?: string
+  /** GFM Markdown for spec tables etc. (`specs_md`, `specifications_markdown`, …). */
+  specsMarkdown?: string
+  bodyParagraphs?: string[]          // Multi-paragraph body text (plain split of description)
   amenityTags?: string[]             // Pill chips (Park, School, Highway etc.)
   amenities?: string[]               // Legacy — kept for compatibility
   features?: string[]                // Checkmark list items
