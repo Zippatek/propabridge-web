@@ -110,11 +110,3 @@ export const HERO_IMAGES = {
   history4: bucketUrl('properties/shopping-mall-—-guzape-mall-guzape-district-abuja/26193854795e.webp'),
 }
 
-/** Ordered property list URL set — used as fallback gallery when a property has none. */
-export const FALLBACK_PROPERTY_GALLERY: string[] = [
-  ...PROPERTY_GALLERY['gudu-apo-duplex'],
-  ...PROPERTY_GALLERY['maitama-duplex'],
-  ...PROPERTY_GALLERY['asokoro-villa'],
-  ...PROPERTY_GALLERY['guzape-residences'],
-  ...PROPERTY_GALLERY['lokogoma-promenade'],
-]

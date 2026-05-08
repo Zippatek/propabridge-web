@@ -1,5 +1,4 @@
 import { BLOGS } from '@/data/blogs'
-import { FALLBACK_PROPERTY_GALLERY } from '@/lib/bucket'
 import { Property } from '@/lib/types'
 
 import { PUBLIC_API_URL } from '@/lib/env-public'
@@ -36,6 +35,45 @@ export type FrontendBlog = {
   excerpt?: string
 }
 
+function nonEmptyTrimmedUrls(values: unknown[]): string[] {
+  return values.filter((x): x is string => typeof x === 'string' && x.trim().length > 0).map((s) => s.trim())
+}
+
+/** property_images rows may be URLs or objects with url / image_url. */
+function urlsFromPropertyImages(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return []
+  const out: string[] = []
+  for (const item of raw) {
+    if (typeof item === 'string' && item.trim()) {
+      out.push(item.trim())
+      continue
+    }
+    if (item && typeof item === 'object') {
+      const o = item as Record<string, unknown>
+      const u = o.url ?? o.image_url ?? o.src
+      if (typeof u === 'string' && u.trim()) out.push(u.trim())
+    }
+  }
+  return out
+}
+
+/** Cover first, then remaining URLs deduped in candidate order (cover moved ahead if duplicated). */
+function mergeCoverAndGallery(coverRaw: unknown, orderedCandidates: string[]): string[] {
+  const cover = typeof coverRaw === 'string' && coverRaw.trim() ? coverRaw.trim() : ''
+
+  const seen = new Set<string>()
+  const out: string[] = []
+  const push = (url: string) => {
+    const t = url.trim()
+    if (!t || seen.has(t)) return
+    seen.add(t)
+    out.push(t)
+  }
+  if (cover) push(cover)
+  for (const u of orderedCandidates) push(u)
+  return out
+}
+
 // Maps backend DB fields -> frontend Property type
 function mapListing(p: Record<string, unknown>) {
   const listingTypeRaw = String(p.listing_type ?? p.type ?? '').trim().toLowerCase()
@@ -51,12 +89,17 @@ function mapListing(p: Record<string, unknown>) {
     return 'FOR SALE'
   })()
 
-  const rawImages =
-    Array.isArray(p.images) ? (p.images as string[]) :
-    Array.isArray(p.media) ? (p.media as string[]) :
-    Array.isArray(p.gallery) ? (p.gallery as string[]) :
-    []
-  const images = rawImages.filter((image) => typeof image === 'string' && image.trim().length > 0)
+  const primaryFieldImages = [
+    ...(Array.isArray(p.images) ? nonEmptyTrimmedUrls(p.images as unknown[]) : []),
+    ...(Array.isArray(p.media) ? nonEmptyTrimmedUrls(p.media as unknown[]) : []),
+    ...(Array.isArray(p.gallery) ? nonEmptyTrimmedUrls(p.gallery as unknown[]) : []),
+  ]
+
+  const fromNested = urlsFromPropertyImages(p.property_images)
+  const mergedCandidates = [...primaryFieldImages, ...fromNested]
+
+  const coverField = p.cover_image_url ?? p.coverImage ?? p.cover_image
+  const images = mergeCoverAndGallery(coverField, mergedCandidates)
 
   const bedrooms = parseInt(String(p.bedrooms ?? p.beds ?? ''), 10)
   const bathrooms = parseInt(String(p.bathrooms ?? p.baths ?? ''), 10)
@@ -88,7 +131,7 @@ function mapListing(p: Record<string, unknown>) {
     area: Number(p.size_sqm ?? p.built_up_area_sqm) || undefined,
     landArea: Number(p.declared_plot_size_sqm ?? p.landArea) || undefined,
     floors: (p.floors as number) || (p.floor_count as number) || undefined,
-    images: images.length > 0 ? images : (typeof p.cover_image_url === 'string' && p.cover_image_url ? [p.cover_image_url] : FALLBACK_PROPERTY_GALLERY.slice(0, 3)),
+    images,
     verified: Boolean(p.verified || (p.verification_status as string) === 'verified'),
     verificationStatus: (p.verification_status as string) === 'verified' || p.verified ? 'VERIFIED' : 'PENDING',
     verificationItems: [],

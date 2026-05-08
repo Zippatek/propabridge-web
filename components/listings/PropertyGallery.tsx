@@ -9,32 +9,40 @@ interface PropertyGalleryProps {
   property: Property;
 }
 
-import { FALLBACK_PROPERTY_GALLERY } from '@/lib/bucket';
-
-const EXTENDED_GALLERY = FALLBACK_PROPERTY_GALLERY;
-
 export function PropertyGallery({ property }: PropertyGalleryProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Use property images if available, otherwise use mock extended gallery
-  const images = property.images && property.images.length > 0 ? property.images : EXTENDED_GALLERY;
-  // Fallback to ensuring we have at least 10 images to demo the "view all" functionality properly
-  const displayImages = images.length >= 6 ? images : EXTENDED_GALLERY;
+  const displayImages =
+    property.images?.filter((u) => typeof u === 'string' && u.trim()) ?? [];
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (lightboxIndex !== null) {
+    if (lightboxIndex !== null && displayImages.length > 0) {
       setLightboxIndex((lightboxIndex + 1) % displayImages.length);
     }
   };
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (lightboxIndex !== null) {
+    if (lightboxIndex !== null && displayImages.length > 0) {
       setLightboxIndex((lightboxIndex - 1 + displayImages.length) % displayImages.length);
     }
   };
+
+  if (displayImages.length === 0) {
+    return (
+      <div className="w-full mt-10 mb-16">
+        <div className="container-site">
+          <div className="rounded-[12px] overflow-hidden border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900/50 aspect-[21/9] flex items-center justify-center">
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm font-medium tracking-wide">
+              No photos available for this listing.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mt-10 mb-16">
@@ -45,7 +53,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
           {displayImages.slice(0, 6).map((img, idx) => {
             const isLarge = idx === 0 || idx === 1;
             return (
-              <div 
+              <div
                 key={`desktop-default-${idx}`}
                 onClick={() => setLightboxIndex(idx)}
                 className={`relative rounded-[12px] overflow-hidden cursor-pointer group ${
@@ -59,7 +67,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
                   alt={`Property Image ${idx + 1}`}
                   fill
                   className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  sizes={isLarge ? "33vw" : "15vw"}
+                  sizes={isLarge ? '33vw' : '15vw'}
                 />
               </div>
             );
@@ -70,7 +78,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
         <div className="grid md:hidden grid-cols-2 gap-3">
           {/* Default 4 images */}
           {displayImages.slice(0, 4).map((img, idx) => (
-            <div 
+            <div
               key={`mobile-default-${idx}`}
               onClick={() => setLightboxIndex(idx)}
               className="relative rounded-[12px] overflow-hidden cursor-pointer aspect-square group"
@@ -94,7 +102,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="overflow-hidden"
             >
               {/* Extra padding top to separate from default grid */}
@@ -102,7 +110,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
                 {/* Desktop Expanded (shows remaining from idx 6) */}
                 <div className="hidden md:grid grid-cols-6 gap-3">
                   {displayImages.slice(6).map((img, idx) => (
-                    <div 
+                    <div
                       key={`desktop-expanded-${idx}`}
                       onClick={() => setLightboxIndex(idx + 6)}
                       className="relative rounded-[12px] overflow-hidden cursor-pointer aspect-square group"
@@ -122,7 +130,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
                 {/* Mobile Expanded (shows remaining from idx 4) */}
                 <div className="grid md:hidden grid-cols-2 gap-3">
                   {displayImages.slice(4).map((img, idx) => (
-                    <div 
+                    <div
                       key={`mobile-expanded-${idx}`}
                       onClick={() => setLightboxIndex(idx + 4)}
                       className="relative rounded-[12px] overflow-hidden cursor-pointer aspect-square group"
@@ -146,7 +154,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
         {/* View All Button */}
         {displayImages.length > 4 && (
           <div className="mt-8 flex justify-center">
-            <button 
+            <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[13px] uppercase tracking-[0.05em] px-8 py-3.5 rounded-[8px] transition-all duration-300 flex items-center justify-center gap-2 outline-none focus:outline-none focus:ring-0 border-none"
             >
@@ -159,7 +167,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
       {/* Lightbox Modal */}
       <AnimatePresence>
         {lightboxIndex !== null && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -168,7 +176,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
             onClick={() => setLightboxIndex(null)}
           >
             {/* Close Button */}
-            <button 
+            <button
               className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
               onClick={() => setLightboxIndex(null)}
             >
@@ -178,7 +186,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
             </button>
 
             {/* Navigation Buttons */}
-            <button 
+            <button
               className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 bg-black/20 hover:bg-black/50 rounded-full"
               onClick={handlePrev}
             >
@@ -187,7 +195,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
               </svg>
             </button>
 
-            <button 
+            <button
               className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 z-50 bg-black/20 hover:bg-black/50 rounded-full"
               onClick={handleNext}
             >
@@ -197,7 +205,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
             </button>
 
             {/* Main Image Container */}
-            <div 
+            <div
               className="relative w-full max-w-[1200px] h-full max-h-[85vh] select-none"
               onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up and closing modal
             >
