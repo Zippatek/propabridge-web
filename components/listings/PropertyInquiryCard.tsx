@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Mail as Envelope, Phone } from 'lucide-react';
 import { Property } from '@/lib/types';
+import { PUBLIC_API_URL } from '@/lib/env-public';
 
 interface Props { property: Property }
 
@@ -21,7 +22,7 @@ export function PropertyInquiryCard({ property }: Props) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/scheduler/book`, {
+      const res = await fetch(`${PUBLIC_API_URL}/scheduler/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

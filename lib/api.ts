@@ -3,9 +3,11 @@ import { MOCK_PROPERTIES } from '@/lib/mock-data'
 import { FALLBACK_PROPERTY_GALLERY } from '@/lib/bucket'
 import { Property } from '@/lib/types'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+import { PUBLIC_API_URL } from '@/lib/env-public'
 
-const DEFAULT_TIMEOUT_MS = 3000
+const API_URL = PUBLIC_API_URL
+
+const DEFAULT_TIMEOUT_MS = 12000
 
 // Wrapper around fetch that aborts after `timeoutMs` so server-rendered pages
 // never hang waiting on an unreachable backend.
@@ -35,16 +37,20 @@ export type FrontendBlog = {
   excerpt?: string
 }
 
-// Maps backend DB fields → frontend Property type
+// Maps backend DB fields -> frontend Property type
 function mapListing(p: Record<string, unknown>) {
-  const transactionType = String(p.transaction_type || p.transactionType || '').toUpperCase()
-  const rawStatus = String(p.status || p.listing_status || '').toUpperCase()
-  const normalizedStatus =
-    rawStatus === 'FOR SALE' || rawStatus === 'FOR RENT' || rawStatus === 'SOLD' || rawStatus === 'OFF-PLAN' || rawStatus === 'RESERVED'
-      ? rawStatus
-      : transactionType.includes('RENT')
-        ? 'FOR RENT'
-        : 'FOR SALE'
+  const listingTypeRaw = String(p.listing_type ?? p.type ?? '').trim().toLowerCase()
+  const transactionRaw = String(p.transaction_type ?? p.transactionType ?? '').trim().toUpperCase()
+  const statusRaw = String(p.status ?? p.listing_status ?? '').trim().toUpperCase()
+
+  const normalizedStatus = (() => {
+    if (statusRaw === 'FOR SALE' || statusRaw === 'FOR RENT' || statusRaw === 'SOLD' || statusRaw === 'OFF-PLAN' || statusRaw === 'RESERVED') {
+      return statusRaw
+    }
+    if (listingTypeRaw.includes('rent') || transactionRaw.includes('RENT')) return 'FOR RENT'
+    if (listingTypeRaw.includes('off') || transactionRaw.includes('OFF')) return 'OFF-PLAN'
+    return 'FOR SALE'
+  })()
 
   const rawImages =
     Array.isArray(p.images) ? (p.images as string[]) :
@@ -57,27 +63,33 @@ function mapListing(p: Record<string, unknown>) {
   const bathrooms = parseInt(String(p.bathrooms ?? p.baths ?? ''), 10)
 
   const amenitiesArr: string[] = Array.isArray(p.amenities) ? (p.amenities as string[]) : []
-  const descriptionStr = (p.description as string) || ''
+  const descriptionStr = String(p.description ?? p.overview ?? '')
   const bodyParagraphs = descriptionStr
     ? descriptionStr.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
     : undefined
 
+  const district = String(p.neighbourhood ?? p.neighborhood ?? p.district ?? '')
+  const city = String(p.city ?? 'Abuja')
+  const location = String(p.location ?? p.address ?? [district, city].filter(Boolean).join(', ') ?? '')
+
   return {
-    id: (p.property_id as string) || (p.id as string),
-    slug: (p.slug as string) || (p.property_id as string),
-    title: (p.title as string) || '',
-    location: (p.location as string) || (p.address as string) || (p.neighbourhood as string) || '',
-    district: (p.neighbourhood as string) || (p.neighborhood as string) || '',
-    city: (p.city as string) || 'Abuja',
-    state: 'FCT',
-    price: parseFloat(String(p.price || '0').replace(/[^0-9.]/g, '')) || 0,
+    id: String(p.property_id ?? p.id ?? ''),
+    property_id: (p.property_id as string) || undefined,
+    slug: String(p.slug ?? p.property_id ?? p.id ?? ''),
+    title: String(p.title ?? ''),
+    location,
+    district,
+    city: city as Property['city'],
+    state: city.toLowerCase() === 'abuja' ? 'FCT' : city,
+    price: parseFloat(String(p.price ?? p.asking_price_ngn ?? '0').replace(/[^0-9.]/g, '')) || 0,
     status: normalizedStatus,
-    type: (p.property_type as string) || (p.category as string) || 'Apartment',
+    type: String(p.property_type ?? p.category ?? p.type ?? 'Apartment') as Property['type'],
     beds: Number.isNaN(bedrooms) ? undefined : bedrooms,
     baths: Number.isNaN(bathrooms) ? undefined : bathrooms,
-    area: (p.size_sqm as number) || undefined,
+    area: Number(p.size_sqm ?? p.built_up_area_sqm) || undefined,
+    landArea: Number(p.declared_plot_size_sqm ?? p.landArea) || undefined,
     floors: (p.floors as number) || (p.floor_count as number) || undefined,
-    images: images.length > 0 ? images : FALLBACK_PROPERTY_GALLERY.slice(0, 3),
+    images: images.length > 0 ? images : (typeof p.cover_image_url === 'string' && p.cover_image_url ? [p.cover_image_url] : FALLBACK_PROPERTY_GALLERY.slice(0, 3)),
     verified: Boolean(p.verified || (p.verification_status as string) === 'verified'),
     verificationStatus: (p.verification_status as string) === 'verified' || p.verified ? 'VERIFIED' : 'PENDING',
     verificationItems: [],
@@ -92,7 +104,7 @@ function mapListing(p: Record<string, unknown>) {
     bodyParagraphs: bodyParagraphs && bodyParagraphs.length > 0 ? bodyParagraphs : undefined,
     createdAt: (p.created_at as string) || new Date().toISOString(),
     updatedAt: (p.updated_at as string) || new Date().toISOString(),
-  };
+  }
 }
 
 function extractRawListings(payload: unknown): unknown[] {
@@ -162,10 +174,11 @@ export async function fetchListings(filters?: {
   if (filters?.limit) params.set('limit', filters.limit.toString());
 
   try {
-    // Use the same /listings endpoint as the admin dashboard (propabridge-backend).
-    return await fetchListingsFromEndpoint('/listings', params)
+    // Same /listings endpoint as the admin dashboard (propabridge-backend api-gateway).
+    const rows = await fetchListingsFromEndpoint('/listings', params)
+    return rows
   } catch {
-    // Keep mock fallback only when backend endpoint is unavailable.
+    // Mock fallback only when the backend is unreachable / errors — not when it returns an empty list.
     return MOCK_PROPERTIES
   }
 }
@@ -329,7 +342,7 @@ export async function submitLead(data: {
   property_id?: string;
   message?: string;
 }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/leads`, {
+  const res = await fetch(`${API_URL}/leads`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

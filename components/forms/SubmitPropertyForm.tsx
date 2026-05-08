@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import {
   Home as HouseSimple, Sparkles as Sparkle, Camera, User, ChevronDown as CaretDown,
 } from 'lucide-react';
+import { PUBLIC_API_URL } from '@/lib/env-public';
 
 const PROPERTY_TYPES = [
   'Single-Family Home', 'Condo / Apartment', 'Townhouse', 'Multi-Family Home',
@@ -135,7 +136,7 @@ export function SubmitPropertyForm() {
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/leads`, {
+    await fetch(`${PUBLIC_API_URL}/leads`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
