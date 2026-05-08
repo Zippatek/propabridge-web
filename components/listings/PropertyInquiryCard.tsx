@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail as Envelope, Phone, ArrowRight } from 'lucide-react';
+import { Mail as Envelope, Phone } from 'lucide-react';
 import { Property } from '@/lib/types';
 
 interface Props { property: Property }
@@ -79,7 +79,7 @@ export function PropertyInquiryCard({ property }: Props) {
           <Phone size={22} color="#4a5568" />
         </div>
         <button className="w-full flex items-center justify-center gap-2 bg-[#006aff] hover:bg-[#0052cc] text-white font-semibold text-[13px] uppercase tracking-[0.06em] py-3.5 rounded-[8px] transition-all duration-200">
-          AGENT DETAILS <ArrowRight size={16} />
+          AGENT DETAILS <span aria-hidden="true">›</span>
         </button>
       </div>
 
@@ -128,7 +128,7 @@ export function PropertyInquiryCard({ property }: Props) {
             <button type="submit" disabled={loading}
               className="w-full flex items-center justify-center gap-2 bg-[#001a40] hover:bg-[#002a5e] text-white font-bold text-[13px] uppercase tracking-[0.06em] py-4 rounded-[8px] transition-all duration-200 mt-1 disabled:opacity-60">
               {loading ? 'SUBMITTING...' : 'REQUEST A TOUR'}
-              {!loading && <ArrowRight size={16} />}
+              {!loading && <span aria-hidden="true">›</span>}
             </button>
           </form>
         )}

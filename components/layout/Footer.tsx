@@ -62,7 +62,7 @@ export default function Footer() {
                   <li key={link.label} className="border-b border-brand-textWhite/10">
                     <Link href={link.href} className="flex items-center justify-between py-4 text-brand-textWhite hover:text-beige transition-all duration-300 hover:translate-x-1">
                       <span className="text-[15px] font-medium tracking-tight">{link.label}</span>
-                      <span className="text-[12px] opacity-80">&gt;</span>
+                      <span className="text-[12px] opacity-80">›</span>
                     </Link>
                   </li>
                 ))}
@@ -84,7 +84,7 @@ export default function Footer() {
                   <li key={link.label} className="border-b border-brand-textWhite/10">
                     <Link href={link.href} className="flex items-center justify-between py-4 text-brand-textWhite hover:text-beige transition-all duration-300 hover:translate-x-1">
                       <span className="text-[15px] font-medium tracking-tight">{link.label}</span>
-                      <span className="text-[12px] opacity-80">&gt;</span>
+                      <span className="text-[12px] opacity-80">›</span>
                     </Link>
                   </li>
                 ))}
@@ -112,7 +112,7 @@ export default function Footer() {
                   <li key={link.label} className="border-b border-brand-textWhite/10">
                     <Link href={link.href} className="flex items-center justify-between py-4 text-brand-textWhite hover:text-beige transition-all duration-300 hover:translate-x-1">
                       <span className="text-[15px] font-medium tracking-tight">{link.label}</span>
-                      <span className="text-[12px] opacity-80">&gt;</span>
+                      <span className="text-[12px] opacity-80">›</span>
                     </Link>
                   </li>
                 ))}

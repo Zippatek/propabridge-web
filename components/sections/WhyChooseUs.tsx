@@ -89,7 +89,7 @@ export default function WhyChooseUs() {
                       className="text-navy shrink-0 mt-[1px] opacity-90"
                       aria-hidden="true"
                     />
-                    <span className="text-[15px] font-medium text-navy/90 leading-snug">
+                    <span className="text-[15px] font-medium text-navy/90 leading-[1.3] tracking-[-0.005em]">
                       {item}
                     </span>
                   </div>
@@ -117,7 +117,7 @@ export default function WhyChooseUs() {
                       className="text-white shrink-0 mt-[1px]"
                       aria-hidden="true"
                     />
-                    <span className="text-[15px] font-medium text-white leading-snug">
+                    <span className="text-[15px] font-medium text-white leading-[1.3] tracking-[-0.005em]">
                       {item}
                     </span>
                   </div>

@@ -64,7 +64,7 @@ export const ContactCTACards = () => {
                     className="inline-flex items-center gap-2 text-white text-[14px] font-bold tracking-widest uppercase hover:gap-3 transition-all duration-200"
                   >
                     {card.cta}
-                    <span className="text-[18px]">&rsaquo;</span>
+                    <span className="text-[18px]">›</span>
                   </Link>
                 </div>
               </div>

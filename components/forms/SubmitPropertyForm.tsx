@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import {
-  Home as HouseSimple, Sparkles as Sparkle, Camera, User, ArrowRight, ChevronDown as CaretDown,
+  Home as HouseSimple, Sparkles as Sparkle, Camera, User, ChevronDown as CaretDown,
 } from 'lucide-react';
 
 const PROPERTY_TYPES = [
@@ -385,7 +385,7 @@ export function SubmitPropertyForm() {
         className="w-full flex items-center justify-center gap-2 bg-[#001a40] hover:bg-[#002a5e] text-white font-bold text-[13px] uppercase tracking-[0.08em] py-4 rounded-[8px] transition-all duration-200"
       >
         SUBMIT FOR REVIEW
-        <ArrowRight size={15} />
+        <span aria-hidden="true">›</span>
       </button>
 
     </form>

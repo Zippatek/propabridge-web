@@ -129,7 +129,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     type="submit"
                     className="w-full h-[48px] bg-navy text-white text-[13px] font-bold tracking-widest uppercase rounded-[8px] hover:bg-navy/90 transition-colors flex items-center justify-center gap-2"
                   >
-                    SUBSCRIBE <span>&gt;</span>
+                    SUBSCRIBE <span>›</span>
                   </button>
                 </form>
               </div>
@@ -179,7 +179,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   {/* View Hover Badge */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                     <div className="w-[80px] h-[80px] rounded-full bg-navy text-white text-[12px] font-bold tracking-widest flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-all duration-300">
-                      VIEW &gt;
+                      VIEW ›
                     </div>
                   </div>
                 </div>

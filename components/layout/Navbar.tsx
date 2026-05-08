@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { X, ChevronDown as CaretDown, ChevronRight as CaretRight, ArrowRight } from 'lucide-react'
+import { X, ChevronDown as CaretDown, ChevronRight as CaretRight } from 'lucide-react'
 import { NavLink } from '@/lib/types'
 import { cn } from '@/lib/cn'
 
@@ -193,10 +193,10 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-end gap-3 shrink-0">
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite font-semibold text-nav uppercase tracking-[0.02em] px-5 py-2.5 rounded-btn hover:bg-navy-light transition-colors whitespace-nowrap"
+              className="btn-cta-strong hidden lg:inline-flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-5 py-2.5 rounded-btn hover:bg-navy-light transition-colors whitespace-nowrap"
             >
               CHAT WITH PROPA
-              <ArrowRight size={14} aria-hidden="true" />
+              <span aria-hidden="true">›</span>
             </Link>
 
             <button
@@ -252,10 +252,10 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite font-bold text-nav uppercase tracking-[0.02em] px-8 py-3.5 rounded-btn hover:bg-navy-light transition-colors"
+              className="btn-cta-strong flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-8 py-3.5 rounded-btn hover:bg-navy-light transition-colors"
             >
               CHAT WITH PROPA
-              <CaretRight size={14} aria-hidden="true" />
+              <span aria-hidden="true">›</span>
             </Link>
           </div>
         </div>

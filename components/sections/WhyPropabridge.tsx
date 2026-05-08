@@ -97,7 +97,7 @@ export default function WhyPropabridge() {
                         className="mt-[8px] shrink-0 w-[6px] h-[6px] bg-navy"
                         aria-hidden="true"
                       />
-                      <span className="text-[14.5px] text-grey leading-snug pr-2">
+                      <span className="text-[14.5px] text-grey leading-[1.3] tracking-[-0.004em] pr-2">
                         {bullet}
                       </span>
                     </div>

@@ -138,7 +138,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           <div className="mt-16 md:mt-24 flex justify-center">
             <Link
               href="/blogs"
-              className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-brand-textWhite font-sans font-semibold text-body uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+              className="btn-cta-strong inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-brand-textWhite px-6 py-3 rounded-btn transition-all duration-300 gap-2"
             >
               READ ALL BLOGS
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">

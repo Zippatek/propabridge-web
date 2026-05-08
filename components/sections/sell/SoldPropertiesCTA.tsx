@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
 
 export default function SoldPropertiesCTA() {
   return (
@@ -32,7 +31,7 @@ export default function SoldPropertiesCTA() {
             className="btn-cream-pill"
           >
             VIEW ALL PROPERTIES
-            <ChevronRight size={18} />
+            <span aria-hidden="true">›</span>
           </Link>
         </div>
       </div>

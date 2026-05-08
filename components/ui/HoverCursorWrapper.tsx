@@ -60,7 +60,7 @@ export default function HoverCursorWrapper({
       >
         <span className="flex items-center gap-0.5 text-[18px] font-bold uppercase tracking-[0.01em]">
           <span className="text-[13px] leading-none">{label}</span>
-          <span className="text-[18px] leading-none">&rsaquo;</span>
+          <span className="text-[18px] leading-none">›</span>
         </span>
       </motion.div>
     </div>

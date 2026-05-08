@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, X, ArrowRight } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 
 /* ── Service data — content from reference ─────────────────────────── */
 const SERVICES = [
@@ -139,7 +139,7 @@ export default function ServicesSection() {
 
                     {/* Description — always visible, inside clickable area */}
                     <div className="pt-5 pl-[60px]">
-                      <p className="text-grey text-[15px] leading-snug">
+                      <p className="text-grey text-[15px] leading-[1.32] tracking-[-0.004em]">
                         {service.description}
                       </p>
                     </div>
@@ -159,7 +159,7 @@ export default function ServicesSection() {
                           {service.features.map((feature, i) => (
                             <li
                               key={i}
-                              className={`py-3 text-navy text-[15px] leading-snug ${
+                              className={`py-3 text-navy text-[15px] leading-[1.32] tracking-[-0.004em] ${
                                 i < service.features.length - 1
                                   ? 'border-b border-grey-light/60'
                                   : ''
@@ -173,10 +173,10 @@ export default function ServicesSection() {
                         {/* CTA Button */}
                         <Link
                           href={service.href}
-                          className="inline-flex items-center gap-2 bg-blue text-white font-semibold text-[13px] uppercase tracking-wider px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors duration-200 mb-2"
+                          className="btn-cta-strong inline-flex items-center gap-2 bg-blue text-white px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors duration-200 mb-2"
                         >
                           {service.cta}
-                          <ArrowRight size={13} aria-hidden="true" />
+                          <span aria-hidden="true">›</span>
                         </Link>
                       </div>
                     </div>

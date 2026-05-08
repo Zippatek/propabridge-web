@@ -45,7 +45,7 @@ export default async function RecentListings() {
             className="btn-cream-pill"
           >
             VIEW PROPERTIES
-            <span className="text-[18px] leading-none">&rsaquo;</span>
+            <span className="text-[18px] leading-none">›</span>
           </Link>
         </div>
       </div>

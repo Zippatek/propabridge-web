@@ -76,7 +76,7 @@ export function SubmitPropertyFAQ() {
           <div>
             <h2
               id="sp-faq-heading"
-              className="text-display-md text-[#001a40] font-medium lg:sticky lg:top-28"
+              className="text-display-md faq-contact-heading-copy text-[#001a40] lg:sticky lg:top-28"
             >
               Everything you wanted to ask (but didn&apos;t know who to)
             </h2>
@@ -125,7 +125,7 @@ export function SubmitPropertyFAQ() {
                       isOpen ? 'max-h-[300px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
                     )}
                   >
-                    <p className="text-[#4a5568] text-[15px] leading-[1.7] pb-2">
+                    <p className="faq-contact-answer-copy text-[#4a5568] text-[15px] pb-2">
                       {item.answer}
                     </p>
                   </div>

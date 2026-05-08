@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronRight } from 'lucide-react'
 
 const PROPERTY_TYPES = [
   'Apartment',
@@ -276,7 +275,7 @@ export default function SellValuationForm() {
         className="w-full flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white font-bold text-[14px] uppercase tracking-[0.1em] h-[58px] rounded-[10px] transition-colors duration-200 mt-2"
       >
         SHOW ME THE VALUE
-        <ChevronRight size={16} />
+        <span aria-hidden="true">›</span>
       </button>
 
     </form>

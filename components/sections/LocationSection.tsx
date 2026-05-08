@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import LocationCard from '@/components/property/LocationCard'
 import { MOCK_LOCATIONS } from '@/lib/mock-data'
 
@@ -41,13 +40,10 @@ export default function LocationSection() {
         <div className="flex justify-center mt-10">
           <Link
             href="/neighborhood"
-            className="inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white font-sans font-semibold text-[14px] uppercase tracking-wider px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+            className="btn-cta-strong inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white px-6 py-3 rounded-btn transition-all duration-300 gap-2"
           >
             VIEW ALL NEIGHBORHOODS
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-              <path d="M5 12h14"></path>
-              <path d="M13 5l7 7-7 7"></path>
-            </svg>
+            <span aria-hidden="true">›</span>
           </Link>
         </div>
       </div>

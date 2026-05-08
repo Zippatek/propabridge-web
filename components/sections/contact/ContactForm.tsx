@@ -25,7 +25,7 @@ export const ContactForm = () => {
     <section className="container-site px-4 md:px-8 py-16">
       <div className="max-w-xl mx-auto bg-white rounded-[16px] p-8 md:p-10 shadow-sm">
         {/* Heading */}
-        <h2 className="text-display-md text-heading font-medium mb-8 max-w-[88%]">
+        <h2 className="text-display-md faq-contact-heading-copy text-heading mb-8 max-w-[88%]">
           We&apos;re just a form away—send us your question, and we&apos;ll be happy to help!
         </h2>
 
@@ -44,7 +44,7 @@ export const ContactForm = () => {
             {/* Name + Phone row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[#001a40] text-[11px] font-bold tracking-widest uppercase">
+                <label htmlFor="name" className="faq-contact-form-label text-[#001a40]">
                   Name
                 </label>
                 <input
@@ -58,7 +58,7 @@ export const ContactForm = () => {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="phone" className="text-[#001a40] text-[11px] font-bold tracking-widest uppercase">
+                <label htmlFor="phone" className="faq-contact-form-label text-[#001a40]">
                   Phone
                 </label>
                 <input
@@ -74,7 +74,7 @@ export const ContactForm = () => {
 
             {/* Email */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-[#001a40] text-[11px] font-bold tracking-widest uppercase">
+              <label htmlFor="email" className="faq-contact-form-label text-[#001a40]">
                 Email
               </label>
               <input
@@ -90,7 +90,7 @@ export const ContactForm = () => {
 
             {/* Message */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-[#001a40] text-[11px] font-bold tracking-widest uppercase">
+              <label htmlFor="message" className="faq-contact-form-label text-[#001a40]">
                 Messsage
               </label>
               <textarea
@@ -113,7 +113,7 @@ export const ContactForm = () => {
               {status === "sending" ? "Sending..." : (
                 <>
                   Send Message
-                  <span className="text-[16px]">&rsaquo;</span>
+                  <span className="text-[16px]">›</span>
                 </>
               )}
             </button>

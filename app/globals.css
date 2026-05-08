@@ -49,8 +49,8 @@
     color: var(--brand-navy);
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
+    line-height: 1.38;
+    letter-spacing: -0.012em;
   }
 
   h1,
@@ -68,60 +68,60 @@
   dd,
   blockquote {
     color: #4a5568;
-    line-height: 1.5;
-    letter-spacing: 0;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
   }
 
   /* Framer heading scale — mobile defaults; hero breakpoint 1200px */
   h1 {
     font-size: 40px;
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.04;
+    letter-spacing: -0.026em;
   }
 
   @media (min-width: 1200px) {
     h1 {
       font-size: 56px;
-      line-height: 1;
-      letter-spacing: -0.02em;
+      line-height: 0.98;
+      letter-spacing: -0.026em;
     }
   }
 
   h2 {
     font-size: 30px;
     font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
+    line-height: 1.22;
+    letter-spacing: -0.024em;
   }
 
   @media (min-width: 1200px) {
     h2 {
       font-size: 48px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      line-height: 1.04;
+      letter-spacing: -0.024em;
     }
   }
 
   h3 {
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: 0;
+    line-height: 1.24;
+    letter-spacing: -0.01em;
   }
 
   @media (min-width: 1200px) {
     h3 {
       font-size: 26px;
-      line-height: 1.3;
+      line-height: 1.2;
     }
   }
 
   h4 {
     font-size: 18px;
     font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    line-height: 1.38;
+    letter-spacing: -0.01em;
   }
 
   h5 {
@@ -134,8 +134,8 @@
   h6 {
     font-size: 16px;
     font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: 0;
+    line-height: 1.24;
+    letter-spacing: -0.01em;
   }
 
   p,
@@ -192,18 +192,26 @@
     background: var(--brand-light-2);
     color: var(--brand-text-black);
     border-radius: 9999px;
-    padding: 14px 32px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    padding: 15px 34px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    line-height: 1.5;
+    line-height: 1.2;
     transition: background-color 200ms ease, transform 200ms ease;
   }
 
   .btn-cream-pill:hover {
     background: var(--brand-light-1);
     transform: translateY(-1px);
+  }
+
+  .btn-cta-strong {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -270,6 +278,27 @@
     font-size: 10px;
   }
 
+  /* Shared FAQ/contact typography tightening */
+  .faq-contact-heading-copy {
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  .faq-contact-answer-copy {
+    font-weight: 400;
+    line-height: 1.56;
+    letter-spacing: -0.01em;
+  }
+
+  .faq-contact-form-label {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   /* 2-line text clamp */
   .line-clamp-2 {
     display: -webkit-box;
@@ -296,16 +325,16 @@
   .blog-content {
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.55;
-    letter-spacing: 0;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
     color: #2d3748;
   }
 
   .blog-content p {
     margin-bottom: 1.5rem;
     color: #2d3748;
-    line-height: 1.55;
-    letter-spacing: 0;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
   }
 
   .blog-content em {
@@ -338,8 +367,8 @@
   .blog-content li {
     margin-bottom: 0.5rem;
     color: #2d3748;
-    line-height: 1.55;
-    letter-spacing: 0;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
   }
 
   .blog-content strong {
@@ -458,8 +487,8 @@
   .text-body-token {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
+    line-height: 1.38;
+    letter-spacing: -0.012em;
   }
 
   .text-body-uppercase {
@@ -539,13 +568,15 @@
   .text-body {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.38;
+    letter-spacing: -0.012em;
   }
 
   .text-body-sm {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.38;
+    letter-spacing: -0.012em;
   }
 
   .text-nav {

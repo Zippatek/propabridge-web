@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 
 export function RelatedPropertiesCTA() {
   return (
@@ -31,7 +30,7 @@ export function RelatedPropertiesCTA() {
           className="btn-cream-pill"
         >
           VIEW PROPERTIES
-          <ArrowRight size={18} />
+          <span aria-hidden="true">›</span>
         </Link>
       </div>
     </section>

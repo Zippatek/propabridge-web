@@ -147,7 +147,7 @@ export default function HowItWorks() {
                         {step.title}
                       </h3>
 
-                      <p className={`text-grey text-[15px] leading-[1.65] tracking-tight 
+                      <p className={`text-grey text-[15px] leading-[1.56] tracking-tight 
                         ${textOnLeft ? 'md:text-right text-left' : 'text-left'}
                       `}>
                         {step.desc}

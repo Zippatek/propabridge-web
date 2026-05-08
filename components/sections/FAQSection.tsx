@@ -90,7 +90,7 @@ export default function FAQSection() {
           </div>
           <h2
             id="faq-heading"
-            className="text-display-lg font-medium text-heading md:w-[70%] max-w-[650px] mr-auto"
+            className="text-display-lg faq-contact-heading-copy text-heading md:w-[70%] max-w-[650px] mr-auto"
           >
             Everything you wanted to ask (but didn&apos;t know who to)
           </h2>
@@ -102,14 +102,14 @@ export default function FAQSection() {
           {/* LEFT: CONTACT FORM */}
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="bg-[#fbfcfa] rounded-[24px] p-8 lg:p-10 shadow-sm border border-[#ecece0]/50 sticky top-24">
-              <h3 className="text-navy font-medium text-[24px] lg:text-[28px] leading-[1.25] mb-8">
+              <h3 className="text-navy faq-contact-heading-copy text-[24px] lg:text-[28px] mb-8">
                 We&apos;re just a form away—send us your question, and we&apos;ll be happy to help!
               </h3>
 
               <form className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="faq-name" className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                    <label htmlFor="faq-name" className="faq-contact-form-label text-navy">
                       Name
                     </label>
                     <input
@@ -119,7 +119,7 @@ export default function FAQSection() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="faq-phone" className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                    <label htmlFor="faq-phone" className="faq-contact-form-label text-navy">
                       Phone
                     </label>
                     <input
@@ -131,7 +131,7 @@ export default function FAQSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="faq-email" className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                  <label htmlFor="faq-email" className="faq-contact-form-label text-navy">
                     Email
                   </label>
                   <input
@@ -142,7 +142,7 @@ export default function FAQSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="faq-message" className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                  <label htmlFor="faq-message" className="faq-contact-form-label text-navy">
                     Message
                   </label>
                   <textarea
@@ -208,7 +208,7 @@ export default function FAQSection() {
                       isOpen ? 'max-h-[400px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
                     )}
                   >
-                    <p className="text-grey text-[15px] lg:text-[16px] leading-snug max-w-[600px] pb-2">
+                    <p className="faq-contact-answer-copy text-grey text-[15px] lg:text-[16px] max-w-[600px] pb-2">
                       {item.answer}
                     </p>
                   </div>
