@@ -25,8 +25,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AR_REPO: propabridge-web
-      AR_IMAGE: propabridge-web
+      AR_REPO: cloud-run-source-deploy
+      AR_IMAGE_PATH: propabridge-web/propabridge-web
       NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://api.propabridge.com' }}
 
     steps:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Build and push container image
         run: |
-          IMAGE_URI="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.AR_REPO }}/${{ env.AR_IMAGE }}:${{ github.sha }}"
+          IMAGE_URI="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.AR_REPO }}/${{ env.AR_IMAGE_PATH }}:${{ github.sha }}"
           docker build \
             --build-arg "NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}" \
             -t "${IMAGE_URI}" .
