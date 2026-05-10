@@ -80,8 +80,8 @@ export default function WhySellWithUs() {
           {/* ── COL 2: Photo card ── */}
           <div className="relative rounded-[20px] overflow-hidden aspect-[3/4] shadow-card">
             <Image
-              src="https://storage.googleapis.com/propabridge-listings-us/agents/propabridge-team/00cc8bac9257.webp"
-              alt="Two Nigerian real estate professionals reviewing a property together"
+              src="/images/sell/sell-precscreened.png"
+              alt="Two Nigerian real estate professionals collaborating on a tablet"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 33vw"

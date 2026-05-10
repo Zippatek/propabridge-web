@@ -74,8 +74,8 @@ export default function SellingProcess() {
           {/* LEFT: Image */}
           <div className="relative rounded-[20px] overflow-hidden aspect-[4/5] lg:aspect-[3/4] shadow-card">
             <Image
-              src="https://storage.googleapis.com/propabridge-listings-us/properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp"
-              alt="Financial market chart representing property valuation"
+              src="/images/sell/sell-selling-process.png"
+              alt="Abstract data visualization representing a clear, guided selling journey"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

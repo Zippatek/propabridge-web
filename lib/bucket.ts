@@ -100,7 +100,7 @@ export const HERO_IMAGES = {
   aboutProblem: bucketUrl(
     'properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp',
   ),
-  sellHero: bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0a55747c0639.webp'),
+  sellHero: '/images/sell/sell-hero-bg.png',
   sellingProcess: bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp'),
   contactBuy: bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0a55747c0639.webp'),
   contactRent: bucketUrl('properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp'),
