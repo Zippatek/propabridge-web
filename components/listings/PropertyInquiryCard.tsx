@@ -75,7 +75,7 @@ export function PropertyInquiryCard({ property }: Props) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-[#001a40] font-bold text-[14px] mb-1">Phone</p>
-            <a href="tel:+2348090892219" className="text-[#006aff] text-[14px] hover:underline">+234 809 089 2219</a>
+            <a href="tel:+2348055551300" className="text-[#006aff] text-[14px] hover:underline">+234 805 555 1300</a>
           </div>
           <Phone size={22} color="#4a5568" />
         </div>

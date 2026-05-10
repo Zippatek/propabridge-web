@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
@@ -109,34 +109,31 @@ export default function TestimonialsSection({
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [totalDots, setTotalDots] = useState(REVIEWS.length)
-  const [showArrows, setShowArrows] = useState(false)
+  const [showArrows] = useState(true)
 
-  // Use layout effect or standard effect for initial measurements
-  useEffect(() => {
-    setShowArrows(true)
-    handleScroll() // initial calc based on window width
-    window.addEventListener('resize', handleScroll)
-    return () => window.removeEventListener('resize', handleScroll)
-  }, [])
-
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (!scrollRef.current) return
     const scrollLeft = scrollRef.current.scrollLeft
     const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
     const itemWidth = window.innerWidth >= 768 ? 404 : 324
-    
-    // Exactly how many pagination dots are reachable
+
     const calculatedDots = Math.ceil(maxScroll / itemWidth) + 1
-    // Safeguard to never have 0 dots layout shifts
     const validDots = calculatedDots > 0 ? calculatedDots : 1
-    
-    if (validDots !== totalDots) {
-       setTotalDots(validDots)
-    }
+
+    setTotalDots((prev) => (validDots !== prev ? validDots : prev))
 
     const newIndex = Math.min(Math.round(scrollLeft / itemWidth), validDots - 1)
     setActiveIndex(Math.max(0, newIndex))
-  }
+  }, [])
+
+  useEffect(() => {
+    const runInitial = window.setTimeout(() => handleScroll(), 0)
+    window.addEventListener('resize', handleScroll)
+    return () => {
+      window.clearTimeout(runInitial)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [handleScroll])
 
   const scrollLeftClick = () => {
     if (scrollRef.current) {
@@ -169,14 +166,17 @@ export default function TestimonialsSection({
   }
 
   const renderCard = (review: Review) => {
+    const pageCardShell = isPage
+      ? 'rounded-card border border-grey-divider shadow-none'
+      : 'rounded-[24px] shadow-sm'
     // VARIANT A: IMAGE FULL-CARD
     if (review.type === 'image') {
        return (
-          <div key={review.id} className={cn("relative shrink-0 aspect-[8/11] rounded-[24px] overflow-hidden group shadow-sm transition-transform hover:scale-[1.01]", !isPage && "w-[300px] md:w-[380px] snap-center", isPage && "w-full")}>
+          <div key={review.id} className={cn("relative shrink-0 aspect-[8/11] overflow-hidden group transition-transform hover:scale-[1.01]", pageCardShell, !isPage && "w-[300px] md:w-[380px] snap-center", isPage && "w-full")}>
              <Image src={review.image} alt={review.author} fill className="object-cover" />
              
              {/* Dark Base Gradient Overlay */}
-             <div className="absolute inset-0 bg-gradient-to-t from-[#0b1722]/90 via-[#0e1c28]/40 to-transparent" />
+             <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent" />
 
              {/* Video Play Icon Overlay */}
              {review.hasVideo && (
@@ -203,7 +203,14 @@ export default function TestimonialsSection({
 
     // VARIANT B: BEIGE TEXT CARD
     return (
-       <div key={review.id} className={cn("relative shrink-0 aspect-[8/11] rounded-[24px] bg-[#fcfdf8] p-8 md:p-10 flex flex-col justify-between shadow-sm border border-[#ecece0]/60 transition-transform hover:scale-[1.01]", !isPage && "w-[300px] md:w-[380px] snap-center", isPage && "w-full")}>
+       <div key={review.id} className={cn(
+         "relative shrink-0 aspect-[8/11] p-8 md:p-10 flex flex-col justify-between transition-transform hover:scale-[1.01]",
+         isPage
+           ? "rounded-card bg-beige border border-grey-divider shadow-none"
+           : "rounded-[24px] bg-[#fcfdf8] shadow-sm border border-[#ecece0]/60",
+         !isPage && "w-[300px] md:w-[380px] snap-center",
+         isPage && "w-full"
+       )}>
           
           <div className="space-y-6">
             {/* Highlight Block */}
@@ -231,7 +238,7 @@ export default function TestimonialsSection({
                 {review.role ? `${review.role}, ${review.location}` : review.location}
               </p>
             </div>
-            <div className="relative w-[52px] h-[52px] rounded-[16px] overflow-hidden shadow-sm shrink-0 border border-grey-light/30">
+            <div className={cn("relative w-[52px] h-[52px] rounded-[16px] overflow-hidden shrink-0 border", isPage ? "border-grey-divider shadow-none" : "shadow-sm border-grey-light/30")}>
               <Image src={review.image} alt={review.author} fill className="object-cover" />
             </div>
           </div>
@@ -245,10 +252,44 @@ export default function TestimonialsSection({
       
       {/* ── DIVIDER ── */}
       {!isPage && <hr className="border-t border-grey-light mx-6 mb-12" aria-hidden="true" />}
+
+      {/* Reviews page hero — full-width grid + blur behind heading */}
+      {isPage && (
+        <div className="relative mb-12 md:mb-16 w-full overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.45]"
+            style={{
+              backgroundImage: `
+                  linear-gradient(to right, rgba(0,26,64,0.07) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0,26,64,0.07) 1px, transparent 1px)
+                `,
+              backgroundSize: '40px 40px',
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-beige/75 backdrop-blur-[3px]"
+          />
+          <div className="container-site relative flex flex-col items-center px-4 py-10 md:py-12">
+            <div className="flex items-center justify-center gap-2.5 bg-beige border border-grey-divider px-4 py-2 rounded-container mb-6">
+              <div className="w-[8px] h-[8px] bg-navy rounded-[2px]" />
+              <span className="text-[12px] font-bold font-sans text-navy uppercase tracking-[0.08em]">Testimonials</span>
+              <div className="w-[8px] h-[8px] bg-navy rounded-[2px]" />
+            </div>
+            <h2
+              id="reviews-heading"
+              className="text-display-lg font-medium font-sans text-heading w-full max-w-[1000px] text-center"
+            >
+              Stories from the buyers, sellers,<br className="hidden md:block" /> and dream-chasers we&apos;ve helped
+            </h2>
+          </div>
+        </div>
+      )}
       
       <div className="container-site">
         {/* ── HEADER ── */}
-        {!isPage ? (
+        {!isPage && (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24">
             <div className="md:col-span-3 flex items-start gap-2 md:pt-4">
               <span className="inline-block w-2.5 h-2.5 rounded-sm bg-navy shrink-0 mt-[4px]" aria-hidden="true" />
@@ -264,20 +305,6 @@ export default function TestimonialsSection({
                 {heading}
               </h2>
             </div>
-          </div>
-        ) : (
-          <div className="relative mb-12 md:mb-16 flex flex-col items-center">
-            <div className="flex items-center justify-center gap-2.5 bg-[#eae9e0] px-4 py-2 rounded-[8px] mb-6">
-              <div className="w-[8px] h-[8px] bg-navy rounded-[2px]" />
-              <span className="text-[12px] font-bold font-sans text-navy uppercase tracking-[0.08em]">Testimonials</span>
-              <div className="w-[8px] h-[8px] bg-navy rounded-[2px]" />
-            </div>
-            <h2
-              id="reviews-heading"
-              className="text-display-lg font-medium font-sans text-heading w-full max-w-[1000px] px-4 text-center"
-            >
-              Stories from the buyers, sellers,<br className="hidden md:block" /> and dream-chasers we've helped
-            </h2>
           </div>
         )}
 

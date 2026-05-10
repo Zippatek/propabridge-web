@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import SubscribeForm from '@/components/layout/SubscribeForm'
+import { propaWhatsAppHref } from '@/lib/env-public'
 
 export default function Footer() {
   return (
@@ -23,7 +24,7 @@ export default function Footer() {
               Browse Listings
             </Button>
             <Link
-              href="https://wa.me/2348090892219"
+              href={propaWhatsAppHref()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-[1.5px] border-brand-textWhite text-brand-textWhite font-semibold text-[14px] px-7 py-3.5 rounded-btn hover:bg-brand-textWhite/10 transition-colors"

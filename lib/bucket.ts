@@ -16,37 +16,31 @@ export function bucketUrl(path: string): string {
 
 /** Curated cover image per blog id (from data/blogs.ts). */
 export const BLOG_COVERS: Record<string, string> = {
-  'living-in-gwarinpa': bucketUrl(
-    'blogs/what-it-s-actually-like-to-live-in-gwarinpa-a-real-resident-s-guide/34cc3f19664b.webp',
-  ),
-  'renting-abuja': bucketUrl(
-    "blogs/first-time-homebuyer-s-guide-everything-you-need-to-know-before-getting-the-keys/1a981601ed8c.webp",
-  ),
-  'spot-fake-listing': bucketUrl(
-    'blogs/how-to-spot-a-fake-property-listing-in-nigeria-—-and-what-to-do-when-you-find-one/0704215e8888.webp',
-  ),
-  'property-documents': bucketUrl(
-    'blogs/the-7-documents-you-must-see-before-paying-rent-on-any-nigerian-property/10b76aa1035f.webp',
-  ),
-  'gwarinpa-vs-jabi': bucketUrl(
-    'blogs/gwarinpa-vs-jabi-vs-kubwa-—-which-area-fits-your-budget-in-abuja-right-now/01d31ec21a89.webp',
-  ),
-  'inspection-fees': bucketUrl(
-    'blogs/why-inspection-fees-are-exploitative-and-why-we-banned-them/455195b6e4a4.webp',
-  ),
-  'abuja-prices': bucketUrl(
-    "blogs/abuja-property-prices-in-2026-what-s-actually-happening/288033147d61.webp",
-  ),
-  'smart-investors-minna': bucketUrl(
-    'blogs/why-smart-investors-are-looking-at-minna-and-lokogoma-right-now/051cbc788fbc.webp',
-  ),
+  'living-in-gwarinpa': '/images/blogs/living-in-gwarinpa.png',
+  'renting-abuja': '/images/blogs/renting-abuja.png',
+  'spot-fake-listing': '/images/blogs/spot-fake-listing.png',
+  'property-documents': '/images/blogs/property-documents.png',
+  'gwarinpa-vs-jabi': '/images/blogs/gwarinpa-vs-jabi.png',
+  'inspection-fees': '/images/blogs/inspection-fees.png',
+  'abuja-prices': '/images/blogs/abuja-prices.png',
+  'smart-investors-minna': '/images/blogs/smart-investors-minna.png',
 }
 
 /** Cover image per neighborhood slug. */
 export const NEIGHBORHOOD_COVERS: Record<string, string> = {
   'kasuwan-bacci-kaduna': '/images/neighborhoods/kasuwan-bacci-kaduna.png',
   'apo-abuja': '/images/neighborhoods/apo-abuja.png',
+  'asokoro-abuja': '/images/neighborhoods/asokoro-abuja.png',
+  asokoro: '/images/neighborhoods/asokoro-abuja.png',
+  'garki-abuja': '/images/neighborhoods/garki-abuja.png',
+  garki: '/images/neighborhoods/garki-abuja.png',
+  'katampe-extension-lokogoma-abuja': '/images/neighborhoods/katampe-extension-lokogoma-abuja.png',
+  'katampe-extension-abuja': '/images/neighborhoods/katampe-extension-lokogoma-abuja.png',
+  'katampe-extension-lokogoma': '/images/neighborhoods/katampe-extension-lokogoma-abuja.png',
+  'katampe-lokogoma': '/images/neighborhoods/katampe-extension-lokogoma-abuja.png',
   'kubwa-abuja': '/images/neighborhoods/kubwa-abuja.png',
+  'lokogoma-abuja': '/images/neighborhoods/lokogoma-abuja.png',
+  lokogoma: '/images/neighborhoods/lokogoma-abuja.png',
   'guzape-abuja': '/images/neighborhoods/guzape-abuja.png',
   'gwarimpa-abuja': '/images/neighborhoods/gwarimpa-abuja.png',
   'gwarinpa-abuja': '/images/neighborhoods/gwarimpa-abuja.png',
@@ -106,7 +100,7 @@ export const HERO_IMAGES = {
   contactRent: bucketUrl('properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp'),
   contactInvest: bucketUrl('properties/millenium-city-kaduna-babban-saura/1b787d3f61d9.webp'),
   // Two propabridge-team headshots used as partner photos in WhySellWithUs etc.
-  teamPair: bucketUrl('agents/propabridge-team/00cc8bac9257.webp'),
+  teamPair: '/images/about/about-aminu.png',
   // History montage — picked four distinct property/neighbourhood images.
   history1: bucketUrl('neighborhoods/maitama-abuja/0eb3ad94ffd7.webp'),
   history2: bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/411190295027.webp'),

@@ -1,4 +1,4 @@
-import { BLOG_COVERS, bucketUrl } from '@/lib/bucket'
+import { BLOG_COVERS } from '@/lib/bucket'
 
 export type Blog = {
   id: string
@@ -12,7 +12,11 @@ export type Blog = {
   excerpt?: string
 }
 
-const AUTHOR_IMAGE = bucketUrl('agents/propabridge-team/00cc8bac9257.webp')
+/** Headshot used for posts by Aminu S. Muhammad (matches About page asset). */
+const AUTHOR_IMAGE_AMINU = '/images/about/about-aminu.png'
+
+/** Headshot used for posts by Muhammad Tukur. */
+const AUTHOR_IMAGE_TUKUR = '/images/about/muhammad-tukur.png'
 
 export const BLOGS: Blog[] = [
   {
@@ -58,7 +62,7 @@ export const BLOGS: Blog[] = [
     title: 'First Time Renting in Abuja? Start Here. The Complete Honest Guide.',
     image: BLOG_COVERS['renting-abuja'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: AUTHOR_IMAGE,
+    authorImage: AUTHOR_IMAGE_AMINU,
     excerpt: "Buying your first home is exciting — and a little overwhelming. Between mortgages, inspections, and endless listings, it's easy to feel lost. But with the right guidance (and the right agent), you can turn confusion into confidence and make smart, secure decisions every step of the way.",
     content: `
 <p className="text-grey font-bold text-[16px] md:text-[18px] font-sans leading-[1.8] mb-10">
@@ -181,7 +185,7 @@ export const BLOGS: Blog[] = [
     title: 'How to Spot a Fake Property Listing in Nigeria — and What to Do When You Find One',
     image: BLOG_COVERS['spot-fake-listing'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: AUTHOR_IMAGE,
+    authorImage: AUTHOR_IMAGE_AMINU,
     excerpt: 'Property fraud costs Nigerians billions every year. Most victims paid for a listing they never verified. Here is how to tell the difference — before it costs you anything.',
     content: `
 <p><em>"The listing looked exactly right. The price was good. The photos were clear. Three days later, the landlord had disappeared with ₦150,000."</em></p>
@@ -216,7 +220,7 @@ export const BLOGS: Blog[] = [
     title: 'The 7 Documents You Must See Before Paying Rent on Any Nigerian Property',
     image: BLOG_COVERS['property-documents'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: AUTHOR_IMAGE,
+    authorImage: AUTHOR_IMAGE_AMINU,
     excerpt: 'Most property fraud succeeds because tenants do not know which documents to demand. These seven are non-negotiable — and here is what each one actually means.',
     content: `
 <p><em>"The documents are what separate a legitimate transaction from a very expensive lesson."</em></p>
@@ -287,7 +291,7 @@ export const BLOGS: Blog[] = [
     title: 'Why Inspection Fees Are Exploitative — and Why We Banned Them',
     image: BLOG_COVERS['inspection-fees'],
     authorName: 'AMINU S. MUHAMMAD',
-    authorImage: AUTHOR_IMAGE,
+    authorImage: AUTHOR_IMAGE_AMINU,
     excerpt: 'The standard practice of charging a fee just to view a property is structurally designed to encourage fake listings. Here is why Propabridge refused to allow it.',
     content: `
 <p><em>"If an agent is paid every time someone views a property, the agent's incentive is to show the property to as many people as possible — not to find a tenant."</em></p>
@@ -348,7 +352,7 @@ export const BLOGS: Blog[] = [
     title: 'Why Smart Investors Are Looking at Minna and Lokogoma Right Now',
     image: BLOG_COVERS['smart-investors-minna'],
     authorName: 'MUHAMMAD TUKUR',
-    authorImage: AUTHOR_IMAGE,
+    authorImage: AUTHOR_IMAGE_TUKUR,
     excerpt: 'While retail buyers fight over overpriced plots in central Abuja, institutional and smart private money is quietly moving to the edges. Here is the investment case for the next growth corridors.',
     content: `
 <p><em>"The best time to buy land in Wuse was 1995. The second best time was 2005. The third best option is figuring out where the next Wuse will be."</em></p>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HoverCursorWrapper from "@/components/ui/HoverCursorWrapper";
-import { HERO_IMAGES } from "@/lib/bucket";
+import { propaWhatsAppHref } from "@/lib/env-public";
 
 const cards = [
   {
@@ -9,21 +9,24 @@ const cards = [
     description: "Find out what your property is actually worth — backed by real market data and expert analysis",
     cta: "GET VALUATION",
     href: "/sell",
-    image: HERO_IMAGES.contactBuy,
+    image: "/images/contact/cta-valuation.png",
+    imageAlt: "Modern house with birds in the sky",
   },
   {
     title: "List your property with us",
     description: "Submit your property details and we'll verify, photograph, and list it across our verified buyer network.",
     cta: "SUBMIT PROPERTY",
     href: "/submit-property",
-    image: "https://storage.googleapis.com/propabridge-listings-us/properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp",
+    image: "/images/contact/cta-list-property.png",
+    imageAlt: "Modern residential building with balconies",
   },
   {
     title: "Chat With Propa Now",
     description: "Our AI concierge is available 24/7 on web and WhatsApp. Fastest way to find what you need.",
     cta: "TALK TO PROPA",
-    href: "https://wa.me/2348090892219",
-    image: "https://storage.googleapis.com/propabridge-listings-us/properties/millenium-city-kaduna-babban-saura/1b787d3f61d9.webp",
+    href: propaWhatsAppHref(),
+    image: "/images/contact/cta-chat-propa.png",
+    imageAlt: "Futuristic interior hallway with ambient lighting",
   },
 ];
 
@@ -40,7 +43,7 @@ export const ContactCTACards = () => {
               {/* Background Image */}
               <Image
                 src={card.image}
-                alt={card.title}
+                alt={card.imageAlt}
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
