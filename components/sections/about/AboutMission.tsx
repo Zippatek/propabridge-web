@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { HERO_IMAGES } from '@/lib/bucket'
 
 export const AboutMission = () => {
   return (
@@ -32,7 +31,7 @@ export const AboutMission = () => {
               
               <div className="bg-[#f4f3ea] rounded-[16px] p-6 lg:p-8 flex flex-col gap-2">
                 <span className="text-[#001a40] font-bold leading-none" style={{ fontSize: 'clamp(48px, 6vw, 64px)' }}>98<span className="text-[40px]">%</span></span>
-                <p className="text-[#001a40]/80 text-[14px] leading-snug">Client satisfaction rate (we're working hard on the other 2%).</p>
+                <p className="text-[#001a40]/80 text-[14px] leading-snug">Client satisfaction rate (we&apos;re working hard on the other 2%).</p>
               </div>
             </div>
           </div>
@@ -40,7 +39,7 @@ export const AboutMission = () => {
           {/* Right Column: Image */}
           <div className="relative w-full h-full min-h-[400px] lg:min-h-full rounded-[16px] overflow-hidden">
             <Image 
-              src={HERO_IMAGES.aboutCompany}
+              src="/images/about/about-mission-media.png"
               alt="Propabridge team working"
               fill
               className="object-cover object-center"
