@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
         <div className="mx-auto max-w-[1040px] flex flex-col md:flex-row rounded-[24px] overflow-hidden shadow-2xl">
           
           {/* Left Side: The Old Way (Glassmorphism / Light) */}
-          <div className="flex-1 bg-white/70 backdrop-blur-md p-8 md:p-12 relative z-0">
+          <div className="flex-1 bg-white/70 backdrop-blur-md p-8 md:p-12 relative z-0 border-r border-navy/10">
             <h3 className="text-navy font-medium text-[24px] md:text-[28px] mb-8 leading-snug tracking-tight">
               The Old Way (Other Platforms)
             </h3>

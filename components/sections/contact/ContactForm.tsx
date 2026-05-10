@@ -91,7 +91,7 @@ export const ContactForm = () => {
             {/* Message */}
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="faq-contact-form-label text-[#001a40]">
-                Messsage
+                Message
               </label>
               <textarea
                 id="message"

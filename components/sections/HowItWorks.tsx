@@ -77,26 +77,26 @@ export default function HowItWorks() {
 
           {/* Vertical Line Track (Desktop) - faint background line, constrained between 1st and 4th badges */}
           <div 
-            className="absolute left-1/2 top-[190px] bottom-[190px] w-[2px] bg-navy/15 -translate-x-1/2 z-0 hidden md:block" 
+            className="absolute left-1/2 top-[180px] bottom-[180px] w-[2px] bg-navy/15 -translate-x-1/2 z-0 hidden md:block" 
             aria-hidden="true" 
           />
 
           {/* Vertical Line Progress (Desktop) - animated active line */}
           <motion.div
-            className="absolute left-1/2 top-[190px] bottom-[190px] w-[2px] bg-navy -translate-x-1/2 z-10 hidden md:block origin-top"
+            className="absolute left-1/2 top-[180px] bottom-[180px] w-[2px] bg-navy -translate-x-1/2 z-10 hidden md:block origin-top"
             style={{ scaleY: scrollYProgress }}
             aria-hidden="true"
           />
 
           {/* Vertical Line Track (Mobile) */}
           <div 
-            className="absolute left-6 top-[150px] bottom-[150px] w-[2px] bg-navy/15 z-0 md:hidden" 
+            className="absolute left-6 top-[140px] bottom-[140px] w-[2px] bg-navy/15 z-0 md:hidden" 
             aria-hidden="true" 
           />
 
           {/* Vertical Line Progress (Mobile) */}
           <motion.div
-            className="absolute left-6 top-[150px] bottom-[150px] w-[2px] bg-navy z-10 md:hidden origin-top"
+            className="absolute left-6 top-[140px] bottom-[140px] w-[2px] bg-navy z-10 md:hidden origin-top"
             style={{ scaleY: scrollYProgress }}
             aria-hidden="true"
           />

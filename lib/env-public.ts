@@ -13,7 +13,7 @@ export const PUBLIC_API_URL =
 
 /** Propa / ADK chat widget (`widget.html`). Must stay `NEXT_PUBLIC_*` for client components. */
 const DEFAULT_PROPABRIDGE_WIDGET =
-  'https://propabridge-adk-480235407496.us-central1.run.app/widget.html'
+  'https://propabridge-adk-d7apfb4v6q-uc.a.run.app/widget.html'
 
 export const PROPA_WIDGET_URL =
   process.env.NEXT_PUBLIC_PROPA_WIDGET_URL?.trim() || DEFAULT_PROPABRIDGE_WIDGET

@@ -59,27 +59,12 @@ export default async function NeighborhoodPage({
           id="neighborhoods-heading"
           className="text-display-xl text-heading font-medium max-w-4xl mx-auto"
         >
-          Every neighborhood has its rhythm — let&apos;s find the one that fits you best.
+          Every neighborhood has its rhythm —<br />let&apos;s find the one that<br /> fits you best.
         </h1>
 
-        <form action="/neighborhood" className="mt-8 w-full max-w-[560px] mx-auto">
-          <div className="flex items-center bg-white border border-grey-light rounded-btn px-4 py-3 gap-3">
-            <Search size={18} className="text-navy/60 shrink-0" />
-            <input
-              name="q"
-              defaultValue={params?.q || ''}
-              placeholder="Search by neighborhood, city, or district..."
-              className="w-full bg-transparent text-[14px] text-navy placeholder:text-navy/45 outline-none"
-            />
-            <button type="submit" className="bg-navy text-white text-[12px] font-semibold px-4 py-2 rounded-btn">
-              SEARCH
-            </button>
-          </div>
-        </form>
       </section>
 
       <section className="container-site pb-24" aria-label="All neighborhoods">
-        <hr className="border-t border-grey-light mb-10" aria-hidden="true" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredLocations.map((location) => (
             <LocationCard key={location.id} location={location} />

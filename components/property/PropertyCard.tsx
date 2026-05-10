@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,8 +17,8 @@ function formatNairaFull(amount: number): string {
   return `₦${amount.toLocaleString('en-NG')}`
 }
 
-/** Status badge background colours — overlaid on image */
-const statusBgColor: Record<string, string> = {
+/** Status accent — curved tag text on listing cards */
+const statusTextColor: Record<string, string> = {
   'FOR SALE': '#324F07',
   'FOR RENT': '#006AFF',
   'OFF-PLAN': '#9E6100',
@@ -26,8 +26,18 @@ const statusBgColor: Record<string, string> = {
   RESERVED: '#7c3aed',
 }
 
-/** Status colours — brand tokens (kept for non-overlay use) */
-const statusTextColor: Record<string, string> = statusBgColor
+function listingStatusLabel(status: string): string {
+  switch (status) {
+    case 'FOR RENT':
+      return 'For Rent'
+    case 'FOR SALE':
+      return 'For Sale'
+    case 'OFF-PLAN':
+      return 'Off-Plan'
+    default:
+      return status
+  }
+}
 
 function ImageCarousel({ images, title, priority }: { images: string[]; title: string; priority: boolean }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false })
@@ -137,7 +147,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const priceDisplay = priceLabel ?? formatNairaFull(price)
   const isAreaOnly = beds === undefined && baths === undefined
   const badgeColor = statusTextColor[status] ?? '#001A40'
-  const badgeBg = statusBgColor[status] ?? '#001A40'
 
   const displayImages = images && images.length > 0 ? images.filter(Boolean) : []
 
@@ -152,13 +161,14 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
         <div className="relative h-[320px] overflow-hidden rounded-card bg-divider">
           <ImageCarousel images={displayImages} title={title} priority={priority} />
 
-          {/* Status badge — top-right overlay */}
+          {/* Status — curved beige tag, top-right (same treatment as previously below title) */}
           <div
-            className="absolute top-3 right-3 z-10 px-3 py-1 rounded-full text-white text-[11px] font-bold uppercase tracking-[0.08em] shadow-md"
-            style={{ backgroundColor: badgeBg }}
-            aria-label={status}
+            className="absolute top-3 right-3 z-10 inline-flex max-w-[min(200px,calc(100%-1.5rem))] items-center bg-brand-light2 pl-3 pr-4 py-2 shadow-md"
+            style={{ borderRadius: '4px 20px 4px 20px' }}
           >
-            {status}
+            <span className="text-[11px] font-semibold tracking-[0.04em]" style={{ color: badgeColor }}>
+              {listingStatusLabel(status)}
+            </span>
           </div>
         </div>
 
@@ -219,17 +229,6 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
 
           {/* Title */}
           <h3 className="text-h3-s line-clamp-2 font-bold leading-snug text-navy">{title}</h3>
-
-          {/* Tag wrapper — curved beige treatment (kept for design accent below title) */}
-          <div
-            className="mt-3 inline-flex min-w-0 items-center bg-brand-light2 pl-3 pr-4 py-2 shadow-sm"
-            style={{ borderRadius: '4px 20px 4px 20px' }}
-            aria-hidden
-          >
-            <span className="badge-text font-bold uppercase tracking-[0.08em]" style={{ color: badgeColor }}>
-              {status}
-            </span>
-          </div>
         </div>
       </Link>
     </HoverCursorWrapper>

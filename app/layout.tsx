@@ -3,7 +3,10 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import PropaWidget from '@/components/propa/PropaWidget'
+import PropaChatEmbed from '@/components/layout/PropaChatEmbed'
+import { PropaChatProvider } from '@/components/layout/PropaChatContext'
+import PageTransition from '@/components/PageTransition'
+import { PROPA_WIDGET_URL } from '@/lib/env-public'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -58,12 +61,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>
-        <Navbar />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
-        <PropaWidget />
+        <PropaChatProvider widgetUrl={PROPA_WIDGET_URL}>
+          <Navbar />
+          <main id="main-content" tabIndex={-1}>
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+          <PropaChatEmbed />
+        </PropaChatProvider>
       </body>
     </html>
   )

@@ -258,7 +258,7 @@ export default function SellValuationForm() {
 
       {/* Row 7: Message */}
       <div>
-        <label htmlFor="sell-message" className={labelBase}>Messsage</label>
+        <label htmlFor="sell-message" className={labelBase}>Message</label>
         <textarea
           id="sell-message"
           rows={4}

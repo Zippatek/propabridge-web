@@ -370,7 +370,7 @@ export function SubmitPropertyForm() {
 
         {/* Message */}
         <div>
-          <label className={labelCls}>Messsage</label>
+          <label className={labelCls}>Message</label>
           <textarea
             className={inputCls + ' resize-y min-h-[112px]'}
             placeholder="Write your message here"

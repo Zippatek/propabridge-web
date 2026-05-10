@@ -77,13 +77,13 @@ export default function ListingsPage() {
             )}
 
             {!loading && !error && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
                 {properties.length > 0 ? (
                   properties.map((property, index) => (
                     <PropertyCard key={property.id} property={property} priority={index < 4} />
                   ))
                 ) : (
-                  <div className="text-center py-20 bg-[#E5E7EB] rounded-[16px]">
+                  <div className="text-center py-20 bg-beige rounded-[16px]">
                     <h3 className="text-navy font-semibold text-[20px] mb-2">No properties found</h3>
                     <p className="text-navy/70 text-[14px]">Try adjusting your search filters.</p>
                   </div>

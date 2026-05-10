@@ -44,105 +44,18 @@
   }
 
   body {
-    font-family: var(--font-inter), 'Inter Display', 'Inter', system-ui, sans-serif;
-    background-color: var(--brand-light-2);
-    color: var(--brand-navy);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.38;
-    letter-spacing: -0.012em;
-  }
+ font-family: 'Inter', sans-serif;
+ color: #001a40;
+ background: #f4f3ea;
+ line-height: 1.5;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--brand-navy);
-  }
-
-  p,
-  li,
-  td,
-  dd,
-  blockquote {
-    color: #4a5568;
-    line-height: 1.4;
-    letter-spacing: -0.012em;
-  }
-
-  /* Framer heading scale — mobile defaults; hero breakpoint 1200px */
-  h1 {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1.04;
-    letter-spacing: -0.026em;
-  }
-
-  @media (min-width: 1200px) {
-    h1 {
-      font-size: 56px;
-      line-height: 0.98;
-      letter-spacing: -0.026em;
-    }
-  }
-
-  h2 {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.22;
-    letter-spacing: -0.024em;
-  }
-
-  @media (min-width: 1200px) {
-    h2 {
-      font-size: 48px;
-      line-height: 1.04;
-      letter-spacing: -0.024em;
-    }
-  }
-
-  h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.24;
-    letter-spacing: -0.01em;
-  }
-
-  @media (min-width: 1200px) {
-    h3 {
-      font-size: 26px;
-      line-height: 1.2;
-    }
-  }
-
-  h4 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.38;
-    letter-spacing: -0.01em;
-  }
-
-  h5 {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: -0.04em;
-  }
-
-  h6 {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.24;
-    letter-spacing: -0.01em;
-  }
-
-  p,
-  li,
-  span {
-    text-align: left;
-  }
+h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+h3 { font-size: 20px; font-weight: 600; }
+p { font-size: 15px; font-weight: 400; color: #4a5568; line-height: 1.6; }
+.caption { font-size: 12px; font-weight: 400; color: #4a5568; }
+.badge-text { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
 
   a {
     color: inherit;
@@ -294,7 +207,7 @@
   .faq-contact-form-label {
     font-size: 11px;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.55;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -349,7 +262,7 @@
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
-    line-height: 1.3;
+    line-height: 1.5;
   }
 
   .blog-content ul {
@@ -415,28 +328,28 @@
   .text-h2-s {
     font-size: 30px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: -0.02em;
   }
 
   .text-h3-l {
     font-size: 26px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
   .text-h3-m {
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
   .text-h3-s {
     font-size: 16px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
@@ -463,13 +376,13 @@
 
   .text-para-l {
     font-size: 18px;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: -0.4px;
   }
 
   .text-para-m {
     font-size: 18px;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: -0.4px;
   }
 
@@ -487,7 +400,7 @@
   .text-body-token {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.38;
+    line-height: 1.58;
     letter-spacing: -0.012em;
   }
 
@@ -501,7 +414,7 @@
   @media (min-width: 1200px) {
     .text-para-l {
       font-size: 28px;
-      line-height: 1.3;
+      line-height: 1.5;
       letter-spacing: -0.8px;
     }
 
@@ -535,7 +448,7 @@
   .text-h2 {
     font-size: 30px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: -0.02em;
   }
 
@@ -549,7 +462,7 @@
   .text-h3 {
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
@@ -568,14 +481,14 @@
   .text-body {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.38;
+    line-height: 1.58;
     letter-spacing: -0.012em;
   }
 
   .text-body-sm {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.38;
+    line-height: 1.58;
     letter-spacing: -0.012em;
   }
 
@@ -597,6 +510,6 @@
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
-    line-height: 1.3;
+    line-height: 1.5;
   }
 }

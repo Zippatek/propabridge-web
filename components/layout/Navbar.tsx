@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation'
 import { X, ChevronDown as CaretDown, ChevronRight as CaretRight } from 'lucide-react'
 import { NavLink } from '@/lib/types'
 import { cn } from '@/lib/cn'
-import { dispatchOpenPropaWidget } from '@/lib/propa-widget-event'
-
+import { usePropaChat } from '@/components/layout/PropaChatContext'
+import { PROPA_WIDGET_URL } from '@/lib/env-public'
 const NAV_LINKS: NavLink[] = [
   { label: 'ABOUT', href: '/about' },
   {
@@ -33,6 +33,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const pathname = usePathname()
+  const { openChat } = usePropaChat()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -49,21 +50,23 @@ export default function Navbar() {
   return (
     <>
       {/* Blurred Backdrop */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-brand-navy/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-        onClick={() => setMobileOpen(false)}
-        aria-hidden={!mobileOpen}
-      />
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-brand-navy/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       <header
         className={cn(
           'fixed z-50 bg-brand-light1 transition-all duration-200 ease-out flex flex-col',
           'top-4 left-4 right-4 lg:left-8 lg:right-8 xl:w-[calc(100%-4rem)] xl:max-w-[1280px] xl:left-1/2 xl:-translate-x-1/2 rounded-[16px]',
           scrolled && !mobileOpen ? 'shadow-[0_8px_30px_rgba(0,0,0,0.08)]' : 'shadow-sm',
-          mobileOpen ? 'max-h-[850px] overflow-hidden lg:overflow-visible' : 'max-h-[72px] overflow-visible lg:overflow-visible'
+          /* Collapsed mobile: clip menu + bar overflow so invisible links cannot sit over page content */
+          mobileOpen
+            ? 'max-h-[850px] overflow-hidden lg:overflow-visible'
+            : 'max-h-[72px] overflow-hidden lg:overflow-visible'
         )}
         role="banner"
       >
@@ -194,8 +197,9 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-end gap-3 shrink-0">
             <button
               type="button"
-              className="btn-cta-strong hidden lg:inline-flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-5 py-2.5 rounded-btn hover:bg-navy-light transition-colors whitespace-nowrap"
-              onClick={() => dispatchOpenPropaWidget()}
+              onClick={openChat}
+              disabled={!PROPA_WIDGET_URL}
+              className="btn-cta-strong hidden lg:inline-flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-5 py-2.5 rounded-btn hover:bg-navy-light transition-colors whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
             >
               CHAT WITH PROPA
               <span aria-hidden="true">›</span>
@@ -222,16 +226,19 @@ export default function Navbar() {
         {/* Mobile Navigation Links (rendered inside the expanding header) */}
         <div
           className={cn(
-            "lg:hidden flex flex-col items-center px-6 transition-opacity duration-300",
-            mobileOpen ? "opacity-100 delay-100" : "opacity-0"
+            'lg:hidden flex flex-col items-center px-6 transition-opacity duration-300',
+            /* opacity-0 alone still receives clicks — must disable hit-testing when closed */
+            mobileOpen
+              ? 'pointer-events-auto opacity-100 delay-100'
+              : 'pointer-events-none opacity-0'
           )}
+          aria-hidden={!mobileOpen}
         >
           <nav className="flex flex-col items-center py-6 gap-6 w-full border-t border-navy/5" aria-label="Mobile navigation">
             {[
               { label: 'ABOUT', href: '/about' },
               { label: 'ALL PROPERTIES', href: '/listings' },
               { label: 'NEIGHBORHOODS', href: '/neighborhood' },
-              { label: 'AGENTS', href: '/agents' },
               { label: 'SELL', href: '/sell' },
               { label: 'REVIEWS', href: '/reviews' },
               { label: 'SUBMIT PROPERTY', href: '/submit-property' },
@@ -254,10 +261,11 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => {
-                dispatchOpenPropaWidget()
                 setMobileOpen(false)
+                openChat()
               }}
-              className="btn-cta-strong flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-8 py-3.5 rounded-btn hover:bg-navy-light transition-colors"
+              disabled={!PROPA_WIDGET_URL}
+              className="btn-cta-strong flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-8 py-3.5 rounded-btn hover:bg-navy-light transition-colors disabled:cursor-not-allowed disabled:opacity-50"
             >
               CHAT WITH PROPA
               <span aria-hidden="true">›</span>
