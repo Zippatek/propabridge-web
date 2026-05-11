@@ -26,11 +26,7 @@ const HERO_PARTICLES = [
 ]
 
 function HeroChip({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-md bg-brand-textWhite/20 px-2 py-1 backdrop-blur-sm ring-1 ring-brand-textWhite/25">
-      {children}
-    </span>
-  )
+  return <span>{children}</span>
 }
 
 export default function HeroSection() {
