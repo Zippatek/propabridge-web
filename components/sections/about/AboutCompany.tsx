@@ -43,6 +43,7 @@ export const AboutCompany = () => {
                   src="/images/about/about-aminu.png"
                   alt="Aminu S. Muhammad"
                   fill
+                  sizes="64px"
                   className="object-cover object-center"
                 />
               </div>

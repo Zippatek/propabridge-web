@@ -60,12 +60,32 @@ export const NEIGHBORHOOD_COVERS: Record<string, string> = {
  * Used by mock-data when wiring sample property cards.
  */
 export const PROPERTY_GALLERY: Record<string, string[]> = {
-  'gudu-apo-duplex': [],
-  'maitama-duplex': [],
-  'asokoro-villa': [],
-  'guzape-residences': [],
-  'lokogoma-promenade': [],
-  'kubwa-brick-city': [],
+  'gudu-apo-duplex': [
+    bucketUrl('properties/semi-detached-duplex-terrace-estate-—-amina-court-phase-ii-apo-dutse-abuja/333d4e0d57af.webp'),
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/411190295027.webp'),
+    bucketUrl('properties/semi-detached-duplex-terrace-estate-—-amina-court-phase-ii-apo-dutse-abuja/4e1366d72604.webp'),
+  ],
+  'maitama-duplex': [
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0a55747c0639.webp'),
+    bucketUrl('properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp'),
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp'),
+  ],
+  'asokoro-villa': [
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0a55747c0639.webp'),
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0ae66eef29d4.webp'),
+  ],
+  'guzape-residences': [
+    bucketUrl('properties/shopping-mall-—-guzape-mall-guzape-district-abuja/26193854795e.webp'),
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/1cf787ab082d.webp'),
+  ],
+  'lokogoma-promenade': [
+    bucketUrl('properties/ultra-modern-commercial-market-—-kasuwan-barci-market-kakuri-kaduna/01f50cdd6bf5.webp'),
+    bucketUrl('properties/ultra-modern-commercial-market-—-kasuwan-barci-market-kakuri-kaduna/6bd655095364.webp'),
+  ],
+  'kubwa-brick-city': [
+    bucketUrl('properties/well-finished-4-bedroom-terrace-duplex-with-self-contained-bq/00325858fb27.webp'),
+    bucketUrl('properties/luxury-residential-estate-—-heritage-heights-asokoro-abuja/0ae66eef29d4.webp'),
+  ],
   'kaduna-millenium': [
     bucketUrl('properties/millenium-city-kaduna-babban-saura/1b787d3f61d9.webp'),
     bucketUrl('properties/millenium-city-kaduna-babban-saura/568b029da47d.webp'),

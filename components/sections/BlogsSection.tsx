@@ -100,6 +100,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
                   src={blog.image}
                   alt={blog.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
@@ -122,7 +123,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
                   {blog.authorName === 'PROPABRIDGE TEAM' ? (
                     <Home size={14} className="text-navy" />
                   ) : (
-                    <Image src={blog.authorImage || '/images/blogs/author.svg'} alt={blog.authorName} fill className="object-cover" />
+                    <Image src={blog.authorImage || '/images/blogs/author.svg'} alt={blog.authorName} fill sizes="48px" className="object-cover" />
                   )}
                 </div>
                 <p className="text-[11px] font-bold text-navy tracking-[0.05em] uppercase">

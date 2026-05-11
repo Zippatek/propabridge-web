@@ -77,6 +77,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               src={blog.image}
               alt={blog.title}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
               priority
             />
@@ -99,7 +100,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                         <Home size={28} className="text-white" />
                       </div>
                     ) : (
-                      <Image src={blog.authorImage || '/images/blogs/author.png'} alt={blog.authorName} fill className="object-cover" />
+                      <Image src={blog.authorImage || '/images/blogs/author.png'} alt={blog.authorName} fill sizes="48px" className="object-cover" />
                     )}
                   </div>
                   <div>
@@ -174,6 +175,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     src={b.image}
                     alt={b.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   {/* View Hover Badge */}
@@ -202,7 +204,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     {b.authorName === 'PROPABRIDGE TEAM' ? (
                       <Home size={14} className="text-navy" />
                     ) : (
-                      <Image src={b.authorImage || '/images/blogs/author.png'} alt={b.authorName} fill className="object-cover" />
+                      <Image src={b.authorImage || '/images/blogs/author.png'} alt={b.authorName} fill sizes="48px" className="object-cover" />
                     )}
                   </div>
                   <p className="text-[11px] font-bold text-navy tracking-[0.05em] uppercase">

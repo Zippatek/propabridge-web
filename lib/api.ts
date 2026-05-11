@@ -1,6 +1,7 @@
 import { BLOGS } from '@/data/blogs'
 import { pickMarkdownFields } from '@/lib/property-markdown'
 import { Property } from '@/lib/types'
+import { NEIGHBORHOOD_COVERS } from '@/lib/bucket'
 
 import { PUBLIC_API_URL } from '@/lib/env-public'
 
@@ -345,6 +346,7 @@ export type FrontendNeighborhood = {
   city: string
   state: string
   coverImage: string
+  gallery?: string[]
   description?: string
   safetyScore?: number
   averagePrice?: number
@@ -358,13 +360,39 @@ export type FrontendNeighborhood = {
 function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
   const slug = (n.slug as string) || (n.id as string) || ''
   const name = (n.name as string) || ''
+  
+  let coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
+  let galleryRaw = Array.isArray(n.gallery) ? n.gallery : (Array.isArray(n.images) ? n.images : [])
+  let gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
+
+  if (!coverImage || coverImage.includes('googleapis.com')) {
+    const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+    const candidates = [
+      slug || '',
+      [name, n.city as string].filter(Boolean).join('-'),
+      name || '',
+    ].map(slugify).filter(Boolean)
+
+    for (const key of candidates) {
+      if (NEIGHBORHOOD_COVERS[key]) {
+        coverImage = NEIGHBORHOOD_COVERS[key]
+        break
+      }
+    }
+  }
+  
+  if (gallery.length === 0 && coverImage && !coverImage.includes('googleapis.com')) {
+    gallery = [coverImage]
+  }
+
   return {
     id: (n.id as string) || slug,
     slug,
     name,
     city: (n.city as string) || '',
     state: (n.city as string) === 'Abuja' ? 'FCT' : ((n.state as string) || ''),
-    coverImage: (n.coverImage as string) || (n.cover_image as string) || '',
+    coverImage: coverImage,
+    gallery,
     description: (n.description as string) || undefined,
     safetyScore: typeof n.safetyScore === 'number' ? (n.safetyScore as number) : (n.safety_score as number | undefined),
     averagePrice: typeof n.averagePrice === 'number' ? (n.averagePrice as number) : (n.average_price as number | undefined),

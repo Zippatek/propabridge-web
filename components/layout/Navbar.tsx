@@ -125,7 +125,7 @@ export default function Navbar() {
                       {/* Column 1 */}
                       <Link href="/listings" className="flex-1 flex flex-col group/col cursor-pointer" onClick={() => setActiveDropdown(null)}>
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
-                          <Image src="/images/menu/house_in_field.png" alt="All Properties" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
+                          <Image src="/images/menu/house_in_field.png" alt="All Properties" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">All Properties</h3>
                         <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
@@ -137,7 +137,7 @@ export default function Navbar() {
                       {/* Column 2 */}
                       <Link href="/neighborhood" className="flex-1 flex flex-col group/col cursor-pointer" onClick={() => setActiveDropdown(null)}>
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
-                          <Image src="/images/menu/rainy_city_street.png" alt="Neighborhoods" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
+                          <Image src="/images/menu/rainy_city_street.png" alt="Neighborhoods" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Neighborhoods</h3>
                         <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
@@ -149,7 +149,7 @@ export default function Navbar() {
                       {/* Column 3 */}
                       <Link href="/listings?type=all" className="flex-1 flex flex-col group/col cursor-pointer" onClick={() => setActiveDropdown(null)}>
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
-                          <Image src="/images/menu/men_in_suits.png" alt="Property Types" fill className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
+                          <Image src="/images/menu/men_in_suits.png" alt="Property Types" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
                         <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Property Types</h3>
                         <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>

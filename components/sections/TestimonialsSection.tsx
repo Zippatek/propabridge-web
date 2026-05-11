@@ -173,7 +173,7 @@ export default function TestimonialsSection({
     if (review.type === 'image') {
        return (
           <div key={review.id} className={cn("relative shrink-0 aspect-[8/11] overflow-hidden group transition-transform hover:scale-[1.01]", pageCardShell, !isPage && "w-[300px] md:w-[380px] snap-center", isPage && "w-full")}>
-             <Image src={review.image} alt={review.author} fill className="object-cover" />
+             <Image src={review.image} alt={review.author} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
              
              {/* Dark Base Gradient Overlay */}
              <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent" />
@@ -239,7 +239,7 @@ export default function TestimonialsSection({
               </p>
             </div>
             <div className={cn("relative w-[52px] h-[52px] rounded-[16px] overflow-hidden shrink-0 border", isPage ? "border-grey-divider shadow-none" : "shadow-sm border-grey-light/30")}>
-              <Image src={review.image} alt={review.author} fill className="object-cover" />
+              <Image src={review.image} alt={review.author} fill sizes="64px" className="object-cover" />
             </div>
           </div>
 

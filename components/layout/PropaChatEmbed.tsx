@@ -89,6 +89,7 @@ export default function PropaChatEmbed() {
         className="pointer-events-auto h-full w-full border-0 bg-transparent"
         allow="clipboard-write; microphone"
         onLoad={onIframeLoad}
+        loading="lazy"
       />
     </div>
   )

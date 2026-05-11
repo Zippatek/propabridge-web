@@ -87,7 +87,7 @@ export default async function NeighborhoodDetailPage({ params }: NeighborhoodDet
           </div>
 
           <div className="relative w-full aspect-[16/10] rounded-card overflow-hidden border border-grey-light">
-            <Image src={image} alt={`${name}, ${city}`} fill className="object-cover" />
+            <Image src={image} alt={`${name}, ${city}`} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
         </div>
 

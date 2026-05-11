@@ -125,7 +125,7 @@ export default function HowItWorks() {
                   `}>
                     {/* Fixed aspect ratio and max-width ensures proper height relation to text card */}
                     <div className="relative w-full max-w-[480px] overflow-hidden rounded-[24px] aspect-[4/3] md:aspect-[5/3] border-[6px] border-white shadow-md bg-white">
-                      <Image src={step.image} alt={step.title} fill className="object-cover" />
+                      <Image src={step.image} alt={step.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                     </div>
                   </div>
 
