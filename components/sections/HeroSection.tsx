@@ -18,7 +18,20 @@ const HERO_PARTICLES = [
 ]
 
 function HeroChip({ children }: { children: React.ReactNode }) {
-  return <span>{children}</span>
+  return (
+    <span
+      style={{
+        background: 'rgba(255, 248, 237, 0.18)',
+        border: '1px solid rgba(255, 248, 237, 0.28)',
+        borderRadius: '6px',
+        padding: '0 0.18em',
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
+      }}
+    >
+      {children}
+    </span>
+  )
 }
 
 export default function HeroSection() {
