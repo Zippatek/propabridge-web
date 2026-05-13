@@ -148,7 +148,7 @@ export function PropertyInquiryCard({ property }: Props) {
       </div>
 
       {/* ── Card 2: Book a Viewing ────────────────────────────────────── */}
-      <div className="bg-white rounded-[14px] p-6 shadow-[0_4px_24px_rgba(0,26,64,0.08)]">
+      <div className="bg-white rounded-[14px] p-6 border border-[#e8e7e0]">
         <h3 className="text-[#001a40] font-bold mb-1" style={{ fontSize: 'clamp(16px, 1.4vw, 19px)' }}>
           Book a viewing
         </h3>

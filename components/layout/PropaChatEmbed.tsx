@@ -65,7 +65,8 @@ export default function PropaChatEmbed() {
     return () => window.removeEventListener('message', onMessage)
   }, [widgetUrl])
 
-  // Forward property context injected by PropertyInquiryCard → iframe
+  // Forward property prompt from PropertyInquiryCard → iframe as propa-chat-send
+  // The widget opens the panel and auto-submits the message to PropaAI
   useEffect(() => {
     const onContext = (e: Event) => {
       const { context } = (e as CustomEvent).detail || {}
@@ -73,7 +74,8 @@ export default function PropaChatEmbed() {
       const win = iframeRef.current?.contentWindow
       if (!win) return
       try {
-        win.postMessage({ type: 'propa-chat-context', context }, '*')
+        // Use propa-chat-send so widget opens + auto-submits the prompt
+        win.postMessage({ type: 'propa-chat-send', message: context }, '*')
       } catch { /* ignore */ }
     }
     window.addEventListener('propa-chat-context', onContext)
