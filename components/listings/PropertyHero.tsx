@@ -25,8 +25,8 @@ export function PropertyHero({ property }: PropertyHeroProps) {
             priority
           />
         )}
-        {/* Gradient that fades from transparent to the beige page background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f3ea] via-[#f4f3ea]/70 to-transparent" />
+        {/* Gradient — image reads clearly top-to-mid, only fades at the bottom quarter */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f3ea] via-[#f4f3ea]/20 to-transparent" />
       </div>
 
       {/* Content */}
