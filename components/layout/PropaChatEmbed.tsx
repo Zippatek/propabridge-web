@@ -65,24 +65,40 @@ export default function PropaChatEmbed() {
     return () => window.removeEventListener('message', onMessage)
   }, [widgetUrl])
 
-  // Forward property prompt from PropertyInquiryCard → iframe as propa-chat-send
-  // The widget opens the panel and auto-submits the message to PropaAI
+  // Forward property prompt from PropertyInquiryCard → iframe as propa-chat-send.
+  // propa-chat-send is self-contained: it opens the panel AND auto-submits the prompt.
+  // We do NOT also fire propa-chat-open to avoid the widget toggling twice.
+  const pendingMessageRef = useRef<string | null>(null)
+
   useEffect(() => {
     const onContext = (e: Event) => {
       const { context } = (e as CustomEvent).detail || {}
       if (!context) return
       const win = iframeRef.current?.contentWindow
-      if (!win) return
-      try {
-        // Use propa-chat-send so widget opens + auto-submits the prompt
-        win.postMessage({ type: 'propa-chat-send', message: context }, '*')
-      } catch { /* ignore */ }
+      if (win) {
+        try {
+          win.postMessage({ type: 'propa-chat-send', message: context }, '*')
+        } catch { /* ignore */ }
+      } else {
+        // iframe not ready yet — store and send on next load
+        pendingMessageRef.current = context
+      }
     }
     window.addEventListener('propa-chat-context', onContext)
     return () => window.removeEventListener('propa-chat-context', onContext)
   }, [])
 
   const onIframeLoad = useCallback(() => {
+    // Flush any pending context message (fires propa-chat-send which also opens the panel)
+    if (pendingMessageRef.current) {
+      const msg = pendingMessageRef.current
+      pendingMessageRef.current = null
+      const win = iframeRef.current?.contentWindow
+      if (win) {
+        try { win.postMessage({ type: 'propa-chat-send', message: msg }, '*') } catch { /* ignore */ }
+        return // propa-chat-send handles open — no need for separate propa-chat-open
+      }
+    }
     if (!pendingOpenRef.current) return
     notifyIframeOpen()
     window.setTimeout(notifyIframeOpen, 150)
