@@ -38,34 +38,20 @@ export async function RelatedPropertiesCTA({ property }: Props) {
       <hr className="border-t border-[#cbd5e0] mb-14" />
 
       {/* Section header */}
-      <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-[10px] h-[10px] rounded-[2px] bg-[#001a40] inline-block" />
-            <span className="text-[#001a40] text-[11px] font-bold uppercase tracking-[0.1em]">
-              SMART PICKS FOR YOU
-            </span>
-          </div>
-          <h2
-            className="text-heading font-semibold"
-            style={{ fontSize: 'clamp(22px, 3vw, 36px)', letterSpacing: '-0.02em', lineHeight: 1.1 }}
-          >
-            {related.length > 0
-              ? 'Similar properties in your area'
-              : 'If this one caught your eye, these might just seal the deal.'}
-          </h2>
-          {related.length > 0 && (
-            <p className="text-[#4a5568] text-[13px] mt-2">
-              Matched by location, type &amp; price — curated by PropaAI.
-            </p>
-          )}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-[10px] h-[10px] rounded-[2px] bg-[#001a40] inline-block" />
+          <span className="text-[#001a40] text-[11px] font-bold uppercase tracking-[0.1em]">
+            RELATED PROPERTIES
+          </span>
         </div>
-        <Link
-          href={`/listings?status=${encodeURIComponent(property.status || '')}`}
-          className="btn-cream-pill shrink-0"
+        <h2
+          className="text-heading font-medium"
+          style={{ fontSize: 'clamp(24px, 3.5vw, 42px)', letterSpacing: '-0.025em', lineHeight: 1.08 }}
         >
-          VIEW PROPERTIES <span aria-hidden="true">›</span>
-        </Link>
+          If this one caught your eye,<br />
+          these might just seal the deal.
+        </h2>
       </div>
 
       {/* Use existing PropertyCard — same card as the main listings page */}

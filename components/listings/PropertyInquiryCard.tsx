@@ -74,15 +74,17 @@ export function PropertyInquiryCard({ property }: Props) {
   );
   const waHref = `https://wa.me/${PROPA_AI_WA}?text=${waMessage}`;
 
-  // Open the PropaAI chat widget with property context injected
+  // Open the PropaAI chat widget pre-filled with the same WhatsApp-style prompt
+  const propaAIPrompt = `Hi PropaAI! I'm interested in viewing this property:\n*${property.title}*\n${property.location ? `📍 ${property.location}` : ''}\n\nCan you help me arrange a tour?`;
+
   const openPropaAIChat = () => {
-    // Post context into the widget iframe first, then open
-    const msg = {
-      type: 'propa-chat-context',
-      context: `I'm currently viewing this property listing: "${property.title}"${property.location ? ` at ${property.location}` : ''}. Price: ${property.price ? `₦${property.price.toLocaleString()}` : 'enquire'}.`,
-    };
-    // The iframe receives messages from the parent via postMessage in PropaChatEmbed
-    window.dispatchEvent(new CustomEvent('propa-chat-context', { detail: msg }));
+    // Inject the opening message into the widget iframe so PropaAI already
+    // knows the property context when the panel opens
+    window.dispatchEvent(
+      new CustomEvent('propa-chat-context', {
+        detail: { type: 'propa-chat-context', context: propaAIPrompt },
+      })
+    );
     dispatchOpenPropaChat();
   };
 
