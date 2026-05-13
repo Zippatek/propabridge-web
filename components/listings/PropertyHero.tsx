@@ -15,10 +15,11 @@ export function PropertyHero({ property }: PropertyHeroProps) {
 
   const sectionRef = useRef<HTMLElement | null>(null)
   const [mounted, setMounted] = useState(false)
+  // Door open: 1.08 → 1.0 on mount. Door close: 1.0 → 1.05 as hero scrolls away.
+  // NO translateY — it pushes the wrapper down and exposes the bg behind it.
   const [imageScale, setImageScale] = useState(1.08)
-  const [translateY, setTranslateY] = useState(0)
 
-  // Door open on mount
+  // Door open on mount with a slow ease-in transition
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
       setMounted(true)
@@ -27,7 +28,7 @@ export function PropertyHero({ property }: PropertyHeroProps) {
     return () => cancelAnimationFrame(raf)
   }, [])
 
-  // Door close + parallax as hero scrolls away
+  // Door close: slow re-zoom as hero scrolls off screen
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -35,8 +36,8 @@ export function PropertyHero({ property }: PropertyHeroProps) {
       const rect = section.getBoundingClientRect()
       const scrolledPast = Math.max(-rect.top, 0)
       const scrollRatio = Math.min(scrolledPast / (rect.height || 1), 1)
+      // Re-zoom 1.0 → 1.05 as hero scrolls away (door closing behind you)
       setImageScale(1.0 + scrollRatio * 0.05)
-      setTranslateY(Math.min(scrolledPast * 0.25, 80))
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -55,20 +56,21 @@ export function PropertyHero({ property }: PropertyHeroProps) {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      // 99vh — specs bar always below the fold on desktop
       style={{ height: '99vh', minHeight: 600, marginTop: '-84px' }}
       aria-labelledby="property-hero-heading"
     >
-      {/* ── Image: door-open scale + parallax ── */}
+      {/* ── Image layer: scale only — no translateY so the image always covers the section ── */}
       <div
         className="absolute inset-0 z-0 bg-[#d0cfc5]"
         style={{
           opacity: mounted ? 1 : 0,
-          transform: `scale(${imageScale}) translateY(${translateY}px)`,
+          transform: `scale(${imageScale})`,
           transformOrigin: 'center center',
+          // Mount: slow 900ms ease for the door-open feel
+          // Scroll: 350ms ease-out so returning to top is smooth, never jerky
           transition: mounted
-            ? 'transform 0.08s linear'
-            : 'opacity 700ms ease, transform 700ms ease',
+            ? 'transform 350ms ease-out'
+            : 'opacity 900ms ease, transform 900ms ease',
           willChange: 'transform, opacity',
         }}
       >
@@ -84,8 +86,7 @@ export function PropertyHero({ property }: PropertyHeroProps) {
         )}
       </div>
 
-      {/* ── Beige gradient — fades from brand beige at bottom to transparent ── */}
-      {/*    Image stays fully clear in the top ~45%; bottom half transitions      */}
+      {/* ── Beige gradient: image clear in top ~40%, fades to page bg at bottom ── */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
@@ -96,13 +97,12 @@ export function PropertyHero({ property }: PropertyHeroProps) {
 
       {/* ── Content: centered, pinned to bottom ── */}
       <div className="relative z-10 h-full flex flex-col items-center justify-end pb-16 px-4 text-center">
-
         <h1
           id="property-hero-heading"
           className="max-w-4xl mb-4"
           style={{
             fontSize: 'clamp(26px, 4.5vw, 54px)',
-            fontWeight: 500,           // reduced weight — was 700
+            fontWeight: 500,
             lineHeight: 1.08,
             letterSpacing: '-0.022em',
             color: '#001a40',
@@ -111,7 +111,6 @@ export function PropertyHero({ property }: PropertyHeroProps) {
           {property.title}
         </h1>
 
-        {/* Location link — dotted underline, centered */}
         {mapsHref ? (
           <a
             href={mapsHref}

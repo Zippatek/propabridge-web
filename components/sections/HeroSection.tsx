@@ -17,18 +17,19 @@ const HERO_PARTICLES = [
   { left: '86%', top: '73%', size: 8, opacity: 0.1, duration: 12.7, delay: 2.9 },
 ]
 
+function HeroChip({ children }: { children: React.ReactNode }) {
+  return <span>{children}</span>
+}
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const [mounted, setMounted] = useState(false)
-
-  // Door-open scale: 1.1 on load → 1.0 once mounted (appear), then re-zooms to 1.04 as you scroll past
+  // Door-open scale only — NO translateY so the image always covers the full section
   const [imageScale, setImageScale] = useState(1.1)
-  // Parallax translateY for the image layer
-  const [translateY, setTranslateY] = useState(0)
-  // Blur overlay: starts sharp, increases as hero scrolls away
+  // Blur overlay (separate from the image layer — not affected by scale/translate)
   const [blurPx, setBlurPx] = useState(0)
 
-  // Appear on mount — trigger door open
+  // Door open on mount
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
       setMounted(true)
@@ -37,7 +38,7 @@ export default function HeroSection() {
     return () => cancelAnimationFrame(raf)
   }, [])
 
-  // Scroll: door close (re-zoom) + parallax + blur
+  // Door close + blur as hero scrolls away
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -46,17 +47,13 @@ export default function HeroSection() {
       const rect = section.getBoundingClientRect()
       const vh = window.innerHeight || 1
 
-      // How far the hero has scrolled past the viewport top (0 = in view, positive = scrolled away)
       const scrolledPast = Math.max(-rect.top, 0)
       const scrollRatio = Math.min(scrolledPast / (rect.height || 1), 1)
 
-      // Door close: as hero scrolls away, image slowly re-zooms 1.0 → 1.06
+      // Door close: re-zoom 1.0 → 1.06 as hero scrolls off screen
       setImageScale(1.0 + scrollRatio * 0.06)
 
-      // Parallax: image drifts upward at 28% of scroll speed
-      setTranslateY(Math.min(scrolledPast * 0.28, 100))
-
-      // Blur: increases gently as hero leaves view
+      // Blur: fades in as hero leaves viewport
       const progress = Math.min(Math.max((vh - rect.top) / (rect.height + vh), 0), 1)
       const nextBlur = window.innerWidth < 768
         ? Math.max(0, 5 - progress * 5)
@@ -77,27 +74,26 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden bg-brand-navy"
-      style={{ minHeight: '100vh', marginTop: '-84px' }}
+      // 99vh height, matching property hero
+      style={{ height: '99vh', minHeight: '100vh', marginTop: '-84px' }}
       aria-labelledby="hero-heading"
     >
-      {/* ── Image layer: door-open scale + parallax ── */}
+      {/* ── Image layer: scale only — no translateY so image always fills the section ── */}
       <div
         className="absolute inset-0 z-0"
         aria-hidden
         style={{
           opacity: mounted ? 1 : 0,
-          transform: `scale(${imageScale}) translateY(${translateY}px)`,
+          transform: `scale(${imageScale})`,
           transformOrigin: 'center center',
+          // Mount: slow 900ms door-open. Scroll: 350ms ease-out so scrolling back to top is smooth.
           transition: mounted
-            ? 'transform 0.08s linear'
-            : 'opacity 800ms ease, transform 800ms ease',
+            ? 'transform 350ms ease-out'
+            : 'opacity 900ms ease, transform 900ms ease',
           willChange: 'transform, opacity',
         }}
       >
-        {/* Navy base */}
         <div className="absolute inset-0 bg-brand-navy" />
-
-        {/* Hero photo */}
         <div className="absolute inset-0 z-[1]">
           <Image
             src="/images/hero/buy-sell-rent.png"
@@ -108,38 +104,38 @@ export default function HeroSection() {
             className="object-cover object-center brightness-[0.82]"
           />
         </div>
-
-        {/* Blur overlay — sharpens as hero loads, re-blurs as you scroll away */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[2]"
-          style={{
-            backdropFilter: `blur(${blurPx}px)`,
-            WebkitBackdropFilter: `blur(${blurPx}px)`,
-          }}
-        />
-
         {/* Vignette tint */}
-        <div className="pointer-events-none absolute inset-0 z-[3] bg-brand-navy" style={{ opacity: 0.12 }} />
+        <div className="pointer-events-none absolute inset-0 z-[2] bg-brand-navy" style={{ opacity: 0.12 }} />
+      </div>
 
-        {/* Floating particles */}
-        <div className="pointer-events-none absolute inset-0 z-[4]" aria-hidden>
-          {HERO_PARTICLES.map((p, i) => (
-            <span
-              key={`${p.left}-${p.top}-${i}`}
-              className="absolute rounded-full bg-brand-textWhite"
-              style={{
-                left: p.left,
-                top: p.top,
-                width: `${p.size}px`,
-                height: `${p.size}px`,
-                opacity: p.opacity,
-                filter: 'blur(0.8px)',
-                animation: `heroParticleFloat ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
-                willChange: 'transform, opacity',
-              }}
-            />
-          ))}
-        </div>
+      {/* ── Blur overlay: separate from scale layer so it never exposes gaps ── */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[3]"
+        aria-hidden
+        style={{
+          backdropFilter: `blur(${blurPx}px)`,
+          WebkitBackdropFilter: `blur(${blurPx}px)`,
+        }}
+      />
+
+      {/* ── Floating particles ── */}
+      <div className="pointer-events-none absolute inset-0 z-[4]" aria-hidden>
+        {HERO_PARTICLES.map((p, i) => (
+          <span
+            key={`${p.left}-${p.top}-${i}`}
+            className="absolute rounded-full bg-brand-textWhite"
+            style={{
+              left: p.left,
+              top: p.top,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              opacity: p.opacity,
+              filter: 'blur(0.8px)',
+              animation: `heroParticleFloat ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+              willChange: 'transform, opacity',
+            }}
+          />
+        ))}
       </div>
 
       {/* ── Grid pattern ── */}
@@ -186,16 +182,25 @@ export default function HeroSection() {
         </h1>
         <div className="h-[24vh] hero:hidden" aria-hidden />
 
+        {/* Subtitle — reverted to original structure */}
         <p className="mx-auto mb-8 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mb-10 hero:text-[40px]">
           <span className="block w-full text-center">The Smartest Way to</span>
           <span className="mt-2 inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
-            Rent, Buy and Invest in Properties in Nigeria
+            <HeroChip>Rent,</HeroChip>
+            <HeroChip>Buy</HeroChip>
+            <span className="text-brand-textWhite">and</span>
+            <HeroChip>Invest</HeroChip>
+            <span className="text-brand-textWhite">in</span>
+            <HeroChip>Properties</HeroChip>
+            <span className="text-brand-textWhite">in</span>
+            <HeroChip>Nigeria</HeroChip>
           </span>
         </p>
 
+        {/* CTA button — reverted to original cream styling */}
         <Link
           href="/listings"
-          className="btn-navy-pill"
+          className="btn-cta-strong inline-flex items-center gap-2 rounded-lg bg-brand-textWhite px-8 py-3.5 text-brand-textBlack transition-colors duration-200 hover:bg-brand-light1"
         >
           VIEW PROPERTIES
           <span className="text-para-m leading-none">›</span>
