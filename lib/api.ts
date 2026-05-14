@@ -109,6 +109,26 @@ export async function fetchListings(filters?: {
   }
 }
 
+export async function fetchPropertyFilters() {
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/listings/filters`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to fetch filters');
+    const json = await res.json();
+    const raw = json.data || [];
+    
+    // Return names exactly as they come from the API (dashboard mirror)
+    const allCategories = [
+      'ALL',
+      ...(Array.isArray(raw) ? raw.map((t: any) => t.name.toUpperCase()) : []),
+    ];
+    
+    return Array.from(new Set(allCategories));
+  } catch (error) {
+    console.error('fetchPropertyFilters error:', error);
+    return ['ALL', 'APARTMENT', 'HOUSE', 'DUPLEX', 'BUNGALOW', 'LAND', 'COMMERCIAL', 'VILLA', 'PENTHOUSE'];
+  }
+}
+
 export async function fetchListing(id: string) {
   try {
     const res = await fetchWithTimeout(`${API_URL}/listings/${id}`, { cache: 'no-store' });

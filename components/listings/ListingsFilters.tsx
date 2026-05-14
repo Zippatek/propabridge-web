@@ -1,6 +1,8 @@
 'use client'
 
 import { cn } from '@/lib/cn'
+import { useState, useEffect } from 'react'
+import { fetchPropertyFilters } from '@/lib/api'
 
 interface ListingsFiltersProps {
   activeCategory: string
@@ -8,22 +10,16 @@ interface ListingsFiltersProps {
   className?: string
 }
 
-const CATEGORIES = [
-  'RETAIL SHOP',
-  'ALL',
-  'VILLA',
-  'SINGLE FAMILY HOME',
-  'LUXURY HOMES',
-  'APARTMENT',
-  'OFFICE SPACE',
-  'COMMERCIAL',
-  'LAND',
-]
-
 export default function ListingsFilters({ activeCategory, onCategoryChange, className }: ListingsFiltersProps) {
+  const [categories, setCategories] = useState<string[]>(['ALL'])
+
+  useEffect(() => {
+    fetchPropertyFilters().then(setCategories)
+  }, [])
+
   return (
-    <div className={cn("flex", className)}>
-      {CATEGORIES.map((category) => {
+    <div className={cn("flex gap-2 overflow-x-auto pb-2 scrollbar-hide", className)}>
+      {categories.map((category) => {
         const isActive = activeCategory === category
         return (
           <button
