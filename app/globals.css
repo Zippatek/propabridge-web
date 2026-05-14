@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    /* ── Display font for hero heading ──────────────────────────────────
-     * Change --font-hero to switch the "buy. sell. rent." typeface:
-     *   var(--font-display)       → Space Grotesk  (inktrapped, curved terminals)
-     *   var(--font-display-alt)   → Bricolage Grotesque  (editorial, expressive)
-     *   var(--font-display-syne)  → Syne  (geometric, bold personality)
-     *   var(--font-inter)         → Inter  (original, clean)
+    /* ── Display font for hero "buy. sell. rent." heading ───────────────
+     * Swap --font-hero to preview each typeface (one line change):
+     *   var(--font-display)       → Nunito Sans   (rounded terminals — closest to Circular/Realist)
+     *   var(--font-display-alt)   → DM Sans        (soft humanist, modern real-estate feel)
+     *   var(--font-display-syne)  → Outfit         (geometric, slightly rounded, Proxima Nova-ish)
+     *   var(--font-inter)         → Inter           (original, clean)
      */
-    --font-hero: var(--font-display);   /* ← swap this one line to try different fonts */
+    --font-hero: var(--font-display);   /* ← change this one line to switch fonts */
 
     /* Brand — Framer tokens (surfaces: never pure #ffffff) */
     --brand-cta: #006aff;
