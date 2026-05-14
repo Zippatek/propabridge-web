@@ -33,7 +33,7 @@ export default function SellHero() {
         <div className="relative z-10 container-site flex flex-col items-center text-center">
           <h1
             id="sell-hero-heading"
-            className="text-display-xl text-[#f0efeb] font-medium font-sans mb-3 w-full max-w-[900px]"
+            className="text-display-xl text-[#F4F3EA] font-medium font-sans mb-3 w-full max-w-[900px]"
           >
             Sell your home smarter, faster, and with less stress.
           </h1>

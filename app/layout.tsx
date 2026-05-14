@@ -22,33 +22,50 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
+const OG_IMAGE = {
+  url: 'https://propabridge.com/logo-circle.jpg',
+  width: 400,
+  height: 400,
+  alt: 'Propabridge — Verified Real Estate in Nigeria',
+}
+
 export const metadata: Metadata = {
   title: {
-    default: 'Propabridge — Verified Real Estate in Nigeria | Zero Fees. Zero Fears.',
+    default: 'Propabridge — Find Verified Homes in Nigeria',
     template: '%s | Propabridge',
   },
   description:
-    'The smartest way to rent, buy and invest in properties in Nigeria. Zero inspection fees. Zero fake listings. Physical + legal verification on every listing.',
+    'Buy, rent, or invest in verified properties across Nigeria. No fake listings. No inspection fees. Every home physically and legally verified — so you move with confidence.',
   keywords: [
     'real estate Nigeria',
-    'verified properties Abuja',
-    'buy property Nigeria',
-    'rent property Abuja',
-    'Kaduna property',
-    'Minna real estate',
+    'verified properties Nigeria',
+    'buy property Abuja',
+    'rent property Nigeria',
+    'Kaduna real estate',
+    'Minna property',
+    'no inspection fees Nigeria',
+    'verified homes Abuja',
   ],
   openGraph: {
-    title: "Propabridge — Nigeria's Verification-First Real Estate Platform",
-    description: 'Zero Fees. Zero Fears. Find verified homes in Abuja, Kaduna & Minna.',
+    title: 'Propabridge — Find Verified Homes in Nigeria',
+    description:
+      'Buy, rent, or invest with confidence. Every listing physically and legally verified. No fees. No fakes.',
     url: 'https://propabridge.com',
     siteName: 'Propabridge',
+    images: [OG_IMAGE],
     locale: 'en_NG',
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Propabridge — Verified Real Estate in Nigeria',
-    description: 'Zero Fees. Zero Fears. Find verified homes in Abuja, Kaduna & Minna.',
+    card: 'summary',
+    title: 'Propabridge — Find Verified Homes in Nigeria',
+    description:
+      'Buy, rent, or invest with confidence. Every listing physically and legally verified. No fees. No fakes.',
+    images: [OG_IMAGE.url],
+  },
+  icons: {
+    icon: '/logo-circle.jpg',
+    apple: '/logo-circle.jpg',
   },
   robots: { index: true, follow: true },
 }

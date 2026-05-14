@@ -134,7 +134,7 @@ export default function HowItWorks() {
                     ${textOnLeft ? 'md:order-1 md:pr-12 lg:pr-16 md:justify-end' : 'md:order-2 md:pl-12 lg:pl-16 md:justify-start'}
                   `}>
                     {/* The text card base: sizes naturally without stretching to full height */}
-                    <div className="bg-[#fbfcfa] w-full max-w-[420px] p-8 md:p-10 rounded-[24px] relative shadow-sm self-center flex flex-col justify-center border border-[#ecece0]/50">
+                    <div className="bg-[#FFFFF2] w-full max-w-[420px] p-8 md:p-10 rounded-[24px] relative shadow-sm self-center flex flex-col justify-center border border-[#ecece0]/50">
 
                       {/* Step Label: Unified Top-Right Rule for all cards */}
                       <div className="absolute top-0 right-0 bg-navy text-white text-[11px] font-bold px-4 py-2 rounded-tr-[24px] rounded-bl-[16px] uppercase tracking-wider">

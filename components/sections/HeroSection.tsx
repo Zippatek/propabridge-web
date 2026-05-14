@@ -21,8 +21,7 @@ function HeroChip({ children }: { children: React.ReactNode }) {
   return (
     <span
       style={{
-        background: 'rgba(255, 248, 237, 0.18)',
-        border: '1px solid rgba(255, 248, 237, 0.28)',
+        background: 'rgba(255, 248, 237, 0.16)',
         borderRadius: '6px',
         padding: '0 0.18em',
         backdropFilter: 'blur(4px)',
@@ -193,10 +192,10 @@ export default function HeroSection() {
             rent.
           </Link>
         </h1>
-        <div className="h-[24vh] hero:hidden" aria-hidden />
+        <div className="h-[30vh] hero:hidden" aria-hidden />
 
-        {/* Subtitle — reverted to original structure */}
-        <p className="mx-auto mb-8 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mb-10 hero:text-[40px]">
+        {/* Subtitle */}
+        <p className="mx-auto mb-10 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mb-12 hero:text-[40px]">
           <span className="block w-full text-center">The Smartest Way to</span>
           <span className="mt-2 inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
             <HeroChip>Rent,</HeroChip>
@@ -213,7 +212,7 @@ export default function HeroSection() {
         {/* CTA button — reverted to original cream styling */}
         <Link
           href="/listings"
-          className="btn-cta-strong inline-flex items-center gap-2 rounded-lg bg-brand-textWhite px-8 py-3.5 text-brand-textBlack transition-colors duration-200 hover:bg-brand-light1"
+          className="btn-cta-strong inline-flex items-center gap-2 rounded-[8px] bg-brand-textWhite px-8 py-3.5 text-brand-textBlack transition-colors duration-200 hover:bg-brand-light1"
         >
           VIEW PROPERTIES
           <span className="text-para-m leading-none">›</span>

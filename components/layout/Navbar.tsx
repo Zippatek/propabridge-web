@@ -106,8 +106,8 @@ export default function Navbar() {
                       "flex items-center gap-1 text-[13px] font-bold uppercase tracking-tight transition-colors rounded-btn px-3 py-1.5 whitespace-nowrap",
                       activeDropdown === link.label ? "bg-beige" : "bg-transparent",
                       (pathname?.startsWith('/listings') || pathname?.startsWith('/properties-details')) && link.label === 'LISTINGS'
-                        ? "text-blue"
-                        : "text-navy hover:text-[#6b7280]"
+                        ? "bg-beige text-navy"
+                        : "text-navy hover:bg-beige hover:text-[#6b7280]"
                     )}
                     aria-haspopup="true"
                     aria-expanded={activeDropdown === link.label}

@@ -207,7 +207,7 @@ export default function TestimonialsSection({
          "relative shrink-0 aspect-[8/11] p-8 md:p-10 flex flex-col justify-between transition-transform hover:scale-[1.01]",
          isPage
            ? "rounded-card bg-beige border border-grey-divider shadow-none"
-           : "rounded-[24px] bg-[#fcfdf8] shadow-sm border border-[#ecece0]/60",
+           : "rounded-[24px] bg-[#FFFFF2] shadow-sm border border-[#ecece0]/60",
          !isPage && "w-[300px] md:w-[380px] snap-center",
          isPage && "w-full"
        )}>

@@ -101,7 +101,7 @@ export default function FAQSection() {
 
           {/* LEFT: CONTACT FORM */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="bg-[#fbfcfa] rounded-[24px] p-8 lg:p-10 shadow-sm border border-[#ecece0]/50 sticky top-24">
+            <div className="bg-[#FFFFF2] rounded-[24px] p-8 lg:p-10 shadow-sm border border-[#ecece0]/50 sticky top-24">
               <h3 className="text-navy faq-contact-heading-copy text-[24px] lg:text-[28px] mb-8">
                 We&apos;re just a form away—send us your question, and we&apos;ll be happy to help!
               </h3>
@@ -115,7 +115,7 @@ export default function FAQSection() {
                     <input
                       type="text"
                       id="faq-name"
-                      className="bg-[#f3f2eb]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
+                      className="bg-[#F4F3EA]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -125,7 +125,7 @@ export default function FAQSection() {
                     <input
                       type="tel"
                       id="faq-phone"
-                      className="bg-[#f3f2eb]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
+                      className="bg-[#F4F3EA]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
                     />
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function FAQSection() {
                   <input
                     type="email"
                     id="faq-email"
-                    className="bg-[#f3f2eb]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
+                    className="bg-[#F4F3EA]/70 border-none rounded-btn h-[52px] px-4 text-[15px] focus:ring-1 focus:ring-navy outline-none"
                   />
                 </div>
 
@@ -148,7 +148,7 @@ export default function FAQSection() {
                   <textarea
                     id="faq-message"
                     rows={4}
-                    className="bg-[#f3f2eb]/70 border-none rounded-btn p-4 text-[15px] focus:ring-1 focus:ring-navy outline-none resize-none"
+                    className="bg-[#F4F3EA]/70 border-none rounded-btn p-4 text-[15px] focus:ring-1 focus:ring-navy outline-none resize-none"
                   ></textarea>
                 </div>
 

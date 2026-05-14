@@ -26,7 +26,7 @@ export default function SubscribeForm() {
 
   return (
     <div>
-      <form onSubmit={onSubmit} className="flex bg-[#fcfdf8] p-1.5 rounded-btn shadow-sm w-full h-[64px]">
+      <form onSubmit={onSubmit} className="flex bg-[#FFFFF2] p-1.5 rounded-btn shadow-sm w-full h-[64px]">
         <input
           type="email"
           value={email}
