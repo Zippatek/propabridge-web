@@ -105,7 +105,7 @@ function CustomDropdown({ options, value, onChange, placeholder }: CustomDropdow
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#eceae0] border border-[#d8d6cc] rounded-[6px] shadow-lg max-h-[250px] overflow-y-auto py-2">
+        <div className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#eceae0] border border-[#d8d6cc] rounded-[6px] max-h-[250px] overflow-y-auto py-2">
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -169,7 +169,7 @@ export function SubmitPropertyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="bg-white rounded-[12px] p-8 md:p-10 shadow-sm border border-[#eceae0]">
+    <form onSubmit={handleSubmit} noValidate className="bg-white rounded-[12px] p-8 md:p-10 border border-[#eceae0]">
 
       {/* ── SECTION A: Basic Details ──────────────────────────────────── */}
       <div className="mb-8">

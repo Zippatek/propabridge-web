@@ -74,7 +74,7 @@ export const AboutHistory = () => {
                 
                 {/* Node and Connector */}
                 <div className="hidden sm:flex absolute left-[-15px] top-[2px] items-center z-20">
-                  <div className="w-8 h-8 rounded-full bg-[#f4f3ea] border-[3px] border-[#001a40] flex items-center justify-center relative shadow-sm shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#f4f3ea] border-[3px] border-[#001a40] flex items-center justify-center relative shrink-0">
                     {/* Inner dot */}
                     <motion.div 
                       className="w-3 h-3 rounded-full bg-[#001a40]"
@@ -94,12 +94,12 @@ export const AboutHistory = () => {
                 )}
 
                 {/* Badge */}
-                <div className="inline-block bg-[#001a40] text-white text-[15px] font-bold px-4 py-1.5 rounded-lg mb-4 relative z-20 shadow-sm tracking-wide">
+                <div className="inline-block bg-[#001a40] text-white text-[15px] font-bold px-4 py-1.5 rounded-lg mb-4 relative z-20 tracking-wide">
                   {item.year}
                 </div>
 
                 {/* Card Container */}
-                <div className="bg-[#e8e6d5] rounded-[24px] p-6 lg:p-10 w-full shadow-sm hover:shadow-md transition-shadow relative z-20">
+                <div className="bg-[#e8e6d5] rounded-[24px] p-6 lg:p-10 w-full transition-shadow relative z-20">
                   <h3 className="text-[#001a40] text-[24px] lg:text-[28px] font-medium leading-tight mb-4 truncate">{item.title}</h3>
                   <p className="text-[#001a40]/80 text-[13px] lg:text-[14px] leading-[1.6] mb-6 lg:mb-8 line-clamp-4">
                     {item.description}

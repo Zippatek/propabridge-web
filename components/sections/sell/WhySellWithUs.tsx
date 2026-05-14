@@ -67,7 +67,7 @@ export default function WhySellWithUs() {
             </h2>
 
             {/* Stat card */}
-            <div className="bg-white rounded-[20px] p-8 shadow-card">
+            <div className="bg-white rounded-[20px] p-8">
               <p className="text-navy font-black leading-none tracking-[-0.04em]" style={{ fontSize: 'clamp(52px, 6vw, 80px)' }}>
                 100%
               </p>
@@ -78,7 +78,7 @@ export default function WhySellWithUs() {
           </div>
 
           {/* ── COL 2: Photo card ── */}
-          <div className="relative rounded-[20px] overflow-hidden aspect-[3/4] shadow-card">
+          <div className="relative rounded-[20px] overflow-hidden aspect-[3/4]">
             <Image
               src="/images/sell/sell-precscreened.png"
               alt="Two Nigerian real estate professionals collaborating on a tablet"
@@ -116,7 +116,7 @@ export default function WhySellWithUs() {
                 return (
                   <div key={perk.id} className="flex items-start gap-4">
                     {/* Icon box */}
-                    <div className="shrink-0 w-[40px] h-[40px] rounded-btn border border-navy/15 flex items-center justify-center bg-navy shadow-sm">
+                    <div className="shrink-0 w-[40px] h-[40px] rounded-btn border border-navy/15 flex items-center justify-center bg-navy">
                       <Icon size={18} className="text-white" />
                     </div>
                     <div>

@@ -168,7 +168,7 @@ export default function TestimonialsSection({
   const renderCard = (review: Review) => {
     const pageCardShell = isPage
       ? 'rounded-card border border-grey-divider shadow-none'
-      : 'rounded-[24px] shadow-sm'
+      : 'rounded-[24px]'
     // VARIANT A: IMAGE FULL-CARD
     if (review.type === 'image') {
        return (
@@ -181,7 +181,7 @@ export default function TestimonialsSection({
              {/* Video Play Icon Overlay */}
              {review.hasVideo && (
                <div className="absolute inset-0 flex items-center justify-center cursor-pointer opacity-85 group-hover:opacity-100 transition-opacity">
-                  <div className="w-[68px] h-[68px] rounded-full border border-white/50 bg-white/20 backdrop-blur-md flex items-center justify-center pl-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+                  <div className="w-[68px] h-[68px] rounded-full border border-white/50 bg-white/20 backdrop-blur-md flex items-center justify-center pl-1.5 ">
                     <div className="w-0 h-0 border-t-[9px] border-t-transparent border-l-[14px] border-l-white border-b-[9px] border-b-transparent relative left-[2px]" />
                   </div>
                </div>
@@ -207,7 +207,7 @@ export default function TestimonialsSection({
          "relative shrink-0 aspect-[8/11] p-8 md:p-10 flex flex-col justify-between transition-transform hover:scale-[1.01]",
          isPage
            ? "rounded-card bg-beige border border-grey-divider shadow-none"
-           : "rounded-[24px] bg-[#FFFFF2] shadow-sm border border-[#ecece0]/60",
+           : "rounded-[24px] bg-[#FFFFF2] border border-[#ecece0]/60",
          !isPage && "w-[300px] md:w-[380px] snap-center",
          isPage && "w-full"
        )}>
@@ -320,7 +320,7 @@ export default function TestimonialsSection({
              {showArrows && (
                <button 
                  onClick={scrollLeftClick}
-                 className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.15)] hidden md:flex"
+                 className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all  hidden md:flex"
                  aria-label="Previous Review"
                >
                   <ChevronLeft size={24} />
@@ -331,7 +331,7 @@ export default function TestimonialsSection({
              {showArrows && (
                <button 
                  onClick={scrollRightClick}
-                 className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.15)] hidden md:flex"
+                 className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-[52px] h-[52px] bg-navy text-white rounded-full flex items-center justify-center z-30 hover:bg-navy/90 transition-all  hidden md:flex"
                  aria-label="Next Review"
                >
                   <ChevronRight size={24} />
@@ -352,7 +352,7 @@ export default function TestimonialsSection({
         {/* ── PAGINATION DOTS ── */}
         {!isPage && (
           <div className="flex justify-center mt-10 md:mt-14 w-full">
-             <div className="flex items-center gap-3 bg-white px-5 py-[10px] rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-[#ecece0]/60">
+             <div className="flex items-center gap-3 bg-white px-5 py-[10px] rounded-full  border border-[#ecece0]/60">
                 {Array.from({ length: totalDots }).map((_, i) => (
                   <button 
                     key={i} 

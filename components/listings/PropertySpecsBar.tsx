@@ -82,7 +82,7 @@ export function PropertySpecsBar({ property }: PropertySpecsBarProps) {
   return (
     <div className="w-full relative z-20 mx-auto max-w-5xl mt-12 mb-20">
       {/* Specs Card */}
-      <div className="bg-[#F4F3EA] rounded-[16px] shadow-card p-8 md:p-12 mb-10">
+      <div className="bg-[#F4F3EA] rounded-[16px] p-8 md:p-12 mb-10">
         <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-${Math.min(specs.length, 5)} gap-y-10 gap-x-6 text-center`}>
           {specs.map((spec, index) => (
             <div key={index} className="flex flex-col items-center">

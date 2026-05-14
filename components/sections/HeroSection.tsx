@@ -57,21 +57,25 @@ export default function HeroSection() {
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
-  // ── Door close + blur as hero scrolls away ───────────────────────────
+  // ── Scroll: image zooms out (doors opening wider) + blur clears ─────
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
     const onScroll = () => {
       const rect = section.getBoundingClientRect()
       const vh = window.innerHeight || 1
-      // Re-zoom 1.0 → 1.06 as hero scrolls off (door closing behind you)
-      const scrollRatio = Math.min(Math.max(-rect.top, 0) / (rect.height || 1), 1)
-      setImageScale(1.0 + scrollRatio * 0.06)
-      // Blur
-      const progress = Math.min(Math.max((vh - rect.top) / (rect.height + vh), 0), 1)
-      setBlurPx(window.innerWidth < 768
-        ? Math.max(0, 5 - progress * 5)
-        : Math.max(0, 7 - progress * 7))
+      // How far the user has scrolled INTO the hero (0 = top, 1 = hero fully scrolled past)
+      const scrolledPast = Math.max(-rect.top, 0)
+      const scrollRatio = Math.min(scrolledPast / (rect.height || 1), 1)
+
+      // Door-open on scroll: image pulls back (zooms out) as you scroll down
+      // 1.0 at top → 0.94 at bottom — feels like walking through an opening door
+      setImageScale(Math.max(1.0 - scrollRatio * 0.06, 0.94))
+
+      // Blur starts heavy and clears as user scrolls (image sharpens = door fully open)
+      const progress = Math.min(Math.max(-rect.top / (vh * 0.5), 0), 1)
+      const maxBlur = window.innerWidth < 768 ? 5 : 7
+      setBlurPx(Math.max(0, maxBlur - progress * maxBlur))
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -205,15 +209,15 @@ export default function HeroSection() {
       <div className="relative z-[9] flex min-h-screen w-full flex-col items-center px-6 pb-10 pt-28 text-center hero:justify-center hero:pb-16">
         <h1
           id="hero-heading"
-          className="mb-0 text-center text-[clamp(80px,21vw,232px)] font-medium leading-[0.94] tracking-[-0.075em] text-brand-textWhite hero:mb-8 hero:text-[clamp(98px,16.5vw,260px)]"
-          style={{ fontFamily: 'var(--font-hero, var(--font-inter))' }}
+          className="mb-0 text-center text-[clamp(80px,21vw,232px)] font-bold leading-[0.94] tracking-[-0.065em] text-brand-textWhite hero:mb-8 hero:text-[clamp(98px,16.5vw,260px)]"
+          style={{ fontFamily: 'var(--font-hero, var(--font-inter))', letterSpacing: '-0.03em' }}
         >
           <Link href="/listings?type=buy" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">
-            buy.
-          </Link>{' '}
+            buy.{' '}
+          </Link>
           <Link href="/listings?type=sell" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">
-            sell.
-          </Link>{' '}
+            sell.{' '}
+          </Link>
           <Link href="/listings?type=rent" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">
             rent.
           </Link>

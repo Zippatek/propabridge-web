@@ -48,7 +48,7 @@ export default function SellHero() {
       <div className="relative z-20 container-site -mt-[250px] lg:-mt-[270px] pb-12 lg:pb-16">
         <div className="flex justify-center">
           <div
-            className="w-full max-w-[640px] bg-white/75 backdrop-blur-xl border border-white/20 rounded-[20px] p-6 sm:p-8 lg:p-10 shadow-[0_8px_48px_rgba(0,0,0,0.15)]"
+            className="w-full max-w-[640px] bg-white/75 backdrop-blur-xl border border-white/20 rounded-[20px] p-6 sm:p-8 lg:p-10 "
           >
             <SellValuationForm />
           </div>

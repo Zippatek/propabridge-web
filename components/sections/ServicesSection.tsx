@@ -98,11 +98,8 @@ export default function ServicesSection() {
       {/* ── ACCORDION CARD — single white container, max-width centered ── */}
       <div className="container-site section-pb">
         <div
-          className="mx-auto bg-beige rounded-[20px] overflow-hidden"
-          style={{
-            maxWidth: 820,
-            boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.06)',
-          }}
+          className="mx-auto rounded-[20px] overflow-hidden border border-[#e8e6d8]"
+          style={{ maxWidth: 820, background: '#FFFFF2' }}
         >
           {SERVICES.map((service, index) => {
             const isOpen = openId === service.id

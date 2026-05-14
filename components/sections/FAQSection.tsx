@@ -101,7 +101,7 @@ export default function FAQSection() {
 
           {/* LEFT: CONTACT FORM */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="bg-[#FFFFF2] rounded-[24px] p-8 lg:p-10 shadow-sm border border-[#ecece0]/50 sticky top-24">
+            <div className="bg-[#FFFFF2] rounded-[24px] p-8 lg:p-10 border border-[#ecece0]/50 sticky top-24">
               <h3 className="text-navy faq-contact-heading-copy text-[24px] lg:text-[28px] mb-8">
                 We&apos;re just a form away—send us your question, and we&apos;ll be happy to help!
               </h3>

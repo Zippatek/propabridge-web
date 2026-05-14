@@ -4,7 +4,7 @@ export const AboutMission = () => {
   return (
     <section className="container-site px-4 md:px-8">
       {/* Massive Parent Card Container */}
-      <div className="bg-[#e8e6d5] rounded-[24px] p-6 lg:p-10 shadow-sm">
+      <div className="bg-[#e8e6d5] rounded-[24px] p-6 lg:p-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           
           {/* Left Column: Text + Stats */}

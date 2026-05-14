@@ -33,7 +33,7 @@ export const AboutCompany = () => {
 
         {/* Right Column */}
         <div className="flex flex-col gap-8">
-          <div className="bg-[#e8e6d5] rounded-[24px] p-8 md:p-10 flex flex-col gap-8 shadow-sm">
+          <div className="bg-[#e8e6d5] rounded-[24px] p-8 md:p-10 flex flex-col gap-8">
             <p className="text-[#001a40] text-[20px] md:text-[24px] leading-[1.4] font-medium">
               &quot;We built Propabridge because Nigerians deserve to find homes with excitement, not fear. &apos;Zero fees, Zero fears&apos; isn&apos;t just our slogan; it&apos;s our promise.&quot;
             </p>

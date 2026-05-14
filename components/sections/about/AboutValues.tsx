@@ -1,7 +1,7 @@
 export const AboutValues = () => {
   return (
     <section className="container-site px-4 md:px-8">
-      <div className="bg-[#e8e6d5] rounded-[24px] p-8 lg:p-12 shadow-sm">
+      <div className="bg-[#e8e6d5] rounded-[24px] p-8 lg:p-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           
           <div className="flex flex-col gap-4">
