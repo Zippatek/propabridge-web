@@ -79,14 +79,15 @@ export function PropertyInquiryCard({ property }: Props) {
   const propaAIPrompt = `Hi PropaAI! I'm interested in viewing this property:\n*${property.title}*\n${property.location ? `📍 ${property.location}` : ''}\n\nCan you help me arrange a tour?`;
 
   const openPropaAIChat = () => {
-    // Dispatch propa-chat-context — PropaChatEmbed forwards this to the widget
-    // as propa-chat-send, which opens the panel AND auto-submits the prompt.
-    // We do NOT separately call dispatchOpenPropaChat() to avoid a double-toggle.
+    // 1. Store the prompt so PropaChatEmbed can inject it once the widget opens
     window.dispatchEvent(
       new CustomEvent('propa-chat-context', {
         detail: { type: 'propa-chat-context', context: propaAIPrompt },
       })
     );
+    // 2. Also call dispatchOpenPropaChat so the navbar "open" path works as a
+    //    reliable fallback — PropaChatEmbed will deduplicate the open command.
+    dispatchOpenPropaChat();
   };
 
   return (

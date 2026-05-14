@@ -1,22 +1,17 @@
 'use client'
 
 /**
- * ADK `static/widget.html` is self-contained: launcher bubble, header, and panel (#chatBubble / #chatPanel).
- * Wrapping it in an extra white card + header + outer FAB duplicated the full concierge UI.
+ * ADK `static/widget.html` is self-contained: launcher bubble, header, and panel.
  *
- * This component only:
- * - Mounts one fixed, transparent iframe at the bottom-right
- * - Resizes with `{ type: 'propa-chat-toggle', open }` from the widget (see propabridge-adk)
- * - Listens for `open-propa-chat` and posts `propa-chat-open` into the iframe (navbar)
- *
- * Parent → iframe: `'propa-chat-open'` or `{ type: 'propa-chat-open' }`.
- * Iframe → parent: `{ type: 'propa-chat-toggle', open }`, `{ type: 'propa-reply', data }`.
+ * Message protocol:
+ *   Parent → iframe : 'propa-chat-open' | { type:'propa-chat-open' }  — open panel
+ *                     { type:'propa-chat-send', message }              — open + auto-send prompt
+ *   Iframe → parent : { type:'propa-chat-toggle', open }              — panel state change
+ *                     { type:'propa-reply', data }                    — AI reply
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-
 import { cn } from '@/lib/cn'
-
 import { OPEN_PROPA_CHAT_EVENT, usePropaChat } from './PropaChatContext'
 
 export default function PropaChatEmbed() {
@@ -24,17 +19,21 @@ export default function PropaChatEmbed() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [panelOpen, setPanelOpen] = useState(false)
   const pendingOpenRef = useRef(false)
+  // Message to auto-send once the widget confirms it is open
+  const pendingMessageRef = useRef<string | null>(null)
 
-  const notifyIframeOpen = useCallback(() => {
+  // ── Send a message into the widget iframe ──────────────────────────
+  const postToWidget = useCallback((msg: unknown) => {
     const win = iframeRef.current?.contentWindow
     if (!win) return
-    try {
-      win.postMessage('propa-chat-open', '*')
-      win.postMessage({ type: 'propa-chat-open' }, '*')
-    } catch {
-      /* ignore */
-    }
+    try { win.postMessage(msg, '*') } catch { /* ignore */ }
   }, [])
+
+  // ── Open the widget panel (used by navbar "Chat with Propa" button) ─
+  const notifyIframeOpen = useCallback(() => {
+    postToWidget('propa-chat-open')
+    postToWidget({ type: 'propa-chat-open' })
+  }, [postToWidget])
 
   const requestOpenFromParent = useCallback(() => {
     pendingOpenRef.current = true
@@ -47,61 +46,55 @@ export default function PropaChatEmbed() {
     return () => window.removeEventListener(OPEN_PROPA_CHAT_EVENT, requestOpenFromParent)
   }, [requestOpenFromParent])
 
+  // ── Listen for propa-chat-toggle from widget ───────────────────────
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (event.data?.type !== 'propa-chat-toggle') return
-      let originOk = false
+      // Accept messages from the widget origin only
       try {
-        originOk = new URL(widgetUrl).origin === event.origin
-      } catch {
-        return
-      }
-      if (!originOk) return
+        if (new URL(widgetUrl).origin !== event.origin) return
+      } catch { return }
+
       const isOpen = !!event.data.open
       setPanelOpen(isOpen)
-      if (isOpen) pendingOpenRef.current = false
+      if (isOpen) {
+        pendingOpenRef.current = false
+        // Widget just opened — flush any pending context message now
+        if (pendingMessageRef.current) {
+          const msg = pendingMessageRef.current
+          pendingMessageRef.current = null
+          // Small delay so the panel animation is settled before we inject
+          window.setTimeout(() => postToWidget({ type: 'propa-chat-send', message: msg }), 100)
+        }
+      }
     }
     window.addEventListener('message', onMessage)
     return () => window.removeEventListener('message', onMessage)
-  }, [widgetUrl])
+  }, [widgetUrl, postToWidget])
 
-  // Forward property prompt from PropertyInquiryCard → iframe as propa-chat-send.
-  // propa-chat-send is self-contained: it opens the panel AND auto-submits the prompt.
-  // We do NOT also fire propa-chat-open to avoid the widget toggling twice.
-  const pendingMessageRef = useRef<string | null>(null)
-
+  // ── Handle property-context prompt from PropertyInquiryCard ───────
+  // Strategy: store message, open the widget via propa-chat-open, then
+  // send the message once propa-chat-toggle:{open:true} is received above.
   useEffect(() => {
     const onContext = (e: Event) => {
       const { context } = (e as CustomEvent).detail || {}
       if (!context) return
-      const win = iframeRef.current?.contentWindow
-      if (win) {
-        try {
-          win.postMessage({ type: 'propa-chat-send', message: context }, '*')
-        } catch { /* ignore */ }
-      } else {
-        // iframe not ready yet — store and send on next load
-        pendingMessageRef.current = context
-      }
+      pendingMessageRef.current = context
+      // Open the widget — when it confirms open we'll flush the message
+      pendingOpenRef.current = true
+      notifyIframeOpen()
+      window.setTimeout(notifyIframeOpen, 250)
     }
     window.addEventListener('propa-chat-context', onContext)
     return () => window.removeEventListener('propa-chat-context', onContext)
-  }, [])
+  }, [notifyIframeOpen])
 
+  // ── Flush pending actions after iframe loads ───────────────────────
   const onIframeLoad = useCallback(() => {
-    // Flush any pending context message (fires propa-chat-send which also opens the panel)
-    if (pendingMessageRef.current) {
-      const msg = pendingMessageRef.current
-      pendingMessageRef.current = null
-      const win = iframeRef.current?.contentWindow
-      if (win) {
-        try { win.postMessage({ type: 'propa-chat-send', message: msg }, '*') } catch { /* ignore */ }
-        return // propa-chat-send handles open — no need for separate propa-chat-open
-      }
+    if (pendingOpenRef.current) {
+      notifyIframeOpen()
+      window.setTimeout(notifyIframeOpen, 150)
     }
-    if (!pendingOpenRef.current) return
-    notifyIframeOpen()
-    window.setTimeout(notifyIframeOpen, 150)
   }, [notifyIframeOpen])
 
   if (!widgetUrl) return null
@@ -122,7 +115,6 @@ export default function PropaChatEmbed() {
         className="pointer-events-auto h-full w-full border-0 bg-transparent"
         allow="clipboard-write; microphone"
         onLoad={onIframeLoad}
-        loading="lazy"
       />
     </div>
   )
