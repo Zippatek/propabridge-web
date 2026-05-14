@@ -4,7 +4,7 @@ import { Property, PropertyCity } from './types'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
-const DEFAULT_TIMEOUT_MS = 3000
+const DEFAULT_TIMEOUT_MS = 15000
 
 // Wrapper around fetch that aborts after `timeoutMs` so server-rendered pages
 // never hang waiting on an unreachable backend.
