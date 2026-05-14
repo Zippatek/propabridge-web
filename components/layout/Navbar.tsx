@@ -201,7 +201,7 @@ export default function Navbar() {
               disabled={!PROPA_WIDGET_URL}
               className="btn-cta-strong hidden lg:inline-flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-5 py-2.5 rounded-btn hover:bg-navy-light transition-colors whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
             >
-              CHAT WITH PROPA
+              CHAT WITH PROPA AI
               <span aria-hidden="true">›</span>
             </button>
 
@@ -267,7 +267,7 @@ export default function Navbar() {
               disabled={!PROPA_WIDGET_URL}
               className="btn-cta-strong flex items-center justify-center gap-2 bg-brand-navy text-brand-textWhite px-8 py-3.5 rounded-btn hover:bg-navy-light transition-colors disabled:cursor-not-allowed disabled:opacity-50"
             >
-              CHAT WITH PROPA
+              CHAT WITH PROPA AI
               <span aria-hidden="true">›</span>
             </button>
           </div>
