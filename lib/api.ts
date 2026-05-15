@@ -122,7 +122,7 @@ function mapListing(p: Record<string, unknown>) {
 
   return {
     id: String(p.property_id ?? p.id ?? ''),
-    property_id: (p.property_id as string) || undefined,
+    property_id: typeof p.property_id === 'string' ? p.property_id : undefined,
     slug: String(p.slug ?? p.property_id ?? p.id ?? ''),
     title: String(p.title ?? ''),
     location,
@@ -136,19 +136,19 @@ function mapListing(p: Record<string, unknown>) {
     baths: Number.isNaN(bathrooms) ? undefined : bathrooms,
     area: Number(p.size_sqm ?? p.built_up_area_sqm) || undefined,
     landArea: Number(p.declared_plot_size_sqm ?? p.landArea) || undefined,
-    floors: (p.floors as number) || (p.floor_count as number) || undefined,
+    floors: (typeof p.floors === 'number' ? p.floors : undefined) || (typeof p.floor_count === 'number' ? p.floor_count : undefined) || undefined,
     images,
     planUrl: typeof p.plan_url === 'string' && p.plan_url.trim() ? p.plan_url.trim() : undefined,
     planFileName: typeof p.plan_file_name === 'string' && p.plan_file_name.trim() ? p.plan_file_name.trim() : undefined,
-    verified: Boolean(p.verified || (p.verification_status as string) === 'verified'),
-    verificationStatus: (p.verification_status as string) === 'verified' || p.verified ? 'VERIFIED' : 'PENDING',
+    verified: Boolean(p.verified || String(p.verification_status || '').toLowerCase() === 'verified'),
+    verificationStatus: (String(p.verification_status || '').toLowerCase() === 'verified' || p.verified) ? 'VERIFIED' : 'PENDING',
     verificationItems: [],
     titleDocumentAvailable: false,
     featured: Boolean(p.featured),
     amenities: amenitiesArr,
     amenityTags: amenitiesArr.length > 0 ? amenitiesArr : undefined,
-    condition: (p.condition as string) || undefined,
-    water: (p.water_supply as string) || undefined,
+    condition: (typeof p.condition === 'string' ? p.condition : undefined) || undefined,
+    water: (typeof p.water_supply === 'string' ? p.water_supply : undefined) || undefined,
     fullDescription: descriptionStr || undefined,
     descriptionMarkdown: mdFields.descriptionMarkdown,
     overviewMarkdown: mdFields.overviewMarkdown,
@@ -203,17 +203,17 @@ function normalizeBlogDate(input?: string) {
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase()
 }
 
-function mapBlog(blog: Record<string, any>): FrontendBlog {
+function mapBlog(blog: Record<string, unknown>): FrontendBlog {
   return {
     id: String(blog.slug || blog.id || blog.blog_id || ''),
-    date: normalizeBlogDate(blog.published_at || blog.date || blog.created_at),
+    date: normalizeBlogDate(String(blog.published_at || blog.date || blog.created_at || '')),
     category: String(blog.category || 'GUIDE').toUpperCase(),
     title: String(blog.title || ''),
     image: String(blog.cover_image || blog.image || '/images/blogs/rent.png'),
     authorName: String(blog.author_name || blog.authorName || 'PROPABRIDGE TEAM'),
-    authorImage: blog.author_image || blog.authorImage || undefined,
-    content: blog.content_html || blog.content || undefined,
-    excerpt: blog.excerpt || blog.summary || undefined,
+    authorImage: (typeof blog.author_image === 'string' ? blog.author_image : undefined) || (typeof blog.authorImage === 'string' ? blog.authorImage : undefined) || undefined,
+    content: (typeof blog.content_html === 'string' ? blog.content_html : undefined) || (typeof blog.content === 'string' ? blog.content : undefined) || undefined,
+    excerpt: (typeof blog.excerpt === 'string' ? blog.excerpt : undefined) || (typeof blog.summary === 'string' ? blog.summary : undefined) || undefined,
   }
 }
 
@@ -278,7 +278,7 @@ export async function fetchPropertyFilters() {
     // Return names exactly as they come from the API (dashboard mirror)
     const allCategories = [
       'ALL',
-      ...(Array.isArray(raw) ? raw.map((t: any) => t.name.toUpperCase()) : []),
+      ...(Array.isArray(raw) ? raw.map((t: { name: string }) => t.name) : []),
     ];
     
     return Array.from(new Set(allCategories));
@@ -384,9 +384,9 @@ function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
   const slug = (n.slug as string) || (n.id as string) || ''
   const name = (n.name as string) || ''
   
-  let coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
-  let galleryRaw = Array.isArray(n.gallery) ? n.gallery : (Array.isArray(n.images) ? n.images : [])
-  let gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
+  const coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
+  const galleryRaw = Array.isArray(n.gallery) ? n.gallery : (Array.isArray(n.images) ? n.images : [])
+  const gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
 
   if (!coverImage || coverImage.includes('googleapis.com')) {
     const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')

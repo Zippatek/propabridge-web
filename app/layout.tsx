@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Suspense } from 'react'
 import { Inter, Nunito_Sans, DM_Sans, Outfit } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
@@ -108,12 +109,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${nunitoSans.variable} ${dmSans.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${inter.variable} ${nunitoSans.variable} ${dmSans.variable} ${outfit.variable}`} data-scroll-behavior="smooth">
       <body className={`${inter.className} antialiased overflow-x-hidden`}>
         <PropaChatProvider widgetUrl={PROPA_WIDGET_URL}>
           <Navbar />
           <main id="main-content" tabIndex={-1}>
-            <PageTransition>{children}</PageTransition>
+            <Suspense fallback={null}>
+              <PageTransition>{children}</PageTransition>
+            </Suspense>
           </main>
           <ConditionalFooter />
           <PropaChatEmbed />
