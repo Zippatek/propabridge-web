@@ -28,11 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .filter(Boolean)
     .join(' · ');
 
-  // Use first property image if available, otherwise fall back to logo-circle
-  const ogImage =
-    property.images && property.images.length > 0
-      ? property.images[0]
-      : 'https://propabridge.com/logo-circle.jpg';
+  const ogImage = property.images?.[0] ?? 'https://propabridge.com/logo-circle.jpg';
 
   return {
     title,

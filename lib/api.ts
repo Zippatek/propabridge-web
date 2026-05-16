@@ -6,8 +6,9 @@ import { NEIGHBORHOOD_COVERS } from '@/lib/bucket'
 import { PUBLIC_API_URL } from '@/lib/env-public'
 
 const API_URL = PUBLIC_API_URL
+console.log("DEBUG: API_URL is", API_URL)
 
-const DEFAULT_TIMEOUT_MS = 15000
+const DEFAULT_TIMEOUT_MS = 10000
 
 // Wrapper around fetch that aborts after `timeoutMs` so server-rendered pages
 // never hang waiting on an unreachable backend.
@@ -37,45 +38,6 @@ export type FrontendBlog = {
   excerpt?: string
 }
 
-function nonEmptyTrimmedUrls(values: unknown[]): string[] {
-  return values.filter((x): x is string => typeof x === 'string' && x.trim().length > 0).map((s) => s.trim())
-}
-
-/** property_images rows may be URLs or objects with url / image_url. */
-function urlsFromPropertyImages(raw: unknown): string[] {
-  if (!Array.isArray(raw)) return []
-  const out: string[] = []
-  for (const item of raw) {
-    if (typeof item === 'string' && item.trim()) {
-      out.push(item.trim())
-      continue
-    }
-    if (item && typeof item === 'object') {
-      const o = item as Record<string, unknown>
-      const u = o.url ?? o.image_url ?? o.src
-      if (typeof u === 'string' && u.trim()) out.push(u.trim())
-    }
-  }
-  return out
-}
-
-/** Cover first, then remaining URLs deduped in candidate order (cover moved ahead if duplicated). */
-function mergeCoverAndGallery(coverRaw: unknown, orderedCandidates: string[]): string[] {
-  const cover = typeof coverRaw === 'string' && coverRaw.trim() ? coverRaw.trim() : ''
-
-  const seen = new Set<string>()
-  const out: string[] = []
-  const push = (url: string) => {
-    const t = url.trim()
-    if (!t || seen.has(t)) return
-    seen.add(t)
-    out.push(t)
-  }
-  if (cover) push(cover)
-  for (const u of orderedCandidates) push(u)
-  return out
-}
-
 // Maps backend DB fields -> frontend Property type
 function mapListing(p: Record<string, unknown>) {
   const listingTypeRaw = String(p.listing_type ?? p.type ?? '').trim().toLowerCase()
@@ -91,17 +53,7 @@ function mapListing(p: Record<string, unknown>) {
     return 'FOR SALE'
   })()
 
-  const primaryFieldImages = [
-    ...(Array.isArray(p.images) ? nonEmptyTrimmedUrls(p.images as unknown[]) : []),
-    ...(Array.isArray(p.media) ? nonEmptyTrimmedUrls(p.media as unknown[]) : []),
-    ...(Array.isArray(p.gallery) ? nonEmptyTrimmedUrls(p.gallery as unknown[]) : []),
-  ]
-
-  const fromNested = urlsFromPropertyImages(p.property_images)
-  const mergedCandidates = [...primaryFieldImages, ...fromNested]
-
-  const coverField = p.cover_image_url ?? p.coverImage ?? p.cover_image
-  const images = mergeCoverAndGallery(coverField, mergedCandidates)
+  const images = Array.isArray(p.images) ? (p.images as string[]) : []
 
   const bedrooms = parseInt(String(p.bedrooms ?? p.beds ?? ''), 10)
   const bathrooms = parseInt(String(p.bathrooms ?? p.baths ?? ''), 10)
@@ -120,7 +72,7 @@ function mapListing(p: Record<string, unknown>) {
   const city = String(p.city ?? 'Abuja')
   const location = String(p.location ?? p.address ?? [district, city].filter(Boolean).join(', ') ?? '')
 
-  return {
+  const mapped = {
     id: String(p.property_id ?? p.id ?? ''),
     property_id: typeof p.property_id === 'string' ? p.property_id : undefined,
     slug: String(p.slug ?? p.property_id ?? p.id ?? ''),
@@ -130,7 +82,7 @@ function mapListing(p: Record<string, unknown>) {
     city: city as Property['city'],
     state: city.toLowerCase() === 'abuja' ? 'FCT' : city,
     price: parseFloat(String(p.price ?? p.asking_price_ngn ?? '0').replace(/[^0-9.]/g, '')) || 0,
-    status: normalizedStatus,
+    status: normalizedStatus as Property['status'],
     type: String(p.property_type ?? p.category ?? p.type ?? 'Apartment') as Property['type'],
     beds: Number.isNaN(bedrooms) ? undefined : bedrooms,
     baths: Number.isNaN(bathrooms) ? undefined : bathrooms,
@@ -159,6 +111,7 @@ function mapListing(p: Record<string, unknown>) {
     updatedAt: (p.updated_at as string) || new Date().toISOString(),
     yearBuilt: (p.year_built as number | string | undefined) ?? undefined,
   }
+  return mapped
 }
 
 function extractRawListings(payload: unknown): unknown[] {
@@ -384,9 +337,9 @@ function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
   const slug = (n.slug as string) || (n.id as string) || ''
   const name = (n.name as string) || ''
   
-  const coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
+  let coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
   const galleryRaw = Array.isArray(n.gallery) ? n.gallery : (Array.isArray(n.images) ? n.images : [])
-  const gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
+  let gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
 
   if (!coverImage || coverImage.includes('googleapis.com')) {
     const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
