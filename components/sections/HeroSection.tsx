@@ -224,7 +224,7 @@ export default function HeroSection() {
           <Link href="/listings?type=rent" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">rent.</Link>
         </h1>
         {/* Subtitle */}
-        <p className="mx-auto mb-20 mt-12 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
+        <p className="mx-auto mb-10 mt-6 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
           <span className="block w-full text-center">The Smartest Way to</span>
           <span className="mt-2 inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
             <HeroChip>Rent,</HeroChip>
