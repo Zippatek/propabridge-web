@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: 'Neighborhoods — Propabridge',
   description:
     'Explore verified neighborhoods across Abuja, Kaduna, and Minna. Discover local communities, lifestyle perks, and what makes each area special.',
+  keywords: [
+    'Abuja neighborhoods', 'best areas to live Abuja', 'Maitama Abuja', 'Gwarinpa Abuja',
+    'Katampe Abuja', 'Kaduna neighborhoods', 'Minna property areas', 'Asokoro Abuja',
+  ],
   openGraph: {
     title: 'Neighborhoods — Propabridge',
     description:

@@ -41,8 +41,8 @@ const outfit = Outfit({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // Allow pinch-zoom: required for accessibility (WCAG 1.4.4)
+  // Removing maximumScale and userScalable fixes PageSpeed accessibility warning
 }
 
 const OG_IMAGE = {

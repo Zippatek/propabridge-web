@@ -1,4 +1,20 @@
+import type { Metadata } from 'next'
 import { AboutHero } from "@/components/sections/about/AboutHero";
+
+export const metadata: Metadata = {
+  title: 'About Propabridge — Verified Real Estate in Nigeria',
+  description:
+    'Propabridge is Nigeria\'s first curated, verification-first property platform. We physically inspect every listing, check every title document, and charge zero inspection fees.',
+  keywords: ['about Propabridge', 'Nigeria real estate company', 'verified property platform Nigeria', 'Abuja real estate agency'],
+  openGraph: {
+    title: 'About Propabridge — Verified Real Estate in Nigeria',
+    description: 'We physically inspect every listing, check every title document, and charge zero inspection fees. Real estate done right.',
+    url: 'https://propabridge.com/about',
+    siteName: 'Propabridge',
+    images: [{ url: 'https://propabridge.com/logo-circle.jpg', width: 400, height: 400 }],
+    type: 'website',
+  },
+}
 import { AboutMission } from "@/components/sections/about/AboutMission";
 import { AboutProblem } from "@/components/sections/about/AboutProblem";
 import { AboutCompany } from "@/components/sections/about/AboutCompany";

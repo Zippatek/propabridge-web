@@ -205,7 +205,8 @@ export default function HeroSection() {
       />
 
       {/* ── Hero text content ── */}
-      <div className="relative z-[9] flex min-h-screen w-full flex-col items-center px-6 pb-10 pt-28 text-center hero:justify-center hero:pb-16">
+      {/* z-[25]: above door panels (z-[20]) so h1 is the LCP element and visible immediately */}
+      <div className="relative z-[25] flex min-h-screen w-full flex-col items-center px-6 pb-10 pt-28 text-center hero:justify-center hero:pb-16">
         <h1
           id="hero-heading"
           className="mb-0 w-full text-center font-bold leading-[0.92] text-brand-textWhite hero:mb-8"
@@ -222,11 +223,8 @@ export default function HeroSection() {
           {' '}
           <Link href="/listings?type=rent" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">rent.</Link>
         </h1>
-        {/* Push subtitle well below the heading on small screens */}
-        <div className="h-[72vh] hero:hidden" aria-hidden />
-
         {/* Subtitle */}
-        <p className="mx-auto mb-10 mt-20 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
+        <p className="mx-auto mb-20 mt-12 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
           <span className="block w-full text-center">The Smartest Way to</span>
           <span className="mt-2 inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
             <HeroChip>Rent,</HeroChip>

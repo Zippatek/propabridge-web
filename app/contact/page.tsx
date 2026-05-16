@@ -8,6 +8,10 @@ export const metadata = {
   title: "Contact Us | Propabridge",
   description:
     "Get in touch with the Propabridge team. Reach us in Abuja, Kaduna or Minna — or chat with Propa, our AI concierge, 24/7 on WhatsApp.",
+  keywords: [
+    'contact Propabridge', 'Propabridge Abuja office', 'Nigeria real estate contact',
+    'property inquiry Nigeria', 'chat with Propa AI',
+  ],
 };
 
 export default function ContactPage() {

@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: 'Sell Your Property | Propabridge — Zero Fees. Zero Fears.',
   description:
     'Sell or rent your property in Abuja, Kaduna, and Minna with Propabridge. Expert valuation, AI-matched buyers, zero upfront fees. Get your free property valuation today.',
+  keywords: [
+    'sell property Nigeria', 'sell house Abuja', 'property valuation Nigeria',
+    'rent out property Abuja', 'property agent Kaduna', 'real estate agent Nigeria',
+    'free property valuation Abuja', 'sell house fast Nigeria',
+  ],
   openGraph: {
     title: 'Sell Your Property | Propabridge',
     description:

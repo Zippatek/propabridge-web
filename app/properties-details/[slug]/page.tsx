@@ -51,14 +51,51 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function buildPropertySchema(property: Awaited<ReturnType<typeof fetchListing>>, slug: string) {
+  if (!property) return null
+  const p = property as any
+  const descriptionText = p.description
+    ? (Array.isArray(p.description) ? p.description.join(' ') : String(p.description))
+    : `Verified ${property.type ?? 'property'} in ${property.location ?? 'Nigeria'}. Listed by Propabridge.`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    name: property.title,
+    description: descriptionText,
+    url: `https://propabridge.com/properties-details/${slug}`,
+    image: property.images && property.images.length > 0 ? property.images[0] : 'https://propabridge.com/logo-circle.jpg',
+    datePosted: new Date().toISOString().split('T')[0],
+    offers: {
+      '@type': 'Offer',
+      price: property.price ?? undefined,
+      priceCurrency: 'NGN',
+      availability: 'https://schema.org/InStock',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: property.location ?? '',
+      addressCountry: 'NG',
+    },
+    numberOfRooms: p.bedrooms ?? undefined,
+  }
+}
+
 export default async function PropertyDetailsPage({ params }: PageProps) {
   const { slug } = await params;
 
   const property = await fetchListing(slug);
   if (!property) notFound();
 
+  const propertySchema = buildPropertySchema(property, slug)
+
   return (
     <main className="min-h-screen bg-beige pb-24">
+      {propertySchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(propertySchema) }}
+        />
+      )}
       <PropertyHero property={property} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <PropertySpecsBar property={property} />

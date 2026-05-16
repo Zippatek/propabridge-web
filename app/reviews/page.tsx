@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Reviews | Propabridge',
   description:
     'Stories from the buyers, sellers, and dream-chasers we\'ve helped. See what people say about finding their place with Propabridge.',
+  keywords: ['Propabridge reviews', 'Nigeria real estate reviews', 'verified property testimonials', 'Propabridge customer stories'],
   openGraph: {
     title: 'Reviews | Propabridge',
     description:

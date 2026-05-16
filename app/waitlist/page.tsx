@@ -1,3 +1,17 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Join the Waitlist | Propabridge',
+  description: 'Be the first to know when new verified properties and features launch on Propabridge. Join our waitlist today.',
+  openGraph: {
+    title: 'Join the Propabridge Waitlist',
+    description: 'Get early access to verified property listings across Nigeria. Zero inspection fees.',
+    url: 'https://propabridge.com/waitlist',
+    siteName: 'Propabridge',
+    images: [{ url: 'https://propabridge.com/logo-circle.jpg', width: 400, height: 400 }],
+    type: 'website',
+  },
+}
 
 import Link from 'next/link';
 
