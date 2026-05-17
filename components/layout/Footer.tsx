@@ -54,7 +54,7 @@ export default function Footer() {
                   { label: 'About us', href: '/about' },
                   { label: 'Services', href: '/#services' },
                   { label: 'Blogs', href: '/blogs' },
-                  { label: 'Career', href: '/career' },
+                  { label: 'Career', href: '/contact' },
                   { label: 'Reviews', href: '/reviews' },
                   { label: 'Sell Properties', href: '/sell' },
                   { label: 'Submit Properties', href: '/submit-property' },
@@ -78,7 +78,7 @@ export default function Footer() {
               </div>
               <ul className="flex flex-col">
                 {[
-                  { label: 'Categories', href: '/categories' },
+                  { label: 'Categories', href: '/listings' },
                   { label: 'All Properties', href: '/listings' },
                   { label: 'Neighborhoods', href: '/neighborhood' },
                 ].map((link) => (

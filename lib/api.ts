@@ -3,6 +3,7 @@ import { pickMarkdownFields } from '@/lib/property-markdown'
 import { Property } from '@/lib/types'
 import { NEIGHBORHOOD_COVERS } from '@/lib/bucket'
 
+import { resolveBlogCoverImage } from '@/lib/blog-media'
 import { isAllowedMediaUrl } from '@/lib/media'
 import { PUBLIC_API_URL } from '@/lib/env-public'
 
@@ -210,12 +211,14 @@ function normalizeBlogDate(input?: string) {
 }
 
 function mapBlog(blog: Record<string, any>): FrontendBlog {
+  const slug = String(blog.slug || blog.id || blog.blog_id || '')
+  const apiCover = blog.cover_image || blog.image
   return {
-    id: String(blog.slug || blog.id || blog.blog_id || ''),
+    id: slug,
     date: normalizeBlogDate(blog.published_at || blog.date || blog.created_at),
     category: String(blog.category || 'GUIDE').toUpperCase(),
     title: String(blog.title || ''),
-    image: String(blog.cover_image || blog.image || '/images/blogs/rent.png'),
+    image: resolveBlogCoverImage(slug, typeof apiCover === 'string' ? apiCover : null),
     authorName: String(blog.author_name || blog.authorName || 'PROPABRIDGE TEAM'),
     authorImage: blog.author_image || blog.authorImage || undefined,
     content: blog.content_html || blog.content || undefined,

@@ -24,6 +24,7 @@ export const BLOG_COVERS: Record<string, string> = {
   'inspection-fees': '/images/blogs/inspection-fees.png',
   'abuja-prices': '/images/blogs/abuja-prices.png',
   'smart-investors-minna': '/images/blogs/smart-investors-minna.png',
+  'first-time-homebuyer': '/images/blogs/property-documents.png',
 }
 
 /** Cover image per neighborhood slug. */
