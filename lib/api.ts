@@ -3,6 +3,7 @@ import { pickMarkdownFields } from '@/lib/property-markdown'
 import { Property } from '@/lib/types'
 import { NEIGHBORHOOD_COVERS } from '@/lib/bucket'
 
+import { isAllowedMediaUrl } from '@/lib/media'
 import { PUBLIC_API_URL } from '@/lib/env-public'
 
 const API_URL = PUBLIC_API_URL
@@ -59,20 +60,25 @@ function urlsFromPropertyImages(raw: unknown): string[] {
   return out
 }
 
-/** Cover first, then remaining URLs deduped in candidate order (cover moved ahead if duplicated). */
+/** Gallery first when cover is legacy (Framer); otherwise cover then gallery. Only GCS/CDN URLs. */
 function mergeCoverAndGallery(coverRaw: unknown, orderedCandidates: string[]): string[] {
-  const cover = typeof coverRaw === 'string' && coverRaw.trim() ? coverRaw.trim() : ''
+  const cover =
+    typeof coverRaw === 'string' && coverRaw.trim() && isAllowedMediaUrl(coverRaw.trim())
+      ? coverRaw.trim()
+      : ''
+  const gallery = orderedCandidates
+    .map((u) => (typeof u === 'string' ? u.trim() : ''))
+    .filter((u) => u && isAllowedMediaUrl(u))
 
   const seen = new Set<string>()
   const out: string[] = []
   const push = (url: string) => {
-    const t = url.trim()
-    if (!t || seen.has(t)) return
-    seen.add(t)
-    out.push(t)
+    if (seen.has(url)) return
+    seen.add(url)
+    out.push(url)
   }
   if (cover) push(cover)
-  for (const u of orderedCandidates) push(u)
+  for (const u of gallery) push(u)
   return out
 }
 

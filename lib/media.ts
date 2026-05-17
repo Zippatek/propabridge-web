@@ -9,7 +9,19 @@ export const GCS_PREFIX = `https://storage.googleapis.com/${GCS_BUCKET}/`
 export const CDN_PREFIX = `https://${CDN_DOMAIN}/`
 export const DEFAULT_PLACEHOLDER = '/images/placeholder.jpg'
 
-function isAllowedMediaUrl(url: string): boolean {
+const BLOCKED_HOSTS = ['framerusercontent.com'] as const
+
+export function isBlockedMediaUrl(url: string): boolean {
+  try {
+    const host = new URL(url.trim()).hostname.toLowerCase()
+    return BLOCKED_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))
+  } catch {
+    return false
+  }
+}
+
+export function isAllowedMediaUrl(url: string): boolean {
+  if (!url || isBlockedMediaUrl(url)) return false
   return url.startsWith(CDN_PREFIX) || url.startsWith(GCS_PREFIX)
 }
 
