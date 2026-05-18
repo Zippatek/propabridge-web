@@ -61,9 +61,9 @@ export const AboutHistory = () => {
         <div className="lg:w-1/2 relative" ref={containerRef}>
           {/* Continuous vertical line (Background) */}
           <div className="absolute left-0 top-6 bottom-0 w-[2px] bg-[#001a40]/10 z-0 hidden sm:block"></div>
-          
+
           {/* Motion indicator (Foreground) */}
-          <motion.div 
+          <motion.div
             className="absolute left-0 top-6 bottom-0 w-[2px] bg-[#001a40] z-10 hidden sm:block origin-top"
             style={{ scaleY: scrollYProgress }}
           ></motion.div>
@@ -71,12 +71,12 @@ export const AboutHistory = () => {
           <div className="flex flex-col gap-16 lg:gap-24">
             {timelineData.map((item, index) => (
               <div key={index} className="relative sm:pl-16 lg:pl-20">
-                
+
                 {/* Node and Connector */}
                 <div className="hidden sm:flex absolute left-[-15px] top-[2px] items-center z-20">
                   <div className="w-8 h-8 rounded-full bg-[#f4f3ea] border-[3px] border-[#001a40] flex items-center justify-center relative shrink-0">
                     {/* Inner dot */}
-                    <motion.div 
+                    <motion.div
                       className="w-3 h-3 rounded-full bg-[#001a40]"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
@@ -99,14 +99,14 @@ export const AboutHistory = () => {
                 </div>
 
                 {/* Card Container */}
-                <div className="bg-[#e8e6d5] rounded-[24px] p-6 lg:p-10 w-full transition-shadow relative z-20">
-                  <h3 className="text-[#001a40] text-[24px] lg:text-[28px] font-medium leading-tight mb-4 truncate">{item.title}</h3>
-                  <p className="text-[#001a40]/80 text-[13px] lg:text-[14px] leading-[1.6] mb-6 lg:mb-8 line-clamp-4">
+                <div className="bg-[#fffff2] rounded-[24px] p-6 lg:p-10 w-full transition-shadow relative z-20">
+                  <h3 className="text-[#21201B] text-[24px] lg:text-[28px] font-medium leading-tight mb-4 truncate">{item.title}</h3>
+                  <p className="text-black text-[13px] lg:text-[14px] leading-[1.6] mb-6 lg:mb-8 line-clamp-4">
                     {item.description}
                   </p>
-                  
+
                   <div className="relative w-full aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3] rounded-[16px] overflow-hidden">
-                    <Image 
+                    <Image
                       src={item.image}
                       alt={item.title}
                       fill

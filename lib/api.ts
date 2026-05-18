@@ -137,7 +137,7 @@ function mapListing(p: Record<string, unknown>) {
     city: city as Property['city'],
     state: city.toLowerCase() === 'abuja' ? 'FCT' : city,
     price: parseFloat(String(p.price ?? p.asking_price_ngn ?? '0').replace(/[^0-9.]/g, '')) || 0,
-    status: normalizedStatus,
+    status: normalizedStatus as Property['status'],
     type: String(p.property_type ?? p.category ?? p.type ?? 'Apartment') as Property['type'],
     beds: Number.isNaN(bedrooms) ? undefined : bedrooms,
     baths: Number.isNaN(bathrooms) ? undefined : bathrooms,
@@ -249,24 +249,24 @@ export async function fetchListings(filters?: {
     const typeFiltered =
       normalizedType && normalizedType !== 'ALL'
         ? statusFiltered.filter((row) => {
-            const rowType = String(row.type || '').trim().toUpperCase()
-            if (rowType === normalizedType) return true
-            // Keep current UX labels working even when backend taxonomy differs.
-            if (normalizedType === 'LUXURY HOMES') {
-              const title = row.title.toUpperCase()
-              return title.includes('LUXURY') || title.includes('PREMIUM') || title.includes('MANSION')
-            }
-            if (normalizedType === 'SINGLE FAMILY HOME') {
-              return ['DETACHED', 'SEMI-DETACHED', 'DUPLEX', 'VILLA', 'HOUSE'].includes(rowType)
-            }
-            if (normalizedType === 'OFFICE SPACE') {
-              return rowType === 'OFFICE' || row.title.toUpperCase().includes('OFFICE')
-            }
-            if (normalizedType === 'RETAIL SHOP') {
-              return rowType === 'SHOP' || rowType === 'COMMERCIAL'
-            }
-            return false
-          })
+          const rowType = String(row.type || '').trim().toUpperCase()
+          if (rowType === normalizedType) return true
+          // Keep current UX labels working even when backend taxonomy differs.
+          if (normalizedType === 'LUXURY HOMES') {
+            const title = row.title.toUpperCase()
+            return title.includes('LUXURY') || title.includes('PREMIUM') || title.includes('MANSION')
+          }
+          if (normalizedType === 'SINGLE FAMILY HOME') {
+            return ['DETACHED', 'SEMI-DETACHED', 'DUPLEX', 'VILLA', 'HOUSE'].includes(rowType)
+          }
+          if (normalizedType === 'OFFICE SPACE') {
+            return rowType === 'OFFICE' || row.title.toUpperCase().includes('OFFICE')
+          }
+          if (normalizedType === 'RETAIL SHOP') {
+            return rowType === 'SHOP' || rowType === 'COMMERCIAL'
+          }
+          return false
+        })
         : statusFiltered
 
     const finalLimit = filters?.limit ?? typeFiltered.length
@@ -283,13 +283,13 @@ export async function fetchPropertyFilters() {
     if (!res.ok) throw new Error('Failed to fetch filters');
     const json = await res.json();
     const raw = json.data || [];
-    
+
     // Return names exactly as they come from the API (dashboard mirror)
     const allCategories = [
       'ALL',
       ...(Array.isArray(raw) ? raw.map((t: any) => t.name.toUpperCase()) : []),
     ];
-    
+
     return Array.from(new Set(allCategories));
   } catch (error) {
     console.error('fetchPropertyFilters error:', error);
@@ -392,7 +392,7 @@ export type FrontendNeighborhood = {
 function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
   const slug = (n.slug as string) || (n.id as string) || ''
   const name = (n.name as string) || ''
-  
+
   let coverImage = (n.coverImage as string) || (n.cover_image as string) || ''
   let galleryRaw = Array.isArray(n.gallery) ? n.gallery : (Array.isArray(n.images) ? n.images : [])
   let gallery = galleryRaw.filter((g): g is string => typeof g === 'string' && g.trim().length > 0 && !g.includes('googleapis.com'))
@@ -412,7 +412,7 @@ function mapNeighborhood(n: Record<string, unknown>): FrontendNeighborhood {
       }
     }
   }
-  
+
   if (gallery.length === 0 && coverImage && !coverImage.includes('googleapis.com')) {
     gallery = [coverImage]
   }

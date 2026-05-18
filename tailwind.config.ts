@@ -83,7 +83,7 @@ const config: Config = {
         subtle: '#4a5568',
         divider: '#cbd5e0',
         placeholder: '#a0aec0',
-        heading: '#001A40',
+        heading: '#21201B',
       },
 
       fontFamily: {
@@ -118,7 +118,7 @@ const config: Config = {
         // Legacy scale (prefer Framer tokens above in new code)
         'display-2xl': ['clamp(56px, 10vw, 128px)', { lineHeight: '0.95', letterSpacing: '-0.02em' }],
         'display-xl': ['clamp(40px, 6vw, 64px)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
-        'display-lg': ['clamp(32px, 4.2vw, 52px)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'display-lg': ['clamp(30px, 4.2vw, 40px)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
         'display-md': ['clamp(28px, 3.2vw, 40px)', { lineHeight: '1.12', letterSpacing: '-0.02em' }],
         'display-sm': ['28px', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
         display: ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],

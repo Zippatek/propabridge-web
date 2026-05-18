@@ -7,7 +7,7 @@ export default function LocationSection() {
     <section className="bg-beige" aria-labelledby="locations-heading">
 
       {/* ── DIVIDER LINE — separates from listings section above ── */}
-      <hr className="border-t border-grey-light mx-6" aria-hidden="true" />
+      <hr className="border-t border-[#21201b]/30 mx-6" aria-hidden="true" />
 
       {/* ── Header — same pattern as RECENT LISTINGS section ── */}
       <div className="container-site pt-20 pb-6">
@@ -37,13 +37,13 @@ export default function LocationSection() {
         </div>
 
         {/* ── VIEW ALL NEIGHBORHOODS CTA — Electric Blue pill ── */}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-8">
           <Link
             href="/neighborhood"
-            className="btn-cta-strong inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-white px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+            className="btn-navy-pill rounded-[8px]"
           >
             VIEW ALL NEIGHBORHOODS
-            <span aria-hidden="true">›</span>
+            <span className="text-[18px] leading-none mb-[3px]">›</span>
           </Link>
         </div>
       </div>

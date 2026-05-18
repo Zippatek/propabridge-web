@@ -74,7 +74,7 @@ export default function ServicesSection() {
     <section className="bg-beige" aria-labelledby="services-heading">
 
       {/* ── DIVIDER — separates from LocationSection above ── */}
-      <hr className="border-t border-grey-light mx-6" aria-hidden="true" />
+      <hr className="border-t border-[#21201b]/30 mx-6" aria-hidden="true" />
 
       {/* ── HEADER — both label + heading centered ── */}
       <div className="container-site section-pt pb-10 text-center">
@@ -156,11 +156,10 @@ export default function ServicesSection() {
                           {service.features.map((feature, i) => (
                             <li
                               key={i}
-                              className={`py-3 text-navy text-[15px] leading-[1.32] tracking-[-0.004em] ${
-                                i < service.features.length - 1
-                                  ? 'border-b border-grey-light/60'
-                                  : ''
-                              }`}
+                              className={`py-3 text-black text-[15px] leading-[1.32] tracking-[-0.004em] ${i < service.features.length - 1
+                                ? 'border-b border-grey-light/60'
+                                : ''
+                                }`}
                             >
                               {feature}
                             </li>
@@ -170,10 +169,10 @@ export default function ServicesSection() {
                         {/* CTA Button */}
                         <Link
                           href={service.href}
-                          className="btn-cta-strong inline-flex items-center gap-2 bg-blue text-white px-6 py-3 rounded-btn hover:bg-blue-hover transition-colors duration-200 mb-2"
+                          className="btn-navy-pill rounded-[8px]"
                         >
                           {service.cta}
-                          <span aria-hidden="true">›</span>
+                          <span className="text-[18px] leading-none mb-[3px]">›</span>
                         </Link>
                       </div>
                     </div>

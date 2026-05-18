@@ -127,8 +127,8 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/all-properties.webp" alt="All Properties" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">All Properties</h3>
-                        <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
+                        <h3 className="!text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">All Properties</h3>
+                        <p className="!text-brand-textWhite text-body leading-snug mb-4 flex-grow">Browse everything we&apos;ve verified and uploaded, from self-contains to luxury homes.</p>
                         <div className="text-brand-textWhite font-semibold text-nav uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           SEE ALL LISTINGS <CaretRight size={12} />
                         </div>
@@ -139,8 +139,8 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/neighborhoods.webp" alt="Neighborhoods" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Neighborhoods</h3>
-                        <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
+                        <h3 className="!text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Neighborhoods</h3>
+                        <p className="!text-brand-textWhite text-body leading-snug mb-4 flex-grow">Discover local communities, lifestyle perks, and what makes each area special.</p>
                         <div className="text-brand-textWhite font-semibold text-nav uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           EXPLORE AREAS <CaretRight size={12} />
                         </div>
@@ -151,8 +151,8 @@ export default function Navbar() {
                         <div className="relative w-full aspect-[16/7] rounded-[12px] overflow-hidden mb-4">
                           <Image src="/images/menu/property-types.webp" alt="Property Types" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover/col:scale-105" />
                         </div>
-                        <h3 className="text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Property Types</h3>
-                        <p className="text-brand-textWhite/70 text-body leading-snug mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
+                        <h3 className="!text-brand-textWhite font-semibold text-h3-m mb-1.5 transition-colors">Property Types</h3>
+                        <p className="!text-brand-textWhite text-body leading-snug mb-4 flex-grow">Flat · Duplex · Detached · Bungalow<br />· Land · Shortlet · Commercial</p>
                         <div className="text-brand-textWhite font-semibold text-nav uppercase tracking-wider flex items-center gap-1 group-hover/col:gap-2 transition-all mt-auto">
                           EXPLORE TYPES <CaretRight size={12} />
                         </div>

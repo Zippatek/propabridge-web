@@ -31,8 +31,8 @@ const NEW_WAY_ITEMS = [
 
 export default function WhyChooseUs() {
   return (
-    <section 
-      className="relative bg-beige section-pt section-pb overflow-hidden" 
+    <section
+      className="relative bg-beige section-pt section-pb overflow-hidden"
       aria-labelledby="choose-us-heading"
     >
       {/* Background Image (Full width overlay) */}
@@ -41,13 +41,17 @@ export default function WhyChooseUs() {
         style={{ backgroundImage: `url('${HERO_IMAGES.aboutProblem}')` }}
         aria-hidden="true"
       />
-      
+
       {/* Light gradient overlay to ensure text readability at the top and give a soft glass feel */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-beige/90 via-beige/30 to-beige/90" 
-        aria-hidden="true" 
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-beige/90 via-beige/30 to-beige/90"
+        aria-hidden="true"
       />
-      
+
+      {/* ── TOP DIVIDER ── */}
+      <hr className="absolute top-0 left-0 right-0 border-t border-[#21201b]/30 z-20 mx-4 md:mx-8" aria-hidden="true" />
+
+
       <div className="container-site relative z-10">
         {/* ── HEADER ── */}
         <div className="flex flex-col items-center mb-12 text-center">
@@ -61,7 +65,7 @@ export default function WhyChooseUs() {
               WHY CHOOSE US
             </p>
           </div>
-          
+
           {/* Main Title */}
           <h2
             id="choose-us-heading"
@@ -73,13 +77,13 @@ export default function WhyChooseUs() {
 
         {/* ── COMPARISON SPLIT CARD ── */}
         <div className="mx-auto max-w-[1040px] flex flex-col md:flex-row rounded-[24px] overflow-hidden">
-          
+
           {/* Left Side: The Old Way (Glassmorphism / Light) */}
           <div className="flex-1 bg-[#FFFFF2] p-8 md:p-12 relative z-0 border-r border-navy/10">
             <h3 className="text-navy font-medium text-[24px] md:text-[28px] mb-8 leading-snug tracking-tight">
               The Old Way (Other Platforms)
             </h3>
-            
+
             <ul className="flex flex-col">
               {OLD_WAY_ITEMS.map((item, i) => (
                 <li key={i} className="flex flex-col">
@@ -89,13 +93,13 @@ export default function WhyChooseUs() {
                       className="text-navy shrink-0 mt-[1px] opacity-90"
                       aria-hidden="true"
                     />
-                    <span className="text-[15px] font-medium text-navy/90 leading-[1.3] tracking-[-0.005em]">
+                    <span className="text-[15px] font-medium text-black leading-[1.3] tracking-[-0.005em]">
                       {item}
                     </span>
                   </div>
                   {/* Subtle divider except after the last item */}
                   {i < OLD_WAY_ITEMS.length - 1 && (
-                    <hr className="border-t border-navy/10 my-0.5" aria-hidden="true" />
+                    <hr className="border-t border-black my-0.5" aria-hidden="true" />
                   )}
                 </li>
               ))}
@@ -104,10 +108,10 @@ export default function WhyChooseUs() {
 
           {/* Right Side: The Propabridge Way (Dark Navy) */}
           <div className="flex-1 bg-navy p-8 md:p-12 relative z-10">
-            <h3 className="text-white font-medium text-[24px] md:text-[28px] mb-8 leading-snug tracking-tight flex items-center gap-2">
+            <h3 className="!text-white font-medium text-[24px] md:text-[28px] mb-8 leading-snug tracking-tight flex items-center gap-2">
               The Propabridge Way <span className="font-light">✓</span>
             </h3>
-            
+
             <ul className="flex flex-col">
               {NEW_WAY_ITEMS.map((item, i) => (
                 <li key={i} className="flex flex-col">

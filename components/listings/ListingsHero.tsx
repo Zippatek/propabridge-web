@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Search as MagnifyingGlass, Building2 as Buildings, Tag, Key, Handshake } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import SearchBar from '@/components/search/SearchBar'
 
 interface ListingsHeroProps {
   activeStatus: string
@@ -42,22 +43,11 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
       </div>
 
       {/* Heading */}
-      <h1 className="relative z-10 text-display-xl text-heading font-medium max-w-[980px] mb-12">
-        Find a place to live, work, or dream big —<br />all in one beautiful map<br /> of possibilities.
+      <h1 className="relative z-10 text-display-lg text-heading font-medium max-w-[980px] mb-12">
+        Find a place to live, work, or dream big —<br />all in one beautiful map of possibilities.
       </h1>
-
-      {/* Search Bar */}
-      <div className="relative z-10 w-full max-w-[1280px] mb-8 mx-auto px-0 md:px-0 lg:px-0">
-        <div className="relative flex items-center w-full h-[64px] bg-brand-light1 rounded-[16px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] px-6">
-          <MagnifyingGlass size={20} color="#6B7280" className="mr-3" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder='"3 bedroom flat in Gwarinpa, under ₦3M..." or Chat with Propa'
-            className="flex-1 min-w-0 h-full bg-transparent border-none outline-none text-[15px] text-navy placeholder:text-gray-400 italic font-light text-ellipsis"
-          />
-        </div>
+      <div className="container-site flex justify-center relative z-20 pt-12 pb-10 w-full max-w-[1280px]">
+        <SearchBar />
       </div>
 
       {/* Status Filters */}
@@ -73,7 +63,7 @@ export default function ListingsHero({ activeStatus, onStatusChange }: ListingsH
                 "flex items-center gap-2 px-5 py-2.5 rounded-[12px] text-[13px] font-bold tracking-[0.05em] uppercase transition-colors",
                 isActive
                   ? "bg-navy text-brand-textWhite shadow-md"
-                  : "bg-beige text-navy hover:bg-[#e9e7d9]"
+                  : "bg-[#e9e7d9] text-navy hover:bg-[#d9d8d0]"
               )}
             >
               <Icon size={16} />

@@ -47,7 +47,7 @@ export default function WhyPropabridge() {
     <section className="bg-beige" aria-labelledby="uniqueness-heading">
 
       {/* ── DIVIDER — separates from ServicesSection above ── */}
-      <hr className="border-t border-grey-light mx-6" aria-hidden="true" />
+      <hr className="border-t border-[#21201b]/30 mx-6" aria-hidden="true" />
 
       {/* ── HEADER — label left, heading centered ── */}
       <div className="container-site section-pt pb-12">
@@ -80,7 +80,7 @@ export default function WhyPropabridge() {
           {UNIQUENESS_COLUMNS.map((col) => (
             <div
               key={col.id}
-              className="flex flex-col border-l border-navy/20 pl-6"
+              className="flex flex-col border-l border-black pl-6"
             >
               {/* Column title — size and weight matching reference */}
               <h3 className="text-navy font-medium text-[22px] tracking-[-0.01em] leading-[1.2] mb-6 pr-4">
@@ -97,13 +97,13 @@ export default function WhyPropabridge() {
                         className="mt-[8px] shrink-0 w-[6px] h-[6px] bg-navy"
                         aria-hidden="true"
                       />
-                      <span className="text-[14.5px] text-grey leading-[1.3] tracking-[-0.004em] pr-2">
+                      <span className="text-[14.5px] text-black leading-[1.3] tracking-[-0.004em] pr-2">
                         {bullet}
                       </span>
                     </div>
                     {/* Thin divider below EACH bullet EXCEPT the last one */}
                     {i < col.bullets.length - 1 && (
-                      <hr className="border-t border-grey-light/80 my-1" aria-hidden="true" />
+                      <hr className="border-t border-black my-1" aria-hidden="true" />
                     )}
                   </li>
                 ))}
