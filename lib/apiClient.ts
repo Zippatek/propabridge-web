@@ -7,34 +7,69 @@ import { PUBLIC_API_URL } from './env-public';
 
 const BASE_URL = PUBLIC_API_URL;
 
+type ApiGetOptions = {
+  signal?: AbortSignal;
+  timeoutMs?: number;
+};
+
 /**
  * Generic GET request wrapper.
- * No manual AbortControllers or timeouts — let React Query handle lifecycle.
+ * Supports optional abort/timeout handling for server-side call sites while
+ * remaining compatible with React Query-managed client usage.
  */
-export async function apiGet<T>(path: string): Promise<T> {
+export async function apiGet<T>(path: string, options: ApiGetOptions = {}): Promise<T> {
   const url = `${BASE_URL}${path}`;
-  
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // Next.js caching behavior
-    cache: 'no-store'
-  });
+  const { signal, timeoutMs } = options;
 
-  if (!res.ok) {
-    let errorMsg = `API Error: ${res.status}`;
-    try {
-      const errorJson = await res.json();
-      if (errorJson.error) errorMsg = errorJson.error;
-    } catch {
-      // Fallback if not JSON
+  const controller = signal || timeoutMs ? new AbortController() : undefined;
+  const onAbort = () => controller?.abort();
+
+  if (signal) {
+    if (signal.aborted) {
+      controller?.abort();
+    } else {
+      signal.addEventListener('abort', onAbort, { once: true });
     }
-    throw new Error(errorMsg);
   }
 
-  return res.json();
+  const timeoutId =
+    timeoutMs != null
+      ? setTimeout(() => {
+          controller?.abort();
+        }, timeoutMs)
+      : undefined;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      signal: controller?.signal ?? signal,
+      // Next.js caching behavior
+      cache: 'no-store'
+    });
+
+    if (!res.ok) {
+      let errorMsg = `API Error: ${res.status}`;
+      try {
+        const errorJson = await res.json();
+        if (errorJson.error) errorMsg = errorJson.error;
+      } catch {
+        // Fallback if not JSON
+      }
+      throw new Error(errorMsg);
+    }
+
+    return res.json();
+  } finally {
+    if (timeoutId != null) {
+      clearTimeout(timeoutId);
+    }
+    if (signal) {
+      signal.removeEventListener('abort', onAbort);
+    }
+  }
 }
 
 /**
