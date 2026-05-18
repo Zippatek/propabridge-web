@@ -87,7 +87,18 @@ export async function apiPost<T>(path: string, body: any): Promise<T> {
   });
 
   if (!res.ok) {
-    throw new Error(`API POST Error: ${res.status}`);
+    let errorMsg = `API POST Error: ${res.status}${res.statusText ? ` ${res.statusText}` : ''}`;
+    try {
+      const errorJson = await res.json();
+      if (errorJson?.error) {
+        errorMsg = errorJson.error;
+      } else if (errorJson?.message) {
+        errorMsg = errorJson.message;
+      }
+    } catch {
+      // Fallback if not JSON
+    }
+    throw new Error(errorMsg);
   }
 
   return res.json();
