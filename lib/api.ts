@@ -1,7 +1,6 @@
 import { BLOGS } from '@/data/blogs'
 import { pickMarkdownFields } from '@/lib/property-markdown'
 import { Property } from '@/lib/types'
-import { NEIGHBORHOOD_COVERS } from '@/lib/bucket'
 import { apiGet, apiPost } from './apiClient'
 
 /**
