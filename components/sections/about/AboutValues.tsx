@@ -1,9 +1,9 @@
 export const AboutValues = () => {
   return (
     <section className="container-site px-4 md:px-8">
-      <div className="bg-[#e8e6d5] rounded-[24px] p-8 lg:p-12">
+      <div className="bg-[#fffff2] rounded-[24px] p-8 lg:p-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          
+
           <div className="flex flex-col gap-4">
             <svg className="w-8 h-8 text-[#001a40]" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" /></svg>
             <div>

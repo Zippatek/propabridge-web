@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, Bed, Bath, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Property } from '@/lib/types'
+import { safeImages } from '@/lib/media'
 import { cn } from '@/lib/cn'
 import HoverCursorWrapper from '@/components/ui/HoverCursorWrapper'
 
@@ -152,7 +153,7 @@ export default function PropertyCard({ property, priority = false }: PropertyCar
   const pill =
     statusPillStyle[status] ?? ({ bg: '#F3F4F6', color: '#001A40' } as const)
 
-  const displayImages = images && images.length > 0 ? images.filter(Boolean) : []
+  const displayImages = safeImages(images)
 
   return (
     <HoverCursorWrapper>

@@ -77,7 +77,7 @@ export default function FAQSection() {
   return (
     <section className="bg-beige section-pt section-pb" aria-labelledby="faq-heading">
       {/* ── TOP DIVIDER ── */}
-      <hr className="border-t border-grey-light mx-6 mb-12" aria-hidden="true" />
+      <hr className="border-t border-black/30 mx-6 mb-12" aria-hidden="true" />
 
       <div className="container-site">
         {/* ── HEADER ── */}
@@ -109,7 +109,7 @@ export default function FAQSection() {
               <form className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="faq-name" className="faq-contact-form-label text-navy">
+                    <label htmlFor="faq-name" className="faq-contact-form-label text-black">
                       Name
                     </label>
                     <input
@@ -119,7 +119,7 @@ export default function FAQSection() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="faq-phone" className="faq-contact-form-label text-navy">
+                    <label htmlFor="faq-phone" className="faq-contact-form-label text-black">
                       Phone
                     </label>
                     <input
@@ -131,7 +131,7 @@ export default function FAQSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="faq-email" className="faq-contact-form-label text-navy">
+                  <label htmlFor="faq-email" className="faq-contact-form-label text-black">
                     Email
                   </label>
                   <input
@@ -142,7 +142,7 @@ export default function FAQSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="faq-message" className="faq-contact-form-label text-navy">
+                  <label htmlFor="faq-message" className="faq-contact-form-label text-black">
                     Message
                   </label>
                   <textarea
@@ -157,9 +157,7 @@ export default function FAQSection() {
                   className="mt-4 bg-navy text-white font-bold text-[14px] uppercase tracking-wider h-[56px] rounded-btn flex items-center justify-center gap-2 hover:bg-navy/90 transition-colors"
                 >
                   SEND MESSAGE
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 18l6-6-6-6"></path>
-                  </svg>
+                  <span className="text-[18px] leading-none mb-[3px]">›</span>
                 </button>
               </form>
             </div>
@@ -173,7 +171,7 @@ export default function FAQSection() {
                 <div
                   key={item.id}
                   className={cn(
-                    'border-b border-grey-light/60 py-5 lg:py-6',
+                    'border-b border-black py-5 lg:py-6',
                     index === 0 && 'border-t'
                   )}
                 >
@@ -185,7 +183,7 @@ export default function FAQSection() {
                     aria-controls={`${item.id}-answer`}
                     id={`${item.id}-btn`}
                   >
-                    <div className="shrink-0 mt-0.5 w-[36px] h-[36px] rounded-full border border-grey-light flex items-center justify-center text-navy group-hover:border-navy transition-colors">
+                    <div className="shrink-0 mt-0.5 w-[36px] h-[36px] rounded-full border border-black/30 flex items-center justify-center text-navy group-hover:border-black transition-colors">
                       {isOpen ? (
                         <X size={14} />
                       ) : (
@@ -193,7 +191,7 @@ export default function FAQSection() {
                       )}
                     </div>
 
-                    <span className="text-navy font-medium text-[18px] lg:text-[20px] leading-[1.3] pt-1">
+                    <span className="text-black font-medium text-[18px] lg:text-[20px] leading-[1.3] pt-1">
                       {item.question}
                     </span>
                   </button>

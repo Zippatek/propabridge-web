@@ -53,7 +53,7 @@ export default function HowItWorks() {
     <section className="bg-beige section-pt section-pb" aria-labelledby="process-heading">
 
       {/* ── TOP DIVIDER ── */}
-      <hr className="border-t border-grey-light mx-6 mb-12" aria-hidden="true" />
+      <hr className="border-t border-black/30 mx-6 mb-12" aria-hidden="true" />
 
       <div className="container-site">
         {/* ── HEADER ── */}
@@ -76,9 +76,9 @@ export default function HowItWorks() {
         <div ref={timelineRef} className="relative max-w-[1040px] mx-auto pb-4 pt-10">
 
           {/* Vertical Line Track (Desktop) - faint background line, constrained between 1st and 4th badges */}
-          <div 
-            className="absolute left-1/2 top-[180px] bottom-[180px] w-[2px] bg-navy/15 -translate-x-1/2 z-0 hidden md:block" 
-            aria-hidden="true" 
+          <div
+            className="absolute left-1/2 top-[180px] bottom-[180px] w-[2px] bg-navy/15 -translate-x-1/2 z-0 hidden md:block"
+            aria-hidden="true"
           />
 
           {/* Vertical Line Progress (Desktop) - animated active line */}
@@ -89,9 +89,9 @@ export default function HowItWorks() {
           />
 
           {/* Vertical Line Track (Mobile) */}
-          <div 
-            className="absolute left-6 top-[140px] bottom-[140px] w-[2px] bg-navy/15 z-0 md:hidden" 
-            aria-hidden="true" 
+          <div
+            className="absolute left-6 top-[140px] bottom-[140px] w-[2px] bg-navy/15 z-0 md:hidden"
+            aria-hidden="true"
           />
 
           {/* Vertical Line Progress (Mobile) */}

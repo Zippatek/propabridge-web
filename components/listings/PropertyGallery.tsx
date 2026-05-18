@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Property } from '@/lib/types';
+import { safeImages } from '@/lib/media';
 
 interface PropertyGalleryProps {
   property: Property;
@@ -13,8 +14,7 @@ export function PropertyGallery({ property }: PropertyGalleryProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const displayImages =
-    property.images?.filter((u) => typeof u === 'string' && u.trim()) ?? [];
+  const displayImages = safeImages(property.images);
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();

@@ -20,7 +20,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
 
       {/* ── TOP DIVIDER ── */}
       {!isPage && (
-        <hr className="border-t border-grey-light mx-6 mb-12 md:mb-16" aria-hidden="true" />
+        <hr className="border-t border-black/30 mx-6 mb-12 md:mb-16" aria-hidden="true" />
       )}
 
       <div className="container-site">
@@ -35,7 +35,7 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
               </p>
             </div>
           )}
-          
+
           {/* ── PILL BADGE (Only for the dedicated page) ── */}
           {isPage && (
             <div className="flex items-center justify-center gap-2.5 bg-[#eae9e0] px-4 py-2 rounded-[8px] mb-6">
@@ -139,13 +139,10 @@ export default function BlogsSection({ limit = 3, isPage = false, blogs = BLOGS 
           <div className="mt-16 md:mt-24 flex justify-center">
             <Link
               href="/blogs"
-              className="btn-cta-strong inline-flex items-center justify-center bg-blue hover:bg-blue-hover text-brand-textWhite px-6 py-3 rounded-btn transition-all duration-300 gap-2"
+              className="btn-navy-pill rounded-[8px]"
             >
               READ ALL BLOGS
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
-                <path d="M5 12h14"></path>
-                <path d="M13 5l7 7-7 7"></path>
-              </svg>
+              <span className="text-[18px] leading-none mb-[3px]">›</span>
             </Link>
           </div>
         )}

@@ -16,7 +16,7 @@ export default async function RecentListings() {
       <div className="container-site flex justify-center pt-12 pb-10">
         <SearchBar />
       </div>
-      <hr className="border-t border-grey-light mx-6" aria-hidden="true" />
+      <hr className="border-t border-[#21201b]/30 mx-6" aria-hidden="true" />
       <div className="container-site pt-10 pb-8">
         <div className="flex items-center gap-2 mb-4">
           <span className="inline-block w-2.5 h-2.5 rounded-sm bg-navy shrink-0" aria-hidden="true" />
@@ -42,10 +42,10 @@ export default async function RecentListings() {
         <div className="flex justify-center mt-8">
           <Link
             href="/listings"
-            className="btn-navy-pill"
+            className="btn-navy-pill rounded-[8px]"
           >
             VIEW PROPERTIES
-            <span className="text-[18px] leading-none">›</span>
+            <span className="text-[18px] leading-none mb-[3px]">›</span>
           </Link>
         </div>
       </div>

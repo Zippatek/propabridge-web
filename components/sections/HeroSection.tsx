@@ -5,16 +5,16 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 const HERO_PARTICLES = [
-  { left: '8%',  top: '18%', size: 6, opacity: 0.14, duration: 9.5,  delay: 0 },
-  { left: '18%', top: '36%', size: 8, opacity: 0.12, duration: 11,   delay: 1.8 },
-  { left: '27%', top: '62%', size: 5, opacity: 0.1,  duration: 10.2, delay: 0.6 },
+  { left: '8%', top: '18%', size: 6, opacity: 0.14, duration: 9.5, delay: 0 },
+  { left: '18%', top: '36%', size: 8, opacity: 0.12, duration: 11, delay: 1.8 },
+  { left: '27%', top: '62%', size: 5, opacity: 0.1, duration: 10.2, delay: 0.6 },
   { left: '39%', top: '24%', size: 7, opacity: 0.13, duration: 12.4, delay: 2.2 },
-  { left: '47%', top: '52%', size: 6, opacity: 0.11, duration: 9.8,  delay: 1.2 },
+  { left: '47%', top: '52%', size: 6, opacity: 0.11, duration: 9.8, delay: 1.2 },
   { left: '56%', top: '34%', size: 9, opacity: 0.12, duration: 12.1, delay: 0.4 },
-  { left: '64%', top: '68%', size: 5, opacity: 0.1,  duration: 10.6, delay: 2.6 },
+  { left: '64%', top: '68%', size: 5, opacity: 0.1, duration: 10.6, delay: 2.6 },
   { left: '72%', top: '26%', size: 7, opacity: 0.12, duration: 11.3, delay: 0.9 },
-  { left: '79%', top: '49%', size: 6, opacity: 0.11, duration: 9.9,  delay: 1.5 },
-  { left: '86%', top: '73%', size: 8, opacity: 0.1,  duration: 12.7, delay: 2.9 },
+  { left: '79%', top: '49%', size: 6, opacity: 0.11, duration: 9.9, delay: 1.5 },
+  { left: '86%', top: '73%', size: 8, opacity: 0.1, duration: 12.7, delay: 2.9 },
 ]
 
 function HeroChip({ children }: { children: React.ReactNode }) {
@@ -224,7 +224,7 @@ export default function HeroSection() {
           <Link href="/listings?type=rent" className="text-brand-textWhite transition-colors duration-200 hover:text-brand-gold">rent.</Link>
         </h1>
         {/* Subtitle */}
-        <p className="mx-auto mb-20 mt-12 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
+        <p className="mx-auto mb-10 mt-6 max-w-[820px] text-center text-[clamp(28px,8.4vw,40px)] font-medium leading-[1.08] tracking-[-0.03em] !text-brand-textWhite hero:mt-28 hero:mb-12 hero:text-[40px]">
           <span className="block w-full text-center">The Smartest Way to</span>
           <span className="mt-2 inline-flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-2">
             <HeroChip>Rent,</HeroChip>

@@ -9,7 +9,7 @@ export const ContactHero = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="text-display-xl text-heading font-medium max-w-4xl mx-auto">
+      <h1 className="text-display-lg text-heading font-medium max-w-4xl mx-auto">
         We&apos;d love to hear from you<br />
         (seriously, we actually reply)
       </h1>
