@@ -1,8 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/cn'
-import { useState, useEffect } from 'react'
-import { fetchPropertyFilters } from '@/lib/api'
+import { usePropertyFilters } from '@/hooks/usePropertyData'
 
 interface ListingsFiltersProps {
   activeCategory: string
@@ -11,11 +10,17 @@ interface ListingsFiltersProps {
 }
 
 export default function ListingsFilters({ activeCategory, onCategoryChange, className }: ListingsFiltersProps) {
-  const [categories, setCategories] = useState<string[]>(['ALL'])
+  const { data: categories = ['ALL'], isLoading } = usePropertyFilters()
 
-  useEffect(() => {
-    fetchPropertyFilters().then(setCategories)
-  }, [])
+  if (isLoading && categories.length <= 1) {
+    return (
+      <div className={cn("flex gap-2 overflow-x-auto pb-2 scrollbar-hide animate-pulse", className)}>
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="h-10 w-24 bg-beige rounded-[8px]" />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className={cn("flex gap-2 overflow-x-auto pb-2 scrollbar-hide", className)}>

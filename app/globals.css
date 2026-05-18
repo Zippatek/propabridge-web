@@ -47,7 +47,8 @@
     padding: 0;
   }
 
-  html {
+  html,
+  html[data-scroll-behavior="smooth"] {
     scroll-behavior: smooth;
     /* Momentum-style scroll on iOS — the "new iPhone box" feel */
     -webkit-overflow-scrolling: touch;

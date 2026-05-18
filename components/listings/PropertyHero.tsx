@@ -10,8 +10,7 @@ interface PropertyHeroProps {
 }
 
 export function PropertyHero({ property }: PropertyHeroProps) {
-  const heroImage =
-    property.images && property.images.length > 0 ? property.images[0] : null
+  const heroImage = property.images?.[0] ?? null
 
   const sectionRef = useRef<HTMLElement | null>(null)
   const [mounted, setMounted] = useState(false)

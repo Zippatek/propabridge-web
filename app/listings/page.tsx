@@ -1,38 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ListingsHero from '@/components/listings/ListingsHero'
 import ListingsFilters from '@/components/listings/ListingsFilters'
 import PropertyCard from '@/components/property/PropertyCard'
-import { fetchListings } from '@/lib/api'
+import { useListings } from '@/hooks/usePropertyData'
 import { Property } from '@/lib/types'
 
 export default function ListingsPage() {
   const [activeStatus, setActiveStatus] = useState('ALL')
   const [activeCategory, setActiveCategory] = useState('ALL')
-  const [properties, setProperties] = useState<Property[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        const data = await fetchListings({
-          status: activeStatus,
-          type: activeCategory,
-          limit: 50,
-        })
-        setProperties(data)
-      } catch (err) {
-        setError('Could not load listings. Is the backend running?')
-      } finally {
-        setLoading(false)
-      }
-    }
-    load()
-  }, [activeStatus, activeCategory])
+  const { data: properties = [], isLoading: loading, isError } = useListings({
+    status: activeStatus,
+    type: activeCategory,
+    limit: 50,
+  })
+
+  const error = isError ? 'Could not load listings. Is the backend running?' : null
 
   return (
     <div className="min-h-screen bg-[#f4f3ea]">
@@ -79,7 +64,7 @@ export default function ListingsPage() {
             {!loading && !error && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
                 {properties.length > 0 ? (
-                  properties.map((property, index) => (
+                  properties.map((property: Property, index: number) => (
                     <PropertyCard key={property.id} property={property} priority={index < 4} />
                   ))
                 ) : (

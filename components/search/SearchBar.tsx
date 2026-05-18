@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, KeyboardEvent } from 'react'
-import { PUBLIC_API_URL } from '@/lib/env-public'
+import { apiGet, apiPost } from '@/lib/apiClient'
 
 export default function PropertySearch() {
   const [query, setQuery] = useState('')
@@ -12,17 +12,8 @@ export default function PropertySearch() {
   const [error, setError] = useState<string | null>(null)
   const [ghostText, setGhostText] = useState('')
 
-  const isLocalHost =
-    typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-
-  const [useLocalApi, setUseLocalApi] = useState(isLocalHost)
-
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  // Use project env URL in production; local override in dev
-  const API_URL = useLocalApi ? 'http://localhost:3000' : PUBLIC_API_URL
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -48,9 +39,7 @@ export default function PropertySearch() {
 
   async function fetchAICompletion() {
     try {
-      const res = await fetch(`${API_URL}/nlp-complete?q=${encodeURIComponent(query)}`)
-      if (!res.ok) return
-      const data = await res.json()
+      const data = await apiGet<any>(`/nlp-complete?q=${encodeURIComponent(query)}`)
       if (data.completion) {
         const completion = data.completion
         if (completion.toLowerCase().startsWith(query.toLowerCase())) {
@@ -81,13 +70,7 @@ export default function PropertySearch() {
     setIsOpen(true)
     setError(null)
     try {
-      const res = await fetch(`${API_URL}/search`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
-      })
-      if (!res.ok) throw new Error('API call failed')
-      const data = await res.json()
+      const data = await apiPost<any>('/search', { query })
       setResults(data.results || [])
     } catch (err) {
       console.error('Search failed:', err)
@@ -132,17 +115,6 @@ export default function PropertySearch() {
         .pb-search-btn:active { transform: scale(0.95); }
         @media (max-width: 600px) { .pb-res-card { flex-direction: column !important; } .pb-res-image { width: 100% !important; height: 180px !important; } }
       `}</style>
-
-      {/* Dev mode API switcher — only on localhost */}
-      {isLocalHost && (
-        <div style={{ position: 'fixed', top: 12, right: 12, zIndex: 100001, display: 'flex', gap: 8, background: '#fff', padding: '6px 10px', borderRadius: 99, border: '1px solid #ddd', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          <span style={{ color: useLocalApi ? '#0066FF' : '#999' }}>Local</span>
-          <div onClick={() => setUseLocalApi(!useLocalApi)} style={{ width: 32, height: 16, background: useLocalApi ? '#0066FF' : '#ccc', borderRadius: 10, position: 'relative', cursor: 'pointer', transition: 'all 0.2s' }}>
-            <div style={{ width: 10, height: 10, background: '#fff', borderRadius: '50%', position: 'absolute', top: 3, left: useLocalApi ? 19 : 3, transition: 'all 0.2s' }} />
-          </div>
-          <span style={{ color: !useLocalApi ? '#0066FF' : '#999' }}>Prod</span>
-        </div>
-      )}
 
       {/* Backdrop */}
       {isOpen && (
@@ -203,9 +175,6 @@ export default function PropertySearch() {
                   <div style={{ fontSize: 44, marginBottom: 20 }}>📡</div>
                   <h3 style={{ fontSize: 20, color: '#ef4444', fontWeight: 800 }}>Server Timeout</h3>
                   <p style={{ color: '#666', marginBottom: 24 }}>Could not reach the search engine.</p>
-                  <button onClick={() => setUseLocalApi(false)} style={{ padding: '12px 24px', borderRadius: 12, border: '2px solid #001a40', background: 'transparent', fontWeight: 700, cursor: 'pointer' }}>
-                    Try Production API
-                  </button>
                 </div>
               ) : results.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '80px 20px' }}>
