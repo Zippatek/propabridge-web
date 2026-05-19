@@ -7,7 +7,8 @@ export const CDN_DOMAIN = 'cdn.propabridge.com'
 export const GCS_BUCKET = 'propabridge-listings-us'
 export const GCS_PREFIX = `https://storage.googleapis.com/${GCS_BUCKET}/`
 export const CDN_PREFIX = `https://${CDN_DOMAIN}/`
-export const DEFAULT_PLACEHOLDER = '/images/placeholder.jpg'
+/** Legacy fallback path — prefer empty gallery + card fill (see safeImages). */
+export const DEFAULT_PLACEHOLDER = '/images/placeholder.png'
 
 const BLOCKED_HOSTS = ['framerusercontent.com'] as const
 
@@ -30,7 +31,7 @@ export function isAllowedMediaUrl(url: string): boolean {
  * Never throws.
  */
 export function safeImage(url: string | null | undefined): string {
-  if (!url) return DEFAULT_PLACEHOLDER
+  if (!url) return ''
 
   if (url.startsWith('/') || url.startsWith('http://localhost') || url.startsWith('https://localhost')) {
     return url
@@ -40,11 +41,11 @@ export function safeImage(url: string | null | undefined): string {
     return url
   }
 
-  return DEFAULT_PLACEHOLDER
+  return ''
 }
 
+/** Allowed remote/local listing URLs only — empty array when none (card shows neutral fill). */
 export function safeImages(images: (string | null | undefined)[] | null | undefined): string[] {
-  if (!images || !Array.isArray(images)) return [DEFAULT_PLACEHOLDER]
-  const cleaned = images.map(safeImage).filter((img) => img !== DEFAULT_PLACEHOLDER)
-  return cleaned.length > 0 ? cleaned : [DEFAULT_PLACEHOLDER]
+  if (!images || !Array.isArray(images)) return []
+  return images.map(safeImage).filter(Boolean)
 }
