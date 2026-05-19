@@ -696,3 +696,25 @@ button:focus-visible {
     transform: none;
   }
 }
+
+/* ── Selective Search Blur Transitions ── */
+.search-blur-target,
+section.recent-listings-section ~ section,
+section.recent-listings-section ~ footer {
+  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), brightness 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, brightness;
+}
+
+body.search-active .search-blur-target,
+body.search-active section.recent-listings-section ~ section,
+body.search-active section.recent-listings-section ~ footer {
+  filter: blur(12px) brightness(0.85);
+  pointer-events: none;
+}
+
+/* Ensure no clicks can go through to blurred elements */
+body.search-active .search-blur-target *,
+body.search-active section.recent-listings-section ~ section *,
+body.search-active section.recent-listings-section ~ footer * {
+  pointer-events: none !important;
+}

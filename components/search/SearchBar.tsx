@@ -12,17 +12,43 @@ export default function PropertySearch() {
   const [error, setError] = useState<string | null>(null)
   const [ghostText, setGhostText] = useState('')
 
-  const isLocalHost =
-    typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  const [mounted, setMounted] = useState(false)
+  const [useLocalApi, setUseLocalApi] = useState(false)
 
-  const [useLocalApi, setUseLocalApi] = useState(isLocalHost)
+  useEffect(() => {
+    setMounted(true)
+    const isLocal =
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    if (isLocal) {
+      setUseLocalApi(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('search-active')
+    } else {
+      document.body.classList.remove('search-active')
+    }
+    return () => {
+      document.body.classList.remove('search-active')
+    }
+  }, [isOpen])
+
+  const isLocalHost =
+    mounted &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
 
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Use project env URL in production; local override in dev
-  const API_URL = useLocalApi ? 'http://localhost:8080' : SEARCH_API_URL
+  const API_URL = useLocalApi
+    ? 'http://localhost:8080'
+    : (SEARCH_API_URL === 'http://127.0.0.1:8080' || SEARCH_API_URL === 'http://localhost:8080'
+        ? 'https://pb-core-api-480235407496.europe-west1.run.app'
+        : SEARCH_API_URL)
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -107,7 +133,7 @@ export default function PropertySearch() {
 
   const navigateToProperty = (slug: string) => {
     if (!slug) return
-    window.location.href = `/listings/${slug}`
+    window.location.href = `/properties-details/${slug}`
   }
 
   return (
@@ -144,11 +170,21 @@ export default function PropertySearch() {
         </div>
       )}
 
-      {/* Backdrop */}
+      {/* Transparent Click-capture Backdrop */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          style={{ position: 'fixed', top: '-5000px', left: '-5000px', right: '-5000px', bottom: '-5000px', background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', zIndex: 9998, animation: 'pb-fadeIn 0.4s ease forwards', pointerEvents: 'auto', cursor: 'default' }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '-5000px',
+            right: '-5000px',
+            bottom: '-30000px',
+            background: 'transparent',
+            zIndex: 9998,
+            pointerEvents: 'auto',
+            cursor: 'default'
+          }}
         />
       )}
 
