@@ -701,14 +701,14 @@ button:focus-visible {
 .search-blur-target,
 section.recent-listings-section ~ section,
 section.recent-listings-section ~ footer {
-  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), brightness 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: filter, brightness;
+  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter;
 }
 
 body.search-active .search-blur-target,
 body.search-active section.recent-listings-section ~ section,
 body.search-active section.recent-listings-section ~ footer {
-  filter: blur(12px) brightness(0.85);
+  filter: blur(12px);
   pointer-events: none;
 }
 

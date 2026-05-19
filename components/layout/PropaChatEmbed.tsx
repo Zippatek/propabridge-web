@@ -102,7 +102,7 @@ export default function PropaChatEmbed() {
   return (
     <div
       className={cn(
-        'pointer-events-none fixed bottom-5 right-5 z-[100] overflow-visible transition-[width,height] duration-300 ease-out max-sm:bottom-4 max-sm:right-4',
+        'pointer-events-none fixed bottom-5 right-5 z-[100000] overflow-visible transition-[width,height] duration-300 ease-out max-sm:bottom-4 max-sm:right-4',
         panelOpen
           ? 'h-[min(640px,calc(100vh-2rem))] w-[min(428px,calc(100vw-2rem))]'
           : 'h-24 w-24'
