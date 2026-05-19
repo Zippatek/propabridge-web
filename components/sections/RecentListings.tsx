@@ -12,7 +12,7 @@ export default async function RecentListings() {
   }
 
   return (
-    <section className="bg-beige relative z-[9999] recent-listings-section" aria-labelledby="listings-heading">
+    <section className="bg-beige relative z-10 recent-listings-section" aria-labelledby="listings-heading">
       <div className="container-site flex justify-center pt-12 pb-10">
         <SearchBar />
       </div>
