@@ -90,8 +90,8 @@ export function PropertyDetails({ property }: Props) {
             SPECS
           </h3>
           <ul className="space-y-2.5 list-disc list-inside text-navy text-[15px] font-medium">
-            {beds !== undefined && <li>Bedrooms: {beds}</li>}
-            {baths !== undefined && <li>Bathrooms: {baths}</li>}
+            {beds !== undefined && beds > 0 && <li>Bedrooms: {beds}</li>}
+            {baths !== undefined && baths > 0 && <li>Bathrooms: {baths}</li>}
             {type && <li>Type: {type}</li>}
             {condition && <li>Condition: {condition}</li>}
             {floors !== undefined && <li>Floors: {floors}</li>}
