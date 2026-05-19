@@ -11,6 +11,13 @@ export const PUBLIC_API_URL =
   process.env.API_URL ||
   (process.env.NODE_ENV === 'production' ? PROD_FALLBACK : DEV_FALLBACK)
 
+/** pb-core-api semantic search service (separate from the main API gateway). */
+export const SEARCH_API_URL =
+  process.env.NEXT_PUBLIC_SEARCH_API_URL ||
+  (process.env.NODE_ENV === 'production'
+    ? 'https://pb-core-api-480235407496.europe-west1.run.app'
+    : 'http://127.0.0.1:8080')
+
 /** Propa / ADK chat widget (`widget.html`). Must stay `NEXT_PUBLIC_*` for client components. */
 const DEFAULT_PROPABRIDGE_WIDGET =
   'https://propabridge-adk-d7apfb4v6q-uc.a.run.app/widget.html'
